@@ -3,6 +3,8 @@
 #include <string.h>
 #include "professor.h"
 
+
+
 struct prof{
 
 /*
@@ -16,18 +18,19 @@ data de nascimento- struct, endereco- struct, disciplina habilitado- lista, rg-v
 	char nome[80];
 };
 
-void criaProf(Prof** p, int mat, char*nome){
+tpCondRetProfessor criaProf(Prof** p, int mat, char*nome){
 	*p = (Prof*) malloc(sizeof(Prof));
-	if(!p) printf("ERRO\n");
+	if(*p == NULL) return professorCriadoErro;
 	(*p)->mat = mat;
 	strcpy((*p)->nome, nome);
-	printf("ok\n");
+	return professorCriadoOk;
 }
-void mostraProf(Prof* p){
+
+tpCondRetProfessor mostraProf(Prof* p){
 	printf("%d, %s \n", p->mat, p->nome);
+	return professorMostraOk;
 }
-void liberaProf(Prof* p){
+tpCondRetProfessor liberaProf(Prof* p){
 	free(p);
+	return professorLiberaOk;
 }
-
-

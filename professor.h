@@ -1,5 +1,13 @@
 typedef struct prof Prof;
 
-void criaProf(Prof** p,int mat, char*nome);
-void mostraProf(Prof* p);
-void liberaProf(Prof* p);
+
+typedef enum{
+	professorCriadoErro,
+	professorCriadoOk,
+	professorMostraOk,
+	professorLiberaOk,
+} tpCondRetProfessor;
+
+tpCondRetProfessor criaProf(Prof** p,int mat, char*nome);
+tpCondRetProfessor mostraProf(Prof* p);
+tpCondRetProfessor liberaProf(Prof* p);
