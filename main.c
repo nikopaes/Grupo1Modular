@@ -6,9 +6,12 @@
 
 int main(void){
 	Prof *prof = NULL;
-	tpCondRetProfessor var = criaProf(&prof, 123, "Flavio");
+	PRF_tpCondRet var = criaProf(&prof);
 	mostraProf(prof);
 	liberaProf(prof);
+
+	printf("%d\n", var);
+
 	printf("FIM\n");
 	return 0;
 }
