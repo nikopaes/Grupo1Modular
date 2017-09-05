@@ -5,8 +5,8 @@
 
 
 
-/* Endereco e Data s√£o estruturas bem gen√©ricas ent√£o talvez depois fosse bom transferi-las para outro lugar depois.
-Aluno tamb√©m deve usa-las..
+/* Endereco e Data s„o estruturas bem genÈricas ent„o talvez depois fosse bom transferi-las para outro lugar depois.
+Aluno tambÈm deve usa-las..
 */
 typedef struct data{
 	int dia;
@@ -34,13 +34,14 @@ struct prof{
 	Endereco* endereco;
 	int rg;
 /*
-	As disciplinas que aquele professor pode dar aula est√£o aqui numa lista
+	As disciplinas que aquele professor pode dar aula est„o aqui numa lista
 */
 
 };
 
 PRF_tpCondRet mostraEndereco(Endereco* end);
 PRF_tpCondRet mostraData(Data* d);
+
 
 PRF_tpCondRet criaProf(Prof** p){
 	char nome[80];
@@ -157,3 +158,102 @@ PRF_tpCondRet liberaProf(Prof* p){
 	free(p);
 	return PRF_tpCondRetOk;
 }
+
+/* verifica se a data È v·lida, retorna 1 se for e 0 caso contr·rio */
+int eDataValido(int dia, int mes, int ano){
+	if(dia < 0 || dia > 31 || mes < 0 || mes > 12 || ano > 1900)
+		return 0;
+	if(mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12){
+		if(dia > 0 && dia <= 31){
+			return 1;
+		} else {
+			return 0;
+		}
+	} else if(mes == 4 || mes == 6 || mes == 9 || mes == 11){
+		if(dia <= 30){
+			return 1;
+		} else {
+			return 0;
+		}
+	} else { /* mes 2 (fevereiro) */
+		int maxDias = 28;
+		if(ano % 4 == 0)
+			maxDias = 29;
+		if(dia <= maxDias){
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+}
+
+PRF_tpCondRet atualizaDataNascimento(Prof* prof, int dia, int mes, int ano){
+	if(eDataValido(dia, mes, ano) == 1){
+		prof->dataNascimento->ano = ano;
+		prof->dataNascimento->mes = mes;
+		prof->dataNascimento->dia = dia;
+		return PRF_tpCondRetOk;
+	} else {
+		return PRF_tpCondRetErro;
+	}
+}
+
+PRF_tpCondRet atualizaEndereco(Prof* prof, char* rua, int numero){
+	/*
+	if(endereco == NULL)
+		return PRF_tpCondRetErro;
+	if(endereco->pais != NULL && strlen(endereco->pais) > 0 && strlen(endereco->pais) <= 80)
+		strcpy(prof->endereco->pais, endereco->pais);
+	if(endereco->uf != NULL && strlen(endereco->uf) > 0 && strlen(endereco->uf) <= 3)
+		strcpy(prof->endereco->uf, endereco->uf);
+	if(endereco->cidade != NULL && strlen(endereco->cidade) > 0 && strlen(endereco->cidade) <= 80)
+		strcpy(prof->endereco->cidade, endereco->cidade);
+	if(endereco->bairro != NULL && strlen(endereco->bairro) > 0 && strlen(endereco->bairro) <= 80)
+		strcpy(prof->endereco->bairro, endereco->bairro);
+	if(endereco->complemento != NULL && strlen(endereco->complemento) > 0 && strlen(endereco->complemento) <= 80)
+		strcpy(prof->endereco->complemento, endereco->complemento);
+	*/
+	if(rua == NULL || strlen(rua) < 0 || strlen(rua) > 80)
+		return PRF_tpCondRetErro;
+	if(numero < 0)
+		return PRF_tpCondRetErro;
+
+	strcpy(prof->endereco->rua, rua);
+	prof->endereco->numero = numero;
+	return PRF_tpCondRetOk;
+}
+
+PRF_tpCondRet atualizaProf(Prof* p, char* nome, char* email, int matricula, int telefone, char* rua, int numero, int dia, int mes, int ano, int rg, int cpf){
+	if(matricula == 0)
+		return PRF_tpCondRetErro;
+	if(nome == NULL || strlen(nome) == 0)
+		return PRF_tpCondRetErro;
+	strcpy(p->nome, nome);
+	p->matricula = matricula;
+	if(telefone != 0)
+		p->telefone = telefone;
+	if(rg != 0)
+		p->rg = rg;
+	if(cpf != 0)
+		p->cpf = cpf;
+	if(strlen(email) == 0)
+		strcpy(p->email, email);
+	if (atualizaEndereco(p, rua, numero) != PRF_tpCondRetOk)
+		return atualizaEndereco(p, rua, numero);
+	if (atualizaDataNascimento(p, dia, mes, ano) != PRF_tpCondRetOk)
+		return atualizaDataNascimento(p, dia, mes, ano);
+	return PRF_tpCondRetOk;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
