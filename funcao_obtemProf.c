@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include"prof.h"
 
 typedef struct data Data; 
 struct data{
