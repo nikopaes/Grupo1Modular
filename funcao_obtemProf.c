@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include<stdlib.h>
 #include"prof.h"
 
 typedef struct data Data; 
@@ -65,6 +64,3 @@ void ObtemProf(struct listaDeProfs *listaCorpoDocente, int matriculaProcurada){
     }
 }
 
-void liberaProf(Prof* p){
-	free(p); 
-}
