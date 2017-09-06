@@ -26,7 +26,7 @@ typedef struct endereco{
 
 struct prof{
 	char nome[80];
-	int cpf;
+	char cpf[11];
 	int matricula;
 	char email[80];
 	int telefone;
@@ -42,26 +42,36 @@ struct prof{
 PRF_tpCondRet mostraEndereco(Endereco* end);
 PRF_tpCondRet mostraData(Data* d);
 
-
-PRF_tpCondRet criaProf(Prof** p){
-	char nome[80];
-	int cpf;
-	int mat;
-	char email[80];
-	int telefone;
+PRF_tpCondRet criaProf(Prof** p, int matricula, char *cpf, char *pais, int dia, int mes, int ano){
 	Data *dataNascimento;
 	Endereco *endereco;
-	int rg;
+		
+	Prof *professor;
+
+	if(*p != NULL) return PRF_CondRetProfessorJaCriado;
 
 	*p = (Prof*) malloc(sizeof(Prof));
-	if(*p == NULL) return PRF_tpCondRetErro; //testa alocacao do ponteiro
+
+	professor = *p;
+
+	if(professor == NULL) return PRF_CondRetNaoHaMemoria; //testa alocacao do ponteiro
 	
 	dataNascimento = (Data*) malloc(sizeof(Data));
-	if(dataNascimento == NULL) return PRF_tpCondRetErro;
+	if(dataNascimento == NULL) return PRF_CondRetNaoHaMemoria;
 
 	endereco = (Endereco*) malloc(sizeof(Endereco));
-	if(endereco == NULL) return PRF_tpCondRetErro;
+	if(endereco == NULL) return PRF_CondRetNaoHaMemoria;
 
+	strcpy(professor->cpf, cpf);
+	professor->matricula = matricula;
+
+	dataNascimento->dia = dia;
+	dataNascimento->mes = mes;
+	dataNascimento->ano = ano;
+
+	strcpy(endereco->pais, pais);
+
+	/*
 	printf("nome do novo professor\n");
 	scanf(" %s", nome);
 	strcpy((*p)->nome, nome);
@@ -111,53 +121,99 @@ PRF_tpCondRet criaProf(Prof** p){
 
 	printf(" pais:\n");
 	scanf(" %s",endereco->pais);
+	*/
 
-	(*p)->dataNascimento = dataNascimento;
-	(*p)->endereco = endereco;
+	professor->dataNascimento = dataNascimento;
+	professor->endereco = endereco;
 
-	return PRF_tpCondRetOk;
+	return PRF_CondRetOk;
 }
 
 
 
 PRF_tpCondRet mostraProf(Prof* p){
+	if(!p) return PRF_CondRetNaoExisteProf;
 	printf("Exibindo Professor...\n");
-	printf("nome: %s\n", p->nome);
+//	printf("nome: %s\n", p->nome);
 	printf("cpf : %d\n", p->cpf);
-	printf("rg : %d\n", p->rg);
+//	printf("rg : %d\n", p->rg);
 	printf("matricula : %d\n", p->matricula);
-	printf("email : %s\n", p->email);
-	printf("telefone : %d \n", p->telefone);
+//	printf("email : %s\n", p->email);
+//	printf("telefone : %d \n", p->telefone);
 	printf("data de nascimento : ");
 	mostraData(p->dataNascimento);
 	printf("endereco:\n");
 	mostraEndereco(p->endereco);
-	return PRF_tpCondRetOk;
+	return PRF_CondRetOk;
 }
 
 PRF_tpCondRet mostraEndereco(Endereco* end){
-	printf(" %s, No %d, complemento:%s, %s, %s, %s, %s\n",
+	printf(" %s \n",
+	//printf(" %s, No %d, complemento:%s, %s, %s, %s, %s\n",
+		/*
  end->rua,
  end->numero,
  end->complemento,
  end->bairro,
  end->cidade,
  end->uf,
+ */
  end->pais);
-	return PRF_tpCondRetOk;
+	return PRF_CondRetOk;
 }
 
 PRF_tpCondRet mostraData(Data* d){
 	printf("%d/%d/%d\n", d->dia, d->mes, d->ano);
-	return PRF_tpCondRetOk;
+	return PRF_CondRetOk;
 }
 
-PRF_tpCondRet liberaProf(Prof* p){
-	free(p->dataNascimento);
-	free(p->endereco);
-	free(p);
-	return PRF_tpCondRetOk;
+PRF_tpCondRet liberaProf(Prof** p){
+	free((*p)->dataNascimento);
+	free((*p)->endereco);
+	free(*p);
+	*p=NULL;
+	return PRF_CondRetOk;
 }
+
+
+
+PRF_tpCondRet consultaCpfProf(Prof *professor, char *cpf){
+	if(!professor) return PRF_CondRetNaoExisteProf;
+	strcpy(cpf, professor->cpf);
+	return PRF_CondRetOk;
+}
+
+PRF_tpCondRet consultaPaisProf(Prof *professor, char *pais){
+	if(!professor) return PRF_CondRetNaoExisteProf;
+	strcpy(pais, professor->endereco->pais);
+	return PRF_CondRetOk;
+}
+
+PRF_tpCondRet consultaMatriculaProf(Prof *professor, int *matricula){
+	if(!professor) return PRF_CondRetNaoExisteProf;
+	*matricula = professor->matricula;
+	return PRF_CondRetOk;
+}
+
+PRF_tpCondRet alteraCpfProf(Prof *professor, char *cpf){
+	if(!professor) return PRF_CondRetNaoExisteProf;
+	strcpy(professor->cpf, cpf);
+	return PRF_CondRetOk;
+}
+
+PRF_tpCondRet alteraCpfProf(Prof *professor, char *pais){
+	if(!professor) return PRF_CondRetNaoExisteProf;
+	strcpy(professor->endereco->pais, pais);
+	return PRF_CondRetOk;
+}
+
+PRF_tpCondRet alteraMatriculaProf(Prof *professor, int matricula){
+	if(!professor) return PRF_CondRetNaoExisteProf;
+	professor->matricula = matricula;
+	return PRF_CondRetOk;
+}
+
+//----------------------------------------------------------------------------------------------------
 
 /* verifica se a data é válida, retorna 1 se for e 0 caso contrário */
 int eDataValido(int dia, int mes, int ano){
@@ -192,9 +248,9 @@ PRF_tpCondRet atualizaDataNascimento(Prof* prof, int dia, int mes, int ano){
 		prof->dataNascimento->ano = ano;
 		prof->dataNascimento->mes = mes;
 		prof->dataNascimento->dia = dia;
-		return PRF_tpCondRetOk;
+		return PRF_CondRetOk;
 	} else {
-		return PRF_tpCondRetErro;
+		return PRF_CondRetErro;
 	}
 }
 
@@ -214,37 +270,38 @@ PRF_tpCondRet atualizaEndereco(Prof* prof, char* rua, int numero){
 		strcpy(prof->endereco->complemento, endereco->complemento);
 	*/
 	if(rua == NULL || strlen(rua) < 0 || strlen(rua) > 80)
-		return PRF_tpCondRetErro;
+		return PRF_CondRetErro;
 	if(numero < 0)
-		return PRF_tpCondRetErro;
+		return PRF_CondRetErro;
 
 	strcpy(prof->endereco->rua, rua);
 	prof->endereco->numero = numero;
-	return PRF_tpCondRetOk;
+	return PRF_CondRetOk;
 }
 
-PRF_tpCondRet atualizaProf(Prof* p, char* nome, char* email, int matricula, int telefone, char* rua, int numero, int dia, int mes, int ano, int rg, int cpf){
+
+//desmembrar!
+PRF_tpCondRet alteraProf(Prof* p, char* nome, char* email, int matricula, int telefone, char* rua, int numero, int dia, int mes, int ano, int rg, char* cpf){
 	if(matricula == 0)
-		return PRF_tpCondRetErro;
+		return PRF_CondRetErro;
 	if(nome == NULL || strlen(nome) == 0)
-		return PRF_tpCondRetErro;
+		return PRF_CondRetErro;
 	strcpy(p->nome, nome);
 	p->matricula = matricula;
 	if(telefone != 0)
 		p->telefone = telefone;
 	if(rg != 0)
 		p->rg = rg;
-	if(cpf != 0)
-		p->cpf = cpf;
+	//if(cpf != 0)
+		strcpy(p->cpf, cpf);
 	if(strlen(email) == 0)
 		strcpy(p->email, email);
-	if (atualizaEndereco(p, rua, numero) != PRF_tpCondRetOk)
+	if (atualizaEndereco(p, rua, numero) != PRF_CondRetOk)
 		return atualizaEndereco(p, rua, numero);
-	if (atualizaDataNascimento(p, dia, mes, ano) != PRF_tpCondRetOk)
+	if (atualizaDataNascimento(p, dia, mes, ano) != PRF_CondRetOk)
 		return atualizaDataNascimento(p, dia, mes, ano);
-	return PRF_tpCondRetOk;
+	return PRF_CondRetOk;
 }
-
 
 
 
