@@ -26,7 +26,7 @@ typedef struct endereco{
 
 struct prof{
 	char nome[80];
-	char cpf[11];
+	char cpf[12];
 	int matricula;
 	char email[80];
 	int telefone;
@@ -41,6 +41,7 @@ struct prof{
 
 PRF_tpCondRet mostraEndereco(Endereco* end);
 PRF_tpCondRet mostraData(Data* d);
+
 
 PRF_tpCondRet criaProf(Prof** p, int matricula, char *cpf, char *pais, int dia, int mes, int ano){
 	Data *dataNascimento;
@@ -128,7 +129,6 @@ PRF_tpCondRet criaProf(Prof** p, int matricula, char *cpf, char *pais, int dia, 
 
 	return PRF_CondRetOk;
 }
-
 
 
 PRF_tpCondRet mostraProf(Prof* p){

@@ -8,7 +8,7 @@ typedef enum{
 	PRF_CondRetProfessorJaCriado
 } PRF_tpCondRet;
 
-PRF_tpCondRet criaProf(Prof** prof, int matricula, char *cpf, char *pais, int dia, int mes, int ano);
+PRF_tpCondRet criaProf(Prof** professor, int matricula, char *cpf, char *pais, int dia, int mes, int ano);
 PRF_tpCondRet consultaCpfProf(Prof *p, char *cpf);
 PRF_tpCondRet consultaPaisProf(Prof *p, char *pais);
 PRF_tpCondRet consultaMatriculaProf(Prof *p, int *matricula);
