@@ -5,8 +5,8 @@
 
 
 
-/* Endereco e Data s„o estruturas bem genÈricas ent„o talvez depois fosse bom transferi-las para outro lugar depois.
-Aluno tambÈm deve usa-las..
+/* Endereco e Data s√£o estruturas bem gen√©ricas ent√£o talvez depois fosse bom transferi-las para outro lugar depois.
+Aluno tamb√©m deve usa-las..
 */
 typedef struct data{
 	int dia;
@@ -34,7 +34,7 @@ struct prof{
 	Endereco* endereco;
 	int rg;
 /*
-	As disciplinas que aquele professor pode dar aula est„o aqui numa lista
+	As disciplinas que aquele professor pode dar aula est√£o aqui numa lista
 */
 
 };
@@ -135,7 +135,7 @@ PRF_tpCondRet mostraProf(Prof* p){
 	if(!p) return PRF_CondRetNaoExisteProf;
 	printf("Exibindo Professor...\n");
 //	printf("nome: %s\n", p->nome);
-	printf("cpf : %d\n", p->cpf);
+	printf("cpf : %s\n", p->cpf);
 //	printf("rg : %d\n", p->rg);
 	printf("matricula : %d\n", p->matricula);
 //	printf("email : %s\n", p->email);
@@ -201,7 +201,7 @@ PRF_tpCondRet alteraCpfProf(Prof *professor, char *cpf){
 	return PRF_CondRetOk;
 }
 
-PRF_tpCondRet alteraCpfProf(Prof *professor, char *pais){
+PRF_tpCondRet alteraPaisProf(Prof *professor, char *pais){
 	if(!professor) return PRF_CondRetNaoExisteProf;
 	strcpy(professor->endereco->pais, pais);
 	return PRF_CondRetOk;
@@ -215,7 +215,7 @@ PRF_tpCondRet alteraMatriculaProf(Prof *professor, int matricula){
 
 //----------------------------------------------------------------------------------------------------
 
-/* verifica se a data È v·lida, retorna 1 se for e 0 caso contr·rio */
+/* verifica se a data √© v√°lida, retorna 1 se for e 0 caso contr√°rio */
 int eDataValido(int dia, int mes, int ano){
 	if(dia < 0 || dia > 31 || mes < 0 || mes > 12 || ano > 1900)
 		return 0;
