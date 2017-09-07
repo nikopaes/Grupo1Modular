@@ -365,6 +365,66 @@ PRF_tpCondRet alteraProf(Prof* p, char* nome, char* email, int matricula, int te
 }
 */
 
+/*altera informacoes do prof desmembradas:*/
+
+PRF_tpCondRet alteraProfNome(Prof* p, char* nome){
+    if(nome == NULL || strlen(nome) == 0){
+		return PRF_CondRetErro;
+    }
+    strcpy(p->nome, nome);
+    return PRF_CondRetOk;
+}
+
+PRF_tpCondRet alteraProfCpf(Prof* p, char* cpf){
+    if(cpf == NULL || strlen(cpf) < 10 || strlen(cpf) > 12 ){
+	return PRF_CondRetErro;
+    }
+    strcpy(p->cpf, cpf);
+    return PRF_CondRetOk;
+}
+
+PRF_tpCondRet alteraProfMatricula(Prof* p, int matricula){
+    if(matricula == 0){
+		return PRF_CondRetErro;
+    }
+    p->matricula = matricula;
+    return PRF_CondRetOk;
+}
+
+PRF_tpCondRet alteraProfEmail(Prof* p, char* email){
+    if(email == NULL || strlen(email) == 0 ){
+		return PRF_CondRetErro;
+    }
+    strcpy(p->email, email);
+    return PRF_CondRetOk;
+}
+
+PRF_tpCondRet alteraProfTelefone(Prof* p, int tel){
+    if(tel == 0){
+	return PRF_CondRetErro;
+    }
+    p->telefone = tel;
+    return PRF_CondRetOk;
+}
+
+PRF_tpCondRet alteraProfRg(Prof* p, int rg){
+    if(rg == 0){
+		return PRF_CondRetErro;
+    }
+    p->rg = rg;
+    return PRF_CondRetOk;
+}
+
+PRF_tpCondRet alteraProfDataNasciemento(Prof* p, int dia, int mes, int ano){
+    if(verificaData(dia, mes, ano) == 0){
+     	return PRF_CondRetErro;  
+    }
+    p->dataNascimento->dia = dia;
+    p->dataNascimento->mes = mes;
+    p->dataNascimento->ano = ano;
+    return PRF_CondRetOk;
+}
+
 
 
 
