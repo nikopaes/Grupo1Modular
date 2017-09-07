@@ -1,0 +1,58 @@
+// Script:    TesteArvoreSimb.script
+// Autor:     Arndt von Staa
+// Data:      20/fev/2006
+// Propósito: Ilustrar arquivo de script, 
+//            Testa a construção de uma árvore usando parâmetros simbólicos
+//            Não verifica se as operações modificaram corretamente as referências
+
+
+
+
+== Declarar as condicoes de retorno
+=declararparm  OK           int 0
+=declararparm  NaoHaMemoria      int 1 
+=declararparm  NaoExisteProf    int 2
+=declararparm  Erro     int 3
+
+== Declarar os conteúdos dos nós
+=declararparm  cpfPrimeiro     string "1613172"
+=declararparm  cpfSegundo      string "2713161"
+=declararparm  pais        string "BraZilComZ"
+=declararparm  dia        int 4
+=declararparm  mes        int 9
+=declararparm  ano        int 1896
+
+== Verificar comando mostrar
+=mostrar     0 NaoExisteProf
+
+
+== Verificar criar
+=criar      0 666 cpfPrimeiro pais dia mes ano OK
+
+== Verificar mostrar
+=mostrar 0 OK
+
+==Verificar consulta cpf
+=consultarCPF 0 cpfPrimeiro OK
+
+== Verificar alterar
+=alterarCPF   0  cpfSegundo   OK
+
+==Verificar consulta cpf
+=consultarCPF 0 cpfSegundo OK
+
+==Verificar consulta cpf
+=consultarCPF 0 cpfPrimeiro OK
+=recuperar
+
+== Verificar Mostrar
+=mostrar 0 OK
+
+== Verificar liberar
+=liberar 0 OK
+
+== Verificar mostrar
+=mostrar 0 NaoExisteProf
+
+
+// fim

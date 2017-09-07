@@ -128,10 +128,10 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
          if ( strcmp( ComandoTeste , CRIAR_CMD ) == 0 )
          {
 
-            NumLidos = LER_LerParametros( "iisiiii" ,
-								&index, &paramCPF, paramPais, &paramDia, &paramMes, &paramAno,
+            NumLidos = LER_LerParametros( "iissiiii" ,
+								&index, &paramMatricula, paramCPF, paramPais, &paramDia, &paramMes, &paramAno,
                                &CondRetEsperada ) ;
-            if ( NumLidos != 7 )
+            if ( NumLidos != 8 )
             {
                return TST_CondRetParm ;
             } /* if */
@@ -314,9 +314,9 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
          else if ( strcmp( ComandoTeste , ALTERA_CPF_CMD ) == 0 )
          {
 
-            NumLidos = LER_LerParametros( "si" ,
-                               &paramCPF , &CondRetEsperada ) ;
-            if ( NumLidos != 2 )
+            NumLidos = LER_LerParametros( "isi" ,
+				&index, &paramCPF , &CondRetEsperada ) ;
+            if ( NumLidos != 3 )
             {
                return TST_CondRetParm ;
             } /* if */
@@ -333,9 +333,9 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
          else if ( strcmp( ComandoTeste , ALTERA_PAIS_CMD ) == 0 )
          {
 
-            NumLidos = LER_LerParametros( "si" ,
-                               &paramPais , &CondRetEsperada ) ;
-            if ( NumLidos != 2 )
+            NumLidos = LER_LerParametros( "isi" ,
+				&index, &paramPais , &CondRetEsperada ) ;
+            if ( NumLidos != 3 )
             {
                return TST_CondRetParm ;
             } /* if */
@@ -352,8 +352,8 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
          else if ( strcmp( ComandoTeste , ALTERA_MATRICULA_CMD ) == 0 )
          {
 
-            NumLidos = LER_LerParametros( "ii" ,
-                               &paramMatricula , &CondRetEsperada ) ;
+            NumLidos = LER_LerParametros( "iii" ,
+				&index, &paramMatricula , &CondRetEsperada ) ;
             if ( NumLidos != 2 )
             {
                return TST_CondRetParm ;
