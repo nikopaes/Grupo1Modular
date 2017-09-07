@@ -40,6 +40,16 @@ struct prof{
 
 };
 
+struct noCorpoDocente{
+    Prof* no;
+    Prof* prox;
+};
+
+struct listaDeProfs{
+    struct noCorpoDocente* primeiro;
+    struct noCorpoDocente* ultimo;
+};
+
 PRF_tpCondRet mostraEndereco(Endereco* end);
 PRF_tpCondRet mostraData(Data* d);
 int verificaData(int dia, int mes, int ano);
