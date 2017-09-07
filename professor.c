@@ -289,7 +289,7 @@ PRF_tpCondRet alteraCasa(Prof* prof, char* rua, int numero, char* complemento){
 	if(prof == NULL || prof->endereco == NULL){
 		return PRF_CondRetErro;
 	}
-	strcpy(rua,prof->endereco->rua);
+	strcpy(prof->endereco->rua,rua);
 	prof->endereco->numero = numero;
 	strcpy(complemento,prof->endereco->complemento);
 		return PRF_CondRetOk;
@@ -300,7 +300,7 @@ PRF_tpCondRet alteraBairro(Prof* prof, char* bairro, char* rua, int numero, char
 	if(prof == NULL || prof->endereco == NULL){
 		return PRF_CondRetErro;
 	}
-	strcpy(bairro,prof->endereco->bairro);
+	strcpy(prof->endereco->bairro,bairro);
 	alteraCasa(prof,rua,numero,complemento);
 		return PRF_CondRetOk;
 }
@@ -310,7 +310,7 @@ PRF_tpCondRet alteraCidade(Prof* prof, char* cidade, char* bairro, char* rua, in
 	if(prof == NULL || prof->endereco == NULL){
 		return PRF_CondRetErro;
 	}
-	strcpy(cidade,prof->endereco->cidade);
+	strcpy(prof->endereco->cidade,cidade);
 	alteraBairro(prof,bairro,rua,numero,complemento);
 		return PRF_CondRetOk;
 }
@@ -320,7 +320,7 @@ PRF_tpCondRet alteraUf(Prof* prof, char* uf, char* cidade, char* bairro, char* r
 	if(prof == NULL || prof->endereco == NULL){
 		return PRF_CondRetErro;
 	}
-	strcpy(uf,prof->endereco->uf);
+	strcpy(prof->endereco->uf,uf);
 	alteraCidade(prof,cidade,bairro,rua,numero,complemento);
 		return PRF_CondRetOk;
 }
@@ -330,7 +330,7 @@ PRF_tpCondRet alteraPais(Prof* prof, char* pais, char* uf, char* cidade, char* b
 	if(prof == NULL || prof->endereco == NULL){
 		return PRF_CondRetErro;
 	}
-	strcpy(pais,prof->endereco->pais);
+	strcpy(prof->endereco->pais,pais);
 	alteraUf(prof,uf,cidade,bairro,rua,numero,complemento);
 		return PRF_CondRetOk;
 }
