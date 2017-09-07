@@ -180,6 +180,17 @@ PRF_tpCondRet alteraMatriculaProf(Prof *professor, int matricula){
 
 */
 
+PRF_tpCondRet ObtemProf(struct listaDeProfs *listaCorpoDocente, int matriculaProcurada){
+    struct noCorpoDocente* percorre;
+    for(percorre = listaCorpoDocente->primeiro; percorre != NULL; percorre->no = percorre->prox){
+        if(percorre->no->mat= matriculaProcurada){
+            mostraProf(percorre->no);
+            break;
+        }
+    }
+    return PRF_CondRetOk;
+}
+
 //----------------------------------------------------------------------------------------------------
 
 /* verifica se a data é válida, retorna 1 se for e 0 caso contrário */
