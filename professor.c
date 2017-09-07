@@ -3,6 +3,7 @@
 #include <string.h>
 #include "professor.h"
 
+/* retirar todos os comentarios deste codigo na versão final e deixar so a documentação antes mandar para o professor*/
 
 
 /* Endereco e Data são estruturas bem genéricas então talvez depois fosse bom transferi-las para outro lugar depois.
@@ -41,6 +42,7 @@ struct prof{
 
 PRF_tpCondRet mostraEndereco(Endereco* end);
 PRF_tpCondRet mostraData(Data* d);
+int verificaData(int dia, int mes, int ano);
 
 
 PRF_tpCondRet criaProf(Prof** p, int matricula, char *cpf, char *pais, int dia, int mes, int ano){
@@ -66,63 +68,13 @@ PRF_tpCondRet criaProf(Prof** p, int matricula, char *cpf, char *pais, int dia, 
 	strcpy(professor->cpf, cpf);
 	professor->matricula = matricula;
 
+	if(!verificaData(dia, mes, ano)) return PRF_CondRetFormatoInvalido;
+
 	dataNascimento->dia = dia;
 	dataNascimento->mes = mes;
 	dataNascimento->ano = ano;
 
 	strcpy(endereco->pais, pais);
-
-	/*
-	printf("nome do novo professor\n");
-	scanf(" %s", nome);
-	strcpy((*p)->nome, nome);
-
-	printf("cpf do novo professor\n");
-	scanf(" %d",&cpf);
-	(*p)->cpf=cpf;
-
-	printf("rg do novo professor\n");
-	scanf(" %d",&rg);
-	(*p)->rg = rg;
-
-	printf("matricula do novo professor\n");
-	scanf(" %d",&mat);
-	(*p)->matricula = mat;
-
-	printf("email do novo professor\n");
-	scanf(" %s",email);
-	strcpy((*p)->email, email);
-
-	printf("telefone do novo professor\n");
-	scanf(" %d",&telefone);
-	(*p)->telefone = telefone;
-	
-	printf("data de nascimento do novo professor(DD/MM/AA)\n");
-	scanf(" %d/%d/%d",&(dataNascimento->dia), &(dataNascimento->mes),&(dataNascimento->ano));
-
-	printf("endereco do novo professor:\n");
-
-	printf(" rua:\n");
-	scanf(" %s",endereco->rua);
-
-	printf(" numero:\n");
-	scanf(" %d",&(endereco->numero));
-
-	printf(" complemento:\n");
-	scanf(" %s",endereco->complemento);
-
-	printf(" bairro:\n");
-	scanf(" %s",endereco->bairro);
-
-	printf(" cidade:\n");
-	scanf(" %s",endereco->cidade);
-
-	printf(" UF:\n");
-	scanf(" %s",endereco->uf);
-
-	printf(" pais:\n");
-	scanf(" %s",endereco->pais);
-	*/
 
 	professor->dataNascimento = dataNascimento;
 	professor->endereco = endereco;
@@ -148,17 +100,15 @@ PRF_tpCondRet mostraProf(Prof* p){
 }
 
 PRF_tpCondRet mostraEndereco(Endereco* end){
-	printf(" %s \n",
-	//printf(" %s, No %d, complemento:%s, %s, %s, %s, %s\n",
-		/*
- end->rua,
- end->numero,
- end->complemento,
- end->bairro,
- end->cidade,
- end->uf,
- */
- end->pais);
+	/* Descomentem as linhas conforme criarem*/
+
+	//printf(" %s,", end->rua);
+	//printf("No %d, ", end->numero);
+	//printf("complemento:%s, ", end->complemento);
+	//printf("%s, ", end->bairro);
+	//printf("%s, ", end->cidade);
+	//printf("%s, ", end->uf);
+	printf("%s, \n", end->pais);
 	return PRF_CondRetOk;
 }
 
@@ -216,7 +166,7 @@ PRF_tpCondRet alteraMatriculaProf(Prof *professor, int matricula){
 //----------------------------------------------------------------------------------------------------
 
 /* verifica se a data é válida, retorna 1 se for e 0 caso contrário */
-int eDataValido(int dia, int mes, int ano){
+int verificaData(int dia, int mes, int ano){
 	if(dia < 0 || dia > 31 || mes < 0 || mes > 12 || ano > 1900)
 		return 0;
 	if(mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12){
@@ -243,19 +193,24 @@ int eDataValido(int dia, int mes, int ano){
 	}
 }
 
-PRF_tpCondRet atualizaDataNascimento(Prof* prof, int dia, int mes, int ano){
-	if(eDataValido(dia, mes, ano) == 1){
+PRF_tpCondRet alteraData(Prof* prof, int dia, int mes, int ano){
+	if(verificaData(dia, mes, ano)){
 		prof->dataNascimento->ano = ano;
 		prof->dataNascimento->mes = mes;
 		prof->dataNascimento->dia = dia;
 		return PRF_CondRetOk;
 	} else {
-		return PRF_CondRetErro;
+		return PRF_CondRetFormatoInvalido;
 	}
 }
 
-PRF_tpCondRet atualizaEndereco(Prof* prof, char* rua, int numero){
-	/*
+//desmembrar!
+/*
+Usar as verificações aqui incluídas
+desmembrar essa função em duas funções para cada variável: consulta e altera. (get/set)
+
+PRF_tpCondRet alteraEndereco(Prof* prof, char* rua, int numero){
+	/*  MODO recebe ponteiros para estruturas
 	if(endereco == NULL)
 		return PRF_tpCondRetErro;
 	if(endereco->pais != NULL && strlen(endereco->pais) > 0 && strlen(endereco->pais) <= 80)
@@ -269,6 +224,7 @@ PRF_tpCondRet atualizaEndereco(Prof* prof, char* rua, int numero){
 	if(endereco->complemento != NULL && strlen(endereco->complemento) > 0 && strlen(endereco->complemento) <= 80)
 		strcpy(prof->endereco->complemento, endereco->complemento);
 	*/
+/* MODO sem ponteiros para estruras além de professor
 	if(rua == NULL || strlen(rua) < 0 || strlen(rua) > 80)
 		return PRF_CondRetErro;
 	if(numero < 0)
@@ -277,10 +233,16 @@ PRF_tpCondRet atualizaEndereco(Prof* prof, char* rua, int numero){
 	strcpy(prof->endereco->rua, rua);
 	prof->endereco->numero = numero;
 	return PRF_CondRetOk;
+	
 }
+*/
 
 
 //desmembrar!
+/*
+Usar as verificações aqui incluídas
+desmembrar essa função em duas funções para cada variável: consulta e altera. (get/set)
+
 PRF_tpCondRet alteraProf(Prof* p, char* nome, char* email, int matricula, int telefone, char* rua, int numero, int dia, int mes, int ano, int rg, char* cpf){
 	if(matricula == 0)
 		return PRF_CondRetErro;
@@ -302,6 +264,7 @@ PRF_tpCondRet alteraProf(Prof* p, char* nome, char* email, int matricula, int te
 		return atualizaDataNascimento(p, dia, mes, ano);
 	return PRF_CondRetOk;
 }
+*/
 
 
 

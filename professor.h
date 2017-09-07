@@ -4,14 +4,18 @@ typedef enum{
 	PRF_CondRetOk,
 	PRF_CondRetNaoHaMemoria,
 	PRF_CondRetNaoExisteProf,
-	PRF_CondRetErro,
-	PRF_CondRetProfessorJaCriado
+	PRF_CondRetProfessorJaCriado,
+	PRF_CondRetFormatoInvalido,
+	PRF_CondRetErro
 } PRF_tpCondRet;
+
+
 
 PRF_tpCondRet criaProf(Prof** professor, int matricula, char *cpf, char *pais, int dia, int mes, int ano);
 PRF_tpCondRet consultaCpfProf(Prof *p, char *cpf);
 PRF_tpCondRet consultaPaisProf(Prof *p, char *pais);
 PRF_tpCondRet consultaMatriculaProf(Prof *p, int *matricula);
+
 PRF_tpCondRet alteraCpfProf(Prof *p, char *cpf);
 PRF_tpCondRet alteraPaisProf(Prof *p, char *pais);
 PRF_tpCondRet alteraMatriculaProf(Prof *p, int matricula);
