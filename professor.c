@@ -145,6 +145,11 @@ PRF_tpCondRet consultaMatriculaProf(Prof *professor, int *matricula){
 	return PRF_CondRetOk;
 }
 
+/*
+
+PQ ESSAS FUNCOES ESTAO REPETIDAS? ERA PARA ESTAR MESMO?
+-Mariana
+
 PRF_tpCondRet alteraCpfProf(Prof *professor, char *cpf){
 	if(!professor) return PRF_CondRetNaoExisteProf;
 	strcpy(professor->cpf, cpf);
@@ -162,6 +167,8 @@ PRF_tpCondRet alteraMatriculaProf(Prof *professor, int matricula){
 	professor->matricula = matricula;
 	return PRF_CondRetOk;
 }
+
+*/
 
 //----------------------------------------------------------------------------------------------------
 
