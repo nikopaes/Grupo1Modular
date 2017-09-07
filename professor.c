@@ -183,12 +183,11 @@ PRF_tpCondRet alteraMatriculaProf(Prof *professor, int matricula){
 PRF_tpCondRet ObtemProf(struct listaDeProfs *listaCorpoDocente, int matriculaProcurada){
     struct noCorpoDocente* percorre;
     for(percorre = listaCorpoDocente->primeiro; percorre != NULL; percorre->no = percorre->prox){
-        if(percorre->no->mat= matriculaProcurada){
+        if(percorre->no->matricula= matriculaProcurada){
             mostraProf(percorre->no);
-            break;
+            return PRF_CondRetOk;
         }
     }
-    return PRF_CondRetOk;
 }
 
 //----------------------------------------------------------------------------------------------------
