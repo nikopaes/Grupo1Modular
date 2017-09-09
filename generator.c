@@ -31,7 +31,7 @@ void imprimeConsulta(FILE *fConsulta, char *tipo, char *nome, char *nomeUpperCas
 	fprintf(fConsulta, "\t\tCondRetObtido = PRF_consulta%s(p[index], %sObtido);\n", nomeInicialUpper, *tipo=='c'?"valorString":"&valor");
 	fprintf(fConsulta, "\n");
 	fprintf(fConsulta, "\t\tRet = TST_CompararInt(CondRetEsperada, CondRetObtido,\n");
-	fprintf(fConsulta, "\t\t\t\t\"Retorno errado ao consultar %s de Professor.\"\n", nomeInicialUpper);
+	fprintf(fConsulta, "\t\t\t\t\"Retorno errado ao consultar %s de Professor.\");\n", nomeInicialUpper);
 	fprintf(fConsulta, "\t\tif(Ret != TST_CondRetOK) return Ret;\n");
 	if(*tipo=='c')
 		fprintf(fConsulta, "\t\tRet = TST_CompararString( valorStringEsperado , valorStringObtido,\n");
@@ -52,7 +52,7 @@ void imprimeAltera(FILE *fAltera, char *tipo, char *nome, char *nomeUpperCase){
 	fprintf(fAltera, "\t/* Testar PRF altera %s professor */\n", nome);
 	fprintf(fAltera, "\n");
 	fprintf(fAltera, "\telse if ( strcmp( ComandoTeste , ALTERA_%s_CMD ) == 0 ){\n", nomeUpperCase);
-	fprintf(fAltera, "\t\tNumLidos = LER_LerParametros( \"i%ci\" , &index, %sEsperado, &CondRetEsperada );\n", *tipo=='c'?'s':'i', *tipo=='c'?"valorString":"&valor");
+	fprintf(fAltera, "\t\tNumLidos = LER_LerParametros( \"i%ci\" , &index, %s, &CondRetEsperada );\n", *tipo=='c'?'s':'i', *tipo=='c'?"paramString":"&paramInt");
 	fprintf(fAltera, "\t\tif(NumLidos != 3){\n");
 	fprintf(fAltera, "\t\t\treturn TST_CondRetParm;\n");
 	fprintf(fAltera, "\t\t} /* if */\n");
@@ -60,7 +60,7 @@ void imprimeAltera(FILE *fAltera, char *tipo, char *nome, char *nomeUpperCase){
 	fprintf(fAltera, "\t\tCondRetObtido = PRF_altera%s(p[index], param%s);\n", nomeInicialUpper, *tipo=='c'?"String":"Int");
 	fprintf(fAltera, "\n");
 	fprintf(fAltera, "\t\treturn TST_CompararInt(CondRetEsperada, CondRetObtido,\n");
-	fprintf(fAltera, "\t\t\t\t\"Retorno errado ao alterar %s de Professor.\"\n", nomeInicialUpper);
+	fprintf(fAltera, "\t\t\t\t\"Retorno errado ao alterar %s de Professor.\");\n", nomeInicialUpper);
 	fprintf(fAltera, "\t} /* fim ativa: Testar PRF altera %s professor */\n", nomeInicialUpper);
 	fprintf(fAltera, "\n");
 }
@@ -97,3 +97,4 @@ int main(void){
 	fclose(fEntrada);
 	return 0;
 }
+

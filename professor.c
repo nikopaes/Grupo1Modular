@@ -41,6 +41,20 @@ struct prof{
 
 PRF_tpCondRet mostraEndereco(Endereco* end);
 PRF_tpCondRet mostraData(Data* d);
+
+int verificaRg(int rg);
+int verificaTelefone(int telefone);
+int verificaEmail(char* email);
+int verificaMatricula(int matricula);
+int verificaCpf(char* cpf);
+int verificaNome(char* nome);
+int verificaPais(char* pais);
+int verificaUf(char* uf);
+int verificaCidade(char* cidade);
+int verificaBairro(char* bairro);
+int verificaComplemento(char* complemento);
+int verificaNumero(int numero);
+int verificaRua(char* rua);
 int verificaData(int dia, int mes, int ano);
 
 //------------------------------------------------------------------- FUNÇÃO CRIA --------------------------------------------------------------------------------------------
@@ -86,6 +100,8 @@ PRF_tpCondRet PRF_cria(Prof** p, int matricula, char *cpf, char *pais, int dia, 
 //------------------------------------------------------------------- FUNÇÕES MOSTRA --------------------------------------------------------------------------------------------
 PRF_tpCondRet PRF_mostra(Prof* p){
 	if(!p) return PRF_CondRetNaoExisteProf;
+	if(!p->dataNascimento) return PRF_CondRetNaoExisteProf;
+	if(!p->endereco) return PRF_CondRetNaoExisteProf;
 	printf("Exibindo Professor...\n");
 //	printf("nome: %s\n", p->nome);
 	printf("cpf : %s\n", p->cpf);
@@ -178,19 +194,19 @@ PRF_tpCondRet PRF_consultaTelefone(Prof *professor, int *telefone){
 }
 
 PRF_tpCondRet PRF_consultaDiaNascimento(Prof *professor, int *dia){
-	if(!professor || !professor->data) return PRF_CondRetNaoExisteProf;
+	if(!professor || !professor->dataNascimento) return PRF_CondRetNaoExisteProf;
 	*dia = professor->dataNascimento->dia;
 	return PRF_CondRetOk;
 }
 
 PRF_tpCondRet PRF_consultaMesNascimento(Prof *professor, int *mes){
-	if(!professor || !professor->data) return PRF_CondRetNaoExisteProf;
+	if(!professor || !professor->dataNascimento) return PRF_CondRetNaoExisteProf;
 	*mes = professor->dataNascimento->mes;
 	return PRF_CondRetOk;
 }
 
 PRF_tpCondRet PRF_consultaAnoNascimento(Prof *professor, int *ano){
-	if(!professor || !professor->data) return PRF_CondRetNaoExisteProf;
+	if(!professor || !professor->dataNascimento) return PRF_CondRetNaoExisteProf;
 	*ano = professor->dataNascimento->ano;
 	return PRF_CondRetOk;
 }
@@ -256,19 +272,18 @@ PRF_tpCondRet PRF_alteraDataNascimento(Prof* prof, int dia, int mes, int ano){
 }
 
 PRF_tpCondRet PRF_alteraRua(Prof* prof, char* rua){
-	if(prof == NULL || prof->endereco == NULL))
+	if(prof == NULL || prof->endereco == NULL)
 		return PRF_CondRetNaoExisteProf;
-	if(verificaRua(complemento) == 0)
-
+	if(verificaRua(rua) == 0)
 		return PRF_CondRetFormatoInvalido;
 	// altera dados
 	strcpy(prof->endereco->rua,rua);
 	return PRF_CondRetOk;
 }
 PRF_tpCondRet PRF_alteraNumero(Prof* prof, int numero){
-	if(prof == NULL || prof->endereco == NULL))
+	if(prof == NULL || prof->endereco == NULL)
 		return PRF_CondRetNaoExisteProf;
-	if(verificaNumero(rua, numero, complemento) == 0)
+	if(verificaNumero(numero) == 0)
 
 		return PRF_CondRetFormatoInvalido;
 	// altera dados
@@ -276,7 +291,7 @@ PRF_tpCondRet PRF_alteraNumero(Prof* prof, int numero){
 	return PRF_CondRetOk;
 }
 PRF_tpCondRet PRF_alteraComplemento(Prof* prof, char* complemento){
-	if(prof == NULL || prof->endereco == NULL))
+	if(prof == NULL || prof->endereco == NULL)
 		return PRF_CondRetNaoExisteProf;
 	if(verificaComplemento(complemento) == 0)
 
@@ -358,10 +373,10 @@ PRF_tpCondRet PRF_alteraEmail(Prof* p, char* email){
     return PRF_CondRetOk;
 }
 
-PRF_tpCondRet PRF_alteraTelefone(Prof* p, int tel){
+PRF_tpCondRet PRF_alteraTelefone(Prof* p, int telefone){
     if(verificaTelefone(telefone) == 0)
 		return PRF_CondRetFormatoInvalido;
-    p->telefone = tel;
+    p->telefone = telefone;
     return PRF_CondRetOk;
 }
 
@@ -407,11 +422,13 @@ int verificaRua(char* rua){
 		return 0;
 	return 1;
 }
-int verificaNumero(char* complemento){
+
+int verificaNumero(int numero){
 	if(numero < 0)
 		return 0;
 	return 1;
 }
+
 int verificaComplemento(char* complemento){
 	if(complemento == NULL || strlen(complemento) == 0 || strlen(complemento) > 80)
 		return 0;
@@ -477,16 +494,3 @@ int verificaRg(int rg){
 		return 0;
 	return 1;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

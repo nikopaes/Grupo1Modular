@@ -131,6 +131,9 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 	  int paramDia;
 	  int paramMes;
 	  int paramAno;
+	  int paramDiaNascimento;
+	  int paramMesNascimento;
+	  int paramAnoNascimento;
 
 	//usado nas consultas
 	  int valorObtido;
@@ -140,7 +143,7 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 
 	//usado nas alteras
 	int paramInt = 0;
-	char paramString = 0;
+	char paramString[80];
 	
 	
 
@@ -219,7 +222,7 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_consultaNome(p[index], valorStringObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Nome de Professor."
+				"Retorno errado ao consultar Nome de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararString( valorStringEsperado , valorStringObtido,
 				"Retorno por referencia errado ao consultar Nome de Professor.");
@@ -237,7 +240,7 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_consultaRg(p[index], &valorObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Rg de Professor."
+				"Retorno errado ao consultar Rg de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararInt( valorEsperado , valorObtido,
 				"Retorno por referencia errado ao consultar Rg de Professor.");
@@ -255,7 +258,7 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_consultaCpf(p[index], valorStringObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Cpf de Professor."
+				"Retorno errado ao consultar Cpf de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararString( valorStringEsperado , valorStringObtido,
 				"Retorno por referencia errado ao consultar Cpf de Professor.");
@@ -273,7 +276,7 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_consultaMatricula(p[index], &valorObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Matricula de Professor."
+				"Retorno errado ao consultar Matricula de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararInt( valorEsperado , valorObtido,
 				"Retorno por referencia errado ao consultar Matricula de Professor.");
@@ -291,7 +294,7 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_consultaEmail(p[index], valorStringObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Email de Professor."
+				"Retorno errado ao consultar Email de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararString( valorStringEsperado , valorStringObtido,
 				"Retorno por referencia errado ao consultar Email de Professor.");
@@ -309,7 +312,7 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_consultaTelefone(p[index], &valorObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Telefone de Professor."
+				"Retorno errado ao consultar Telefone de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararInt( valorEsperado , valorObtido,
 				"Retorno por referencia errado ao consultar Telefone de Professor.");
@@ -324,10 +327,10 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 			return TST_CondRetParm;
 		} /* if */
 
-		CondRetObtido = PRF_consultaDia(p[index], &valorObtido);
+		CondRetObtido = PRF_consultaDiaNascimento(p[index], &valorObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Dia de Professor."
+				"Retorno errado ao consultar Dia de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararInt( valorEsperado , valorObtido,
 				"Retorno por referencia errado ao consultar Dia de Professor.");
@@ -342,10 +345,10 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 			return TST_CondRetParm;
 		} /* if */
 
-		CondRetObtido = PRF_consultaMes(p[index], &valorObtido);
+		CondRetObtido = PRF_consultaMesNascimento(p[index], &valorObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Mes de Professor."
+				"Retorno errado ao consultar Mes de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararInt( valorEsperado , valorObtido,
 				"Retorno por referencia errado ao consultar Mes de Professor.");
@@ -360,10 +363,10 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 			return TST_CondRetParm;
 		} /* if */
 
-		CondRetObtido = PRF_consultaAno(p[index], &valorObtido);
+		CondRetObtido = PRF_consultaAnoNascimento(p[index], &valorObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Ano de Professor."
+				"Retorno errado ao consultar Ano de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararInt( valorEsperado , valorObtido,
 				"Retorno por referencia errado ao consultar Ano de Professor.");
@@ -381,7 +384,7 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_consultaPais(p[index], valorStringObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Pais de Professor."
+				"Retorno errado ao consultar Pais de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararString( valorStringEsperado , valorStringObtido,
 				"Retorno por referencia errado ao consultar Pais de Professor.");
@@ -399,7 +402,7 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_consultaUf(p[index], valorStringObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Uf de Professor."
+				"Retorno errado ao consultar Uf de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararString( valorStringEsperado , valorStringObtido,
 				"Retorno por referencia errado ao consultar Uf de Professor.");
@@ -417,7 +420,7 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_consultaCidade(p[index], valorStringObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Cidade de Professor."
+				"Retorno errado ao consultar Cidade de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararString( valorStringEsperado , valorStringObtido,
 				"Retorno por referencia errado ao consultar Cidade de Professor.");
@@ -435,7 +438,7 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_consultaBairro(p[index], valorStringObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Bairro de Professor."
+				"Retorno errado ao consultar Bairro de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararString( valorStringEsperado , valorStringObtido,
 				"Retorno por referencia errado ao consultar Bairro de Professor.");
@@ -453,7 +456,7 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_consultaRua(p[index], valorStringObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Rua de Professor."
+				"Retorno errado ao consultar Rua de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararString( valorStringEsperado , valorStringObtido,
 				"Retorno por referencia errado ao consultar Rua de Professor.");
@@ -471,7 +474,7 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_consultaNumero(p[index], &valorObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Numero de Professor."
+				"Retorno errado ao consultar Numero de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararInt( valorEsperado , valorObtido,
 				"Retorno por referencia errado ao consultar Numero de Professor.");
@@ -489,7 +492,7 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_consultaComplemento(p[index], valorStringObtido);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao consultar Complemento de Professor."
+				"Retorno errado ao consultar Complemento de Professor.");
 		if(Ret != TST_CondRetOK) return Ret;
 		Ret = TST_CompararString( valorStringEsperado , valorStringObtido,
 				"Retorno por referencia errado ao consultar Complemento de Professor.");
@@ -498,12 +501,13 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 
 
 
+
 // ----------------------------------------Alteras-------------------------------
 
-     	/* Testar PRF altera nome professor */
+	/* Testar PRF altera nome professor */
 
 	else if ( strcmp( ComandoTeste , ALTERA_NOME_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "isi" , &index, valorStringEsperado, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "isi" , &index, paramString, &CondRetEsperada );
 		if(NumLidos != 3){
 			return TST_CondRetParm;
 		} /* if */
@@ -511,13 +515,13 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_alteraNome(p[index], paramString);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Nome de Professor."
+				"Retorno errado ao alterar Nome de Professor.");
 	} /* fim ativa: Testar PRF altera Nome professor */
 
 	/* Testar PRF altera rg professor */
 
 	else if ( strcmp( ComandoTeste , ALTERA_RG_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "iii" , &index, &valorEsperado, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "iii" , &index, &paramInt, &CondRetEsperada );
 		if(NumLidos != 3){
 			return TST_CondRetParm;
 		} /* if */
@@ -525,13 +529,13 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_alteraRg(p[index], paramInt);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Rg de Professor."
+				"Retorno errado ao alterar Rg de Professor.");
 	} /* fim ativa: Testar PRF altera Rg professor */
 
 	/* Testar PRF altera cpf professor */
 
 	else if ( strcmp( ComandoTeste , ALTERA_CPF_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "isi" , &index, valorStringEsperado, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "isi" , &index, paramString, &CondRetEsperada );
 		if(NumLidos != 3){
 			return TST_CondRetParm;
 		} /* if */
@@ -539,13 +543,13 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_alteraCpf(p[index], paramString);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Cpf de Professor."
+				"Retorno errado ao alterar Cpf de Professor.");
 	} /* fim ativa: Testar PRF altera Cpf professor */
 
 	/* Testar PRF altera matricula professor */
 
 	else if ( strcmp( ComandoTeste , ALTERA_MATRICULA_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "iii" , &index, &valorEsperado, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "iii" , &index, &paramInt, &CondRetEsperada );
 		if(NumLidos != 3){
 			return TST_CondRetParm;
 		} /* if */
@@ -553,13 +557,13 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_alteraMatricula(p[index], paramInt);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Matricula de Professor."
+				"Retorno errado ao alterar Matricula de Professor.");
 	} /* fim ativa: Testar PRF altera Matricula professor */
 
 	/* Testar PRF altera email professor */
 
 	else if ( strcmp( ComandoTeste , ALTERA_EMAIL_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "isi" , &index, valorStringEsperado, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "isi" , &index, paramString, &CondRetEsperada );
 		if(NumLidos != 3){
 			return TST_CondRetParm;
 		} /* if */
@@ -567,13 +571,13 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_alteraEmail(p[index], paramString);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Email de Professor."
+				"Retorno errado ao alterar Email de Professor.");
 	} /* fim ativa: Testar PRF altera Email professor */
 
 	/* Testar PRF altera telefone professor */
 
 	else if ( strcmp( ComandoTeste , ALTERA_TELEFONE_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "iii" , &index, &valorEsperado, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "iii" , &index, &paramInt, &CondRetEsperada );
 		if(NumLidos != 3){
 			return TST_CondRetParm;
 		} /* if */
@@ -581,55 +585,27 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_alteraTelefone(p[index], paramInt);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Telefone de Professor."
+				"Retorno errado ao alterar Telefone de Professor.");
 	} /* fim ativa: Testar PRF altera Telefone professor */
 
-	/* Testar PRF altera dia professor */
+	/* Testar PRF altera diaNascimento professor */
 
-	else if ( strcmp( ComandoTeste , ALTERA_DIA_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "iii" , &index, &valorEsperado, &CondRetEsperada );
-		if(NumLidos != 3){
+	else if ( strcmp( ComandoTeste , ALTERA_DATA_CMD ) == 0 ){
+		NumLidos = LER_LerParametros( "iiiii" , &index, &paramDiaNascimento, &paramMesNascimento, &paramAnoNascimento, &CondRetEsperada );
+		if(NumLidos != 5){
 			return TST_CondRetParm;
 		} /* if */
 
-		CondRetObtido = PRF_alteraDia(p[index], paramInt);
+		CondRetObtido = PRF_alteraDataNascimento(p[index], paramDiaNascimento, paramMesNascimento, paramAnoNascimento);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Dia de Professor."
-	} /* fim ativa: Testar PRF altera Dia professor */
-
-	/* Testar PRF altera mes professor */
-
-	else if ( strcmp( ComandoTeste , ALTERA_MES_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "iii" , &index, &valorEsperado, &CondRetEsperada );
-		if(NumLidos != 3){
-			return TST_CondRetParm;
-		} /* if */
-
-		CondRetObtido = PRF_alteraMes(p[index], paramInt);
-
-		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Mes de Professor."
-	} /* fim ativa: Testar PRF altera Mes professor */
-
-	/* Testar PRF altera ano professor */
-
-	else if ( strcmp( ComandoTeste , ALTERA_ANO_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "iii" , &index, &valorEsperado, &CondRetEsperada );
-		if(NumLidos != 3){
-			return TST_CondRetParm;
-		} /* if */
-
-		CondRetObtido = PRF_alteraAno(p[index], paramInt);
-
-		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Ano de Professor."
-	} /* fim ativa: Testar PRF altera Ano professor */
+				"Retorno errado ao alterar DiaNascimento de Professor.");
+	} /* fim ativa: Testar PRF altera DiaNascimento professor */
 
 	/* Testar PRF altera pais professor */
 
 	else if ( strcmp( ComandoTeste , ALTERA_PAIS_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "isi" , &index, valorStringEsperado, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "isi" , &index, paramString, &CondRetEsperada );
 		if(NumLidos != 3){
 			return TST_CondRetParm;
 		} /* if */
@@ -637,13 +613,13 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_alteraPais(p[index], paramString);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Pais de Professor."
+				"Retorno errado ao alterar Pais de Professor.");
 	} /* fim ativa: Testar PRF altera Pais professor */
 
 	/* Testar PRF altera uf professor */
 
 	else if ( strcmp( ComandoTeste , ALTERA_UF_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "isi" , &index, valorStringEsperado, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "isi" , &index, paramString, &CondRetEsperada );
 		if(NumLidos != 3){
 			return TST_CondRetParm;
 		} /* if */
@@ -651,13 +627,13 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_alteraUf(p[index], paramString);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Uf de Professor."
+				"Retorno errado ao alterar Uf de Professor.");
 	} /* fim ativa: Testar PRF altera Uf professor */
 
 	/* Testar PRF altera cidade professor */
 
 	else if ( strcmp( ComandoTeste , ALTERA_CIDADE_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "isi" , &index, valorStringEsperado, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "isi" , &index, paramString, &CondRetEsperada );
 		if(NumLidos != 3){
 			return TST_CondRetParm;
 		} /* if */
@@ -665,13 +641,13 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_alteraCidade(p[index], paramString);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Cidade de Professor."
+				"Retorno errado ao alterar Cidade de Professor.");
 	} /* fim ativa: Testar PRF altera Cidade professor */
 
 	/* Testar PRF altera bairro professor */
 
 	else if ( strcmp( ComandoTeste , ALTERA_BAIRRO_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "isi" , &index, valorStringEsperado, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "isi" , &index, paramString, &CondRetEsperada );
 		if(NumLidos != 3){
 			return TST_CondRetParm;
 		} /* if */
@@ -679,13 +655,13 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_alteraBairro(p[index], paramString);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Bairro de Professor."
+				"Retorno errado ao alterar Bairro de Professor.");
 	} /* fim ativa: Testar PRF altera Bairro professor */
 
 	/* Testar PRF altera rua professor */
 
 	else if ( strcmp( ComandoTeste , ALTERA_RUA_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "isi" , &index, valorStringEsperado, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "isi" , &index, paramString, &CondRetEsperada );
 		if(NumLidos != 3){
 			return TST_CondRetParm;
 		} /* if */
@@ -693,13 +669,13 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_alteraRua(p[index], paramString);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Rua de Professor."
+				"Retorno errado ao alterar Rua de Professor.");
 	} /* fim ativa: Testar PRF altera Rua professor */
 
 	/* Testar PRF altera numero professor */
 
 	else if ( strcmp( ComandoTeste , ALTERA_NUMERO_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "iii" , &index, &valorEsperado, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "iii" , &index, &paramInt, &CondRetEsperada );
 		if(NumLidos != 3){
 			return TST_CondRetParm;
 		} /* if */
@@ -707,13 +683,13 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_alteraNumero(p[index], paramInt);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Numero de Professor."
+				"Retorno errado ao alterar Numero de Professor.");
 	} /* fim ativa: Testar PRF altera Numero professor */
 
 	/* Testar PRF altera complemento professor */
 
 	else if ( strcmp( ComandoTeste , ALTERA_COMPLEMENTO_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "isi" , &index, valorStringEsperado, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "isi" , &index, paramString, &CondRetEsperada );
 		if(NumLidos != 3){
 			return TST_CondRetParm;
 		} /* if */
@@ -721,8 +697,9 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 		CondRetObtido = PRF_alteraComplemento(p[index], paramString);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao alterar Complemento de Professor."
+				"Retorno errado ao alterar Complemento de Professor.");
 	} /* fim ativa: Testar PRF altera Complemento professor */
+
 
 
       return TST_CondRetNaoConhec ;
