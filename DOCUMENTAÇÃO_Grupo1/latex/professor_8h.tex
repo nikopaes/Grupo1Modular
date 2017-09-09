@@ -1,0 +1,104 @@
+\section{Referência ao ficheiro C\+:/\+Users/\+Nicolas/\+Desktop/\+Grupo1\+Modular/trunk/professor.h}
+\label{professor_8h}\index{C\+:/\+Users/\+Nicolas/\+Desktop/\+Grupo1\+Modular/trunk/professor.\+h@{C\+:/\+Users/\+Nicolas/\+Desktop/\+Grupo1\+Modular/trunk/professor.\+h}}
+
+
+Arquivo header para o modulo Professor.  
+
+
+\subsection*{Definições de tipos}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \textbf{ prof} \textbf{ Prof}
+\begin{DoxyCompactList}\small\item\em typedef da Struct que guarda as informacoes referentes a um Professor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerações}
+\begin{DoxyCompactItemize}
+\item 
+enum \textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \{ \newline
+\textbf{ P\+R\+F\+\_\+\+Cond\+Ret\+Ok}, 
+\textbf{ P\+R\+F\+\_\+\+Cond\+Ret\+Nao\+Ha\+Memoria}, 
+\textbf{ P\+R\+F\+\_\+\+Cond\+Ret\+Nao\+Existe\+Prof}, 
+\textbf{ P\+R\+F\+\_\+\+Cond\+Ret\+Professor\+Ja\+Criado}, 
+\newline
+\textbf{ P\+R\+F\+\_\+\+Cond\+Ret\+Formato\+Invalido}, 
+\textbf{ P\+R\+F\+\_\+\+Cond\+Ret\+Erro}
+ \}\begin{DoxyCompactList}\small\item\em Condicoes de retorno para as funcoes do Modulo Professor. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+cria} (\textbf{ Prof} $\ast$$\ast$professor, int matricula, char $\ast$cpf, char $\ast$pais, int dia, int mes, int ano)
+\begin{DoxyCompactList}\small\item\em Cria uma instancia de Professor usando os parametros necessarios e armazena no espaco de memoria designado pelo ponteiro. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+libera} (\textbf{ Prof} $\ast$$\ast$p)
+\begin{DoxyCompactList}\small\item\em Libera o espaco de memoria que esta guardando as informacoes do professor apontado. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+mostra} (\textbf{ Prof} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Imprime no Prompt de Comando todas as informacoes referentes ao professor apontado. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} {\bfseries P\+R\+F\+\_\+altera\+Nome} (\textbf{ Prof} $\ast$p, char $\ast$nome)
+\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} {\bfseries P\+R\+F\+\_\+altera\+Rg} (\textbf{ Prof} $\ast$p, int rg)
+\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} {\bfseries P\+R\+F\+\_\+altera\+Cpf} (\textbf{ Prof} $\ast$p, char $\ast$cpf)
+\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} {\bfseries P\+R\+F\+\_\+altera\+Matricula} (\textbf{ Prof} $\ast$p, int matricula)
+\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} {\bfseries P\+R\+F\+\_\+altera\+Email} (\textbf{ Prof} $\ast$p, char $\ast$email)
+\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} {\bfseries P\+R\+F\+\_\+altera\+Telefone} (\textbf{ Prof} $\ast$p, int tel)
+\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} {\bfseries P\+R\+F\+\_\+altera\+Data\+Nascimento} (\textbf{ Prof} $\ast$p, int dia, int mes, int ano)
+\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} {\bfseries P\+R\+F\+\_\+altera\+Pais} (\textbf{ Prof} $\ast$\textbf{ prof}, char $\ast$pais)
+\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} {\bfseries P\+R\+F\+\_\+altera\+Uf} (\textbf{ Prof} $\ast$\textbf{ prof}, char $\ast$uf)
+\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} {\bfseries P\+R\+F\+\_\+altera\+Cidade} (\textbf{ Prof} $\ast$\textbf{ prof}, char $\ast$cidade)
+\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} {\bfseries P\+R\+F\+\_\+altera\+Bairro} (\textbf{ Prof} $\ast$\textbf{ prof}, char $\ast$bairro)
+\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} {\bfseries P\+R\+F\+\_\+altera\+Rua} (\textbf{ Prof} $\ast$\textbf{ prof}, char $\ast$rua)
+\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} {\bfseries P\+R\+F\+\_\+altera\+Numero} (\textbf{ Prof} $\ast$\textbf{ prof}, int numero)
+\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} {\bfseries P\+R\+F\+\_\+altera\+Complemento} (\textbf{ Prof} $\ast$\textbf{ prof}, char $\ast$complemento)
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Funcoes de Consulta}\par
+{\em Funcoes de Consulta a um professor apontado }\begin{DoxyCompactItemize}
+\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Nome} (\textbf{ Prof} $\ast$professor, char $\ast$nome)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia o nome de um professor. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Rg} (\textbf{ Prof} $\ast$professor, int $\ast$rg)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia o RG de um professor. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Cpf} (\textbf{ Prof} $\ast$professor, char $\ast$cpf)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia o C\+PF de um professor. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Matricula} (\textbf{ Prof} $\ast$professor, int $\ast$matricula)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia a Matricula de um professor. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Email} (\textbf{ Prof} $\ast$professor, char $\ast$email)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia o Email de um professor. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Telefone} (\textbf{ Prof} $\ast$professor, int $\ast$telefone)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia o Telefone de um professor. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Dia\+Nascimento} (\textbf{ Prof} $\ast$professor, int $\ast$dia)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia o Dia do Nascimento de um professor. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Mes\+Nascimento} (\textbf{ Prof} $\ast$professor, int $\ast$mes)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia o Mes de Nascimento de um professor. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Ano\+Nascimento} (\textbf{ Prof} $\ast$professor, int $\ast$ano)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia o Ano de Nascimento de um professor. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Pais} (\textbf{ Prof} $\ast$professor, char $\ast$pais)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia o Pais de Origem de um professor. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Uf} (\textbf{ Prof} $\ast$professor, char $\ast$uf)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia o UF de um professor. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Cidade} (\textbf{ Prof} $\ast$professor, char $\ast$cidade)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia a Cidade aonde mora um professor. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Bairro} (\textbf{ Prof} $\ast$professor, char $\ast$bairro)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia o Bairro da residencia de um professor. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Rua} (\textbf{ Prof} $\ast$professor, char $\ast$rua)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia a Rua da residencia de um professor. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Numero} (\textbf{ Prof} $\ast$professor, int $\ast$numero)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia o Numero da residencia de um professor. \end{DoxyCompactList}\item 
+\textbf{ P\+R\+F\+\_\+tp\+Cond\+Ret} \textbf{ P\+R\+F\+\_\+consulta\+Complemento} (\textbf{ Prof} $\ast$professor, char $\ast$complemento)
+\begin{DoxyCompactList}\small\item\em Retorna por referencia o Complemento da residencia de um professor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Descrição detalhada}
+Arquivo header para o modulo Professor. 
+
+Detalhes adicionais 
