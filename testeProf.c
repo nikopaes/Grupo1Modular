@@ -118,66 +118,66 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 
   
 
-   TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
+TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 
-      PRF_tpCondRet CondRetObtido   ;
-	  PRF_tpCondRet CondRetEsperada ;
+	PRF_tpCondRet CondRetObtido;
+	PRF_tpCondRet CondRetEsperada;
 
-	  int index = 0;
+	int index;
 
-	  int paramMatricula = 0;
-	  char paramCPF[12];
-	  char paramPais[80];
-	  int paramDia;
-	  int paramMes;
-	  int paramAno;
-	  int paramDiaNascimento;
-	  int paramMesNascimento;
-	  int paramAnoNascimento;
+	char paramNome[80];
+	int paramRg;
+	char paramCpf[80];
+	int paramMatricula;
+	char paramEmail[80];
+	int paramTelefone;
+	int paramDia;
+	int paramMes;
+	int paramAno ;
+	char paramPais[80];
+	char paramUf[80];
+	char paramCidade[80];
+	char paramBairro[80];
+	char paramRua[80];
+	int paramNumero;
+	char paramComplemento[80];
 
 	//usado nas consultas
-	  int valorObtido;
-	  int valorEsperado;
-	  char valorStringObtido[80];
-	  char valorStringEsperado[80];
+	int valorObtido;
+	int valorEsperado;
+	char valorStringObtido[80];
+	char valorStringEsperado[80];
 
 	//usado nas alteras
-	int paramInt = 0;
+	int paramInt;
 	char paramString[80];
 	
-	
+	int NumLidos = -1 ;
 
-      int NumLidos = -1 ;
-
-      TST_tpCondRet Ret ;
+	TST_tpCondRet Ret ;
 
       /* Testar PRF Criar professor */
 
-         if ( strcmp( ComandoTeste , CRIAR_CMD ) == 0 )
-         {
-
-            NumLidos = LER_LerParametros( "iissiiii" ,
-								&index, &paramMatricula, paramCPF, paramPais, &paramDia, &paramMes, &paramAno,
-                               &CondRetEsperada ) ;
-            if ( NumLidos != 8 )
+         if ( strcmp( ComandoTeste , CRIAR_CMD ) == 0 ){
+            NumLidos = LER_LerParametros( "isisisiiiisssssisi" , &index, paramNome, &paramRg, paramCpf, &paramMatricula, paramEmail, &paramTelefone, &paramDia, &paramMes, &paramAno, paramPais, paramUf, paramCidade, paramBairro, paramRua, &paramNumero, paramComplemento, &CondRetEsperada ) ;
+            if ( NumLidos != 18 )
             {
                return TST_CondRetParm ;
             } /* if */
 
-			CondRetObtido = PRF_cria( p+index, paramMatricula, paramCPF, paramPais, paramDia, paramMes, paramAno ) ;			
+			CondRetObtido = PRF_cria( p+index, paramNome, paramRg, paramCpf, paramMatricula, paramEmail, paramTelefone, paramDia, paramMes, paramAno, paramPais, paramUf, paramCidade, paramBairro, paramRua, paramNumero, paramComplemento);
 			
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
-                                    "Retorno errado ao criar professor." );
+					"Retorno errado ao criar professor." );
 
          } /* fim ativa: Testar PRF Criar professor */
 
-		  /* Testar mostrar Professor */
+	 /* Testar mostrar Professor */
 
          else if ( strcmp( ComandoTeste , MOSTRAR_CMD ) == 0 )
          {
 
-            NumLidos = LER_LerParametros( "ii" , 
-									&index, &CondRetEsperada ) ;
+            NumLidos = LER_LerParametros( "ii" , &index, &CondRetEsperada ) ;
             if ( NumLidos != 2 )
             {
                return TST_CondRetParm ;
@@ -591,12 +591,12 @@ Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 	/* Testar PRF altera diaNascimento professor */
 
 	else if ( strcmp( ComandoTeste , ALTERA_DATA_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "iiiii" , &index, &paramDiaNascimento, &paramMesNascimento, &paramAnoNascimento, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "iiiii" , &index, &paramDia, &paramMes, &paramAno, &CondRetEsperada );
 		if(NumLidos != 5){
 			return TST_CondRetParm;
 		} /* if */
 
-		CondRetObtido = PRF_alteraDataNascimento(p[index], paramDiaNascimento, paramMesNascimento, paramAnoNascimento);
+		CondRetObtido = PRF_alteraDataNascimento(p[index], paramDia, paramMes, paramAno);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
 				"Retorno errado ao alterar DiaNascimento de Professor.");

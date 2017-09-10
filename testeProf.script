@@ -9,31 +9,63 @@
 
 
 == Declarar as condicoes de retorno
-=declararparm  OK           int 0
-=declararparm  NaoHaMemoria      int 1 
-=declararparm  NaoExisteProf    int 2
-=declararparm  Erro     int 3
+=declararparm  OK		int 0
+=declararparm  NaoHaMemoria	int 1 
+=declararparm  NaoExisteProf	int 2 
+=declararparm  ProfessoJaCriado	int 3 
+=declararparm  FormatoInvalido	int 4
+=declararparm  Erro		int 5
 
 == Declarar os conteúdos dos nós
-=declararparm  cpfPrimeiro     string "12345678901"
-=declararparm  cpfSegundo      string "10987654321"
-=declararparm  pais        string "BraZilComZ"
-=declararparm  dia        int 4
-=declararparm  mes        int 9
-=declararparm  ano        int 2196
+
+=declararparm  nome		string	"Bruce"
+=declararparm  rg		int	111222333
+=declararparm  cpf		string	"12345678901"
+=declararparm  matricula	int	1112223
+=declararparm  email		string	"bmMail@mail"
+=declararparm  telefone		int	111222333
+=declararparm  dia		int	11
+=declararparm  mes		int	12
+=declararparm  ano		int	2196
+=declararparm  pais		string	"BrasilComS"
+=declararparm  uf		string	"RJ"
+=declararparm  cidade		string	"RioDeJaneiro"
+=declararparm  bairro		string	"umBairro"
+=declararparm  rua		string	"AvQualquer"
+=declararparm  numero		int	666
+=declararparm  complemento	string	"defrontePuc"
+
+=declararparm  nomeSegundo		string	"Flavio"
+=declararparm  rgSegundo		int	333222111
+=declararparm  cpfSegundo		string	"11122233344"
+=declararparm  matriculaSegundo		int	9998887
+=declararparm  emailSegundo		string	"f@mail"
+=declararparm  telefoneSegundo		int	911122233
+=declararparm  diaSegundo		int	10
+=declararparm  mesSegundo		int	9
+=declararparm  anoSegundo		int	2150
+=declararparm  paisSegundo		string	"BrazilComZ"
+=declararparm  ufSegundo		string	"DF"
+=declararparm  cidadeSegundo		string	"CidadeQualquer"
+=declararparm  bairroSegundo		string	"QualquerBairro"
+=declararparm  ruaSegundo		string	"QualquerAvenida"
+=declararparm  numeroSegundo		int	123
+=declararparm  complementoSegundo	string	"proximoPuc"
+
+=declararparm  cpfPrimeiro		string	"22211133344"
 
 == Verificar comando mostrar
 =mostrar     0 NaoExisteProf
 
-
 == Verificar criar
-=criar      0 666 cpfPrimeiro pais dia mes ano OK
+
+=criar 0 nome rg cpf matricula email telefone dia mes ano pais uf cidade bairro rua numero complemento OK
 
 == Verificar mostrar
 =mostrar 0 OK
 
 ==Verificar consulta cpf
-=consultarCPF 0 cpfPrimeiro OK
+=consultarCPF 0 cpf OK
 
 == Verificar alterar
 =alterarCPF   0  cpfSegundo   OK

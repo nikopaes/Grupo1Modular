@@ -3,25 +3,12 @@
 #include <string.h>
 #include "professor.h"
 
-/*! \file professor.c
-    \brief Arquivo source para o modulo Professor
-    
-    Detalhes adicionais
-*/
-
-/** @defgroup moduloProfessorC Modulo Professor.c
- *  Modulo destinado para controlar tudo relacionado ao professor 
- *  @{
- */
-
 /* retirar todos os comentarios deste codigo na versão final e deixar so a documentação antes mandar para o professor*/
 
 //------------------------------------------------------------------------- ESTRUTURAS --------------------------------------------------------------------------------------------
 /* Endereco e Data são estruturas bem genéricas então talvez depois fosse bom transferi-las para outro lugar depois.
 Aluno também deve usa-las..
 */
-
-
 typedef struct data{
 	int dia;
 	int mes;
@@ -38,21 +25,15 @@ typedef struct endereco{
 	char complemento[80];
 } Endereco;
 
-
-/*! \struct prof
-    \brief Struct que contem todas informacoes necessarias de um professor 
-    
-    No instaciamento de um objeto professor essa Struct e criada
-*/
 struct prof{
-	char nome[80];  /**< String de no maximo 80 chars que contem o nome inteiro do professor */ 
-	char cpf[12];   /**< String de no maximo 12 chars que contem o CPF do professor */ 
-	int matricula;  /**< Int que contem a matricula do professor */ 
-	char email[80]; /**< String de no maximo 80 chars que contem o email do professor */ 
-	int telefone;   /**< Int que contem o telefone do professor */
-	Data* dataNascimento; /**<  Ponteiro que aponta para a Struct data, guarda no formato dia|mes|ano a data de nascimento do professor */
-	Endereco* endereco; /**<  Ponteiro para a Struct endereco, guarda o endereco do professor no formato pais|uf|cidade|bairro|rua|numero|complemento */
-	int rg; /**< Int que contem o RG do professor */
+	char nome[80];
+	char cpf[12];
+	int matricula;
+	char email[80];
+	int telefone;
+	Data* dataNascimento;
+	Endereco* endereco;
+	int rg;
 /*
 	As disciplinas que aquele professor pode dar aula estão aqui numa lista
 */
@@ -78,60 +59,66 @@ int verificaData(int dia, int mes, int ano);
 
 //------------------------------------------------------------------- FUNÇÃO CRIA --------------------------------------------------------------------------------------------
 /* REFATORAR A FUNÇÃO CRIA USANDO AS ALTERA, NÃO ESQUECER DE VERIFICAR O RETORNO DAS FUNÇÕES ALTERA */
-PRF_tpCondRet PRF_cria(Prof** p, int matricula, char *cpf, char *pais, int dia, int mes, int ano){
+
+PRF_tpCondRet PRF_cria(Prof** professor, char *nome, int rg, char *cpf, int matricula, char *email, int telefone, int dia, int mes, int ano, char *pais, char *uf, char *cidade, char *bairro, char *rua, int numero, char *complemento){
+	PRF_tpCondRet ret;
 	Data *dataNascimento;
 	Endereco *endereco;
 		
-	Prof *professor;
+	Prof *p;
 
-	if(*p != NULL) return PRF_CondRetProfessorJaCriado;
+	if(*professor != NULL) return PRF_CondRetProfessorJaCriado;
 
-	*p = (Prof*) malloc(sizeof(Prof));
+	*professor = (Prof*) malloc(sizeof(Prof));
 
-	professor = *p;
+	p = *professor;
 
-	if(professor == NULL) return PRF_CondRetNaoHaMemoria; //testa alocacao do ponteiro
+	if(p == NULL) return PRF_CondRetNaoHaMemoria; //testa alocacao do ponteiro
 	
 	dataNascimento = (Data*) malloc(sizeof(Data));
 	if(dataNascimento == NULL) return PRF_CondRetNaoHaMemoria;
 
 	endereco = (Endereco*) malloc(sizeof(Endereco));
 	if(endereco == NULL) return PRF_CondRetNaoHaMemoria;
+	
+	p->dataNascimento = dataNascimento;
+	p->endereco = endereco;
 
-	strcpy(professor->cpf, cpf);
-	professor->matricula = matricula;
-
-	if(!verificaData(dia, mes, ano)) return PRF_CondRetFormatoInvalido;
-
-	dataNascimento->dia = dia;
-	dataNascimento->mes = mes;
-	dataNascimento->ano = ano;
-
-	strcpy(endereco->pais, pais);
-
-	professor->dataNascimento = dataNascimento;
-	professor->endereco = endereco;
+	if((ret = PRF_alteraNome(p, nome)) 		!= PRF_CondRetOk) return ret;
+	if((ret = PRF_alteraRg(p, rg)) 			!= PRF_CondRetOk) return ret;
+	if((ret = PRF_alteraCpf(p, cpf)) 		!= PRF_CondRetOk) return ret;
+	if((ret = PRF_alteraMatricula(p, matricula)) 	!= PRF_CondRetOk) return ret;
+	if((ret = PRF_alteraEmail(p, email)) 		!= PRF_CondRetOk) return ret;
+	if((ret = PRF_alteraTelefone(p, telefone)) 	!= PRF_CondRetOk) return ret;
+	if((ret = PRF_alteraDataNascimento(p, dia, mes, ano))	!= PRF_CondRetOk) return ret;
+	if((ret = PRF_alteraPais(p, pais)) 		!= PRF_CondRetOk) return ret;
+	if((ret = PRF_alteraUf(p, uf)) 			!= PRF_CondRetOk) return ret;
+	if((ret = PRF_alteraCidade(p, cidade)) 		!= PRF_CondRetOk) return ret;
+	if((ret = PRF_alteraBairro(p, bairro)) 		!= PRF_CondRetOk) return ret;
+	if((ret = PRF_alteraRua(p, rua))		!= PRF_CondRetOk) return ret;
+	if((ret = PRF_alteraNumero(p, numero))		!= PRF_CondRetOk) return ret;
+	if((ret = PRF_alteraComplemento(p, complemento))!= PRF_CondRetOk) return ret;
 
 	return PRF_CondRetOk;
 }
 
 
 //------------------------------------------------------------------- FUNÇÕES MOSTRA --------------------------------------------------------------------------------------------
-PRF_tpCondRet PRF_mostra(Prof* p){
-	if(!p) return PRF_CondRetNaoExisteProf;
-	if(!p->dataNascimento) return PRF_CondRetNaoExisteProf;
-	if(!p->endereco) return PRF_CondRetNaoExisteProf;
+PRF_tpCondRet PRF_mostra(Prof* professor){
+	if(!professor) return PRF_CondRetNaoExisteProf;
+	if(!professor->dataNascimento) return PRF_CondRetNaoExisteProf;
+	if(!professor->endereco) return PRF_CondRetNaoExisteProf;
 	printf("Exibindo Professor...\n");
-//	printf("nome: %s\n", p->nome);
-	printf("cpf : %s\n", p->cpf);
-//	printf("rg : %d\n", p->rg);
-	printf("matricula : %d\n", p->matricula);
-//	printf("email : %s\n", p->email);
-//	printf("telefone : %d \n", p->telefone);
+//	printf("nome: %s\n", professor->nome);
+	printf("cpf : %s\n", professor->cpf);
+//	printf("rg : %d\n", professor->rg);
+	printf("matricula : %d\n", professor->matricula);
+//	printf("email : %s\n", professor->email);
+//	printf("telefone : %d \n", professor->telefone);
 	printf("data de nascimento : ");
-	mostraData(p->dataNascimento);
+	mostraData(professor->dataNascimento);
 	printf("endereco:\n");
-	mostraEndereco(p->endereco);
+	mostraEndereco(professor->endereco);
 	return PRF_CondRetOk;
 }
 
@@ -155,11 +142,11 @@ PRF_tpCondRet mostraData(Data* d){
 
 
 //------------------------------------------------------------------- FUNÇÃO LIBERA --------------------------------------------------------------------------------------------
-PRF_tpCondRet PRF_libera(Prof** p){
-	free((*p)->dataNascimento);
-	free((*p)->endereco);
-	free(*p);
-	*p=NULL;
+PRF_tpCondRet PRF_libera(Prof** professor){
+	free((*professor)->dataNascimento);
+	free((*professor)->endereco);
+	free(*professor);
+	*professor=NULL;
 	return PRF_CondRetOk;
 }
 
@@ -281,128 +268,128 @@ PRF_tpCondRet PRF_consultaRg(Prof *professor, int *rg){
 
 //------------------------------------------------------------------- FUNÇÕES ALTERA --------------------------------------------------------------------------------------------
 /* Essas funções recebem um professor e alteram seus atributos */
-PRF_tpCondRet PRF_alteraDataNascimento(Prof* prof, int dia, int mes, int ano){
+PRF_tpCondRet PRF_alteraDataNascimento(Prof* professor, int dia, int mes, int ano){
+	printf("d:%d, m:%d, a:%d", dia, mes, ano);
 	if(verificaData(dia, mes, ano) == 0)
 		return PRF_CondRetFormatoInvalido;
-	prof->dataNascimento->ano = ano;
-	prof->dataNascimento->mes = mes;
-	prof->dataNascimento->dia = dia;
+	professor->dataNascimento->ano = ano;
+	professor->dataNascimento->mes = mes;
+	professor->dataNascimento->dia = dia;
 	return PRF_CondRetOk;
 }
 
-PRF_tpCondRet PRF_alteraRua(Prof* prof, char* rua){
-	if(prof == NULL || prof->endereco == NULL)
+PRF_tpCondRet PRF_alteraRua(Prof* professor, char* rua){
+	if(professor == NULL || professor->endereco == NULL)
 		return PRF_CondRetNaoExisteProf;
 	if(verificaRua(rua) == 0)
 		return PRF_CondRetFormatoInvalido;
 	// altera dados
-	strcpy(prof->endereco->rua,rua);
+	strcpy(professor->endereco->rua,rua);
 	return PRF_CondRetOk;
 }
-PRF_tpCondRet PRF_alteraNumero(Prof* prof, int numero){
-	if(prof == NULL || prof->endereco == NULL)
+PRF_tpCondRet PRF_alteraNumero(Prof* professor, int numero){
+	if(professor == NULL || professor->endereco == NULL)
 		return PRF_CondRetNaoExisteProf;
 	if(verificaNumero(numero) == 0)
 
 		return PRF_CondRetFormatoInvalido;
 	// altera dados
-	prof->endereco->numero = numero;
+	professor->endereco->numero = numero;
 	return PRF_CondRetOk;
 }
-PRF_tpCondRet PRF_alteraComplemento(Prof* prof, char* complemento){
-	if(prof == NULL || prof->endereco == NULL)
+PRF_tpCondRet PRF_alteraComplemento(Prof* professor, char* complemento){
+	if(professor == NULL || professor->endereco == NULL)
 		return PRF_CondRetNaoExisteProf;
 	if(verificaComplemento(complemento) == 0)
-
 		return PRF_CondRetFormatoInvalido;
 	// altera dados
-	strcpy(complemento,prof->endereco->complemento);
+	strcpy(professor->endereco->complemento, complemento);
 	return PRF_CondRetOk;
 }
 
-PRF_tpCondRet PRF_alteraBairro(Prof* prof, char* bairro){
+PRF_tpCondRet PRF_alteraBairro(Prof* professor, char* bairro){
     //essa funcao altera bairro, rua, numero da casa e complemento
-	if(prof == NULL || prof->endereco == NULL)
+	if(professor == NULL || professor->endereco == NULL)
 		return PRF_CondRetNaoExisteProf;
 	if(verificaBairro(bairro) == 0)
 		return PRF_CondRetFormatoInvalido;
 	// altera dados
-	strcpy(prof->endereco->bairro,bairro);
+	strcpy(professor->endereco->bairro,bairro);
 	return PRF_CondRetOk;
 }
 
-PRF_tpCondRet PRF_alteraCidade(Prof* prof, char* cidade){
+PRF_tpCondRet PRF_alteraCidade(Prof* professor, char* cidade){
     //essa funcao altera bairro, rua, numero da casa e complemento
-	if(prof == NULL || prof->endereco == NULL)
+	if(professor == NULL || professor->endereco == NULL)
 		return PRF_CondRetNaoExisteProf;
 	if(verificaCidade(cidade) == 0)
 		return PRF_CondRetFormatoInvalido;
 	// altera dados
-	strcpy(prof->endereco->cidade,cidade);
+	strcpy(professor->endereco->cidade,cidade);
 	return PRF_CondRetOk;
 }
 
-PRF_tpCondRet PRF_alteraUf(Prof* prof, char* uf){
+PRF_tpCondRet PRF_alteraUf(Prof* professor, char* uf){
     //essa funcao altera bairro, rua, numero da casa e complemento
-	if(prof == NULL || prof->endereco == NULL)
+	if(professor == NULL || professor->endereco == NULL)
 		return PRF_CondRetNaoExisteProf;
 	if(verificaUf(uf) == 0)
 		return PRF_CondRetFormatoInvalido;
 	// altera dados
-	strcpy(prof->endereco->uf,uf);
+	strcpy(professor->endereco->uf,uf);
 	return PRF_CondRetOk;
 }
 
-PRF_tpCondRet PRF_alteraPais(Prof* prof, char* pais){
+PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
     //essa funcao altera bairro, rua, numero da casa e complemento
-	if(prof == NULL || prof->endereco == NULL)
+	if(professor == NULL || professor->endereco == NULL)
 		return PRF_CondRetNaoExisteProf;
 	if(verificaPais(pais) == 0)
 		return PRF_CondRetFormatoInvalido;
 	// altera dados
-	strcpy(prof->endereco->pais,pais);
+	strcpy(professor->endereco->pais,pais);
 	return PRF_CondRetOk;
 }
 
-PRF_tpCondRet PRF_alteraNome(Prof* p, char* nome){
+PRF_tpCondRet PRF_alteraNome(Prof* professor, char* nome){
     if(verificaNome(nome) == 0)
 		return PRF_CondRetFormatoInvalido;
-    strcpy(p->nome, nome);
+    strcpy(professor->nome, nome);
     return PRF_CondRetOk;
 }
 
-PRF_tpCondRet PRF_alteraCpf(Prof* p, char* cpf){
+PRF_tpCondRet PRF_alteraCpf(Prof* professor, char* cpf){
     if(verificaCpf(cpf) == 0)
 		return PRF_CondRetFormatoInvalido;
-    strcpy(p->cpf, cpf);
+    strcpy(professor->cpf, cpf);
     return PRF_CondRetOk;
 }
 
-PRF_tpCondRet PRF_alteraMatricula(Prof* p, int matricula){
+PRF_tpCondRet PRF_alteraMatricula(Prof* professor, int matricula){
     if(verificaMatricula(matricula) == 0)
 		return PRF_CondRetFormatoInvalido;
-    p->matricula = matricula;
+    professor->matricula = matricula;
     return PRF_CondRetOk;
 }
 
-PRF_tpCondRet PRF_alteraEmail(Prof* p, char* email){
+PRF_tpCondRet PRF_alteraEmail(Prof* professor, char* email){
     if(verificaEmail(email) == 0)
 		return PRF_CondRetFormatoInvalido;
-    strcpy(p->email, email);
+    strcpy(professor->email, email);
     return PRF_CondRetOk;
 }
 
-PRF_tpCondRet PRF_alteraTelefone(Prof* p, int telefone){
+PRF_tpCondRet PRF_alteraTelefone(Prof* professor, int telefone){
     if(verificaTelefone(telefone) == 0)
 		return PRF_CondRetFormatoInvalido;
-    p->telefone = telefone;
+    professor->telefone = telefone;
     return PRF_CondRetOk;
 }
 
-PRF_tpCondRet PRF_alteraRg(Prof* p, int rg){
+PRF_tpCondRet PRF_alteraRg(Prof* professor, int rg){
     if(verificaRg(rg) == 0)
 		return PRF_CondRetFormatoInvalido;
-    p->rg = rg;
+    professor->rg = rg;
     return PRF_CondRetOk;
 }
 
@@ -513,5 +500,3 @@ int verificaRg(int rg){
 		return 0;
 	return 1;
 }
-
-/** @}*/ // Fim do Modulo ProfessorC
