@@ -1,46 +1,76 @@
 /***************************************************************************
 *  $MCI Módulo de implementação: Módulo de teste específico
 *
-*  Arquivo gerado:              TESTARV.C
-*  Letras identificadoras:      TARV
+*  Arquivo gerado:              testeProf.C
+*  Letras identificadoras:      TPRF
 *
-*  Nome da base de software:    Exemplo de teste automatizado
-*  Arquivo da base de software: D:\AUTOTEST\PROJETOS\SIMPLES.BSW
+*  Nome da base de software:    Teste automatizado para o Modulo Professor
 *
-*  Projeto: Disciplinas INF 1628 / 1301
+*  Projeto: Disciplina INF 1301
 *  Gestor:  DI/PUC-Rio
-*  Autores: avs - Arndt von Staa
+*  Autores: Bruce Marcellino, BM  
+*			Felipe Alfena, FA
+*			Nicola Paes, NP
+*			Mariana Ruddy, MR
+*			Rodrigo Pumar, RP.
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*       3.00   avs   28/02/2003 Uniformização da interface das funções e
-*                               de todas as condições de retorno.
-*       2.00   avs   03/08/2002 Eliminação de código duplicado, reestruturação
-*       1.00   avs   15/08/2001 Início do desenvolvimento
+*       1.00   BM/RP   09/09/2017 Desenvolvimento para T1 modificando TESTARV.C
 *
 *  $ED Descrição do módulo
-*     Este mÇodulo contém as funções específicas para o teste do
-*     módulo árvore. Ilustra como redigir um interpretador de comandos
+*     Este modulo contém as funções específicas para o teste do
+*     módulo professor. É um interpretador de comandos
 *     de teste específicos utilizando o arcabouço de teste para C.
 *
 *  $EIU Interface com o usuário pessoa
-*     Comandos de teste específicos para testar o módulo árvore:
+*     Comandos de teste específicos para testar o módulo professor:
 *
-*     =criar        - chama a função ARV_CriarArvore( )
-*     =insdir <Char>
-*                   - chama a função ARV_InserirDireita( <Char> )
-*                     Obs. notação: <Char>  é o valor do parâmetro
-*                     que se encontra no comando de teste.
+*     "=criar"  <int>index <string>nome <int>rg <string>pais <string>cpf 
+*				<string>cpf <int>matricula <string>email <int> telefone 
+*				<int>dia <int>mes <int>ano <string>pais <string>uf <string>cidade
+*				<string>bairro <string>rua <int>numero <string>complemento <int>CondRetEsperada  
+*					- chama a função: 
+*					PRF_cria(Prof** professor, char *nome, int rg, char *cpf, 
+*					int matricula, char *email, int telefone, 
+*					int dia, int mes, int ano, char *pais, char *uf, *cidade, 
+*					 char *bairro, char *rua, int numero, char *complemento);
+*					- Para o parametro "Prof** professor" é dado o indice do vetor criado neste codigo.
+*     "=mostrar" <int>index
+*                   - chama a função PRF_mostra(Prof* p)
+*     "=liberar"    - chama a função PRF_libera(Prof** p)
 *
-*     "=insesq" <Char>
-*                   - chama a função ARV_InserirEsquerda( <Char> )
-*     "=irpai"      - chama a função ARV_IrPai( )
-*     "=iresq"      - chama a função ARV_IrEsquerda( )
-*     "=irdir"      - chama a função ARV_IrDireita( )
-*     "=obter" <Char>
-*                   - chama a função ARV_ObterValorCorr( ) e compara
-*                     o valor retornado com o valor <Char>
-*     "=destroi"    - chama a função ARV_DestruirArvore( )
+*     "=consultaNome"        chama a função PRF_consultaNome 	      <int>index <string>nome
+*	  "=consultaRg"          chama a função PRF_consultaRg 		      <int>index <int>rg
+*	  "=consultaCpf"         chama a função PRF_consultaCpf           <int>index <string>cpf
+*	  "=consultaMatricula"   chama a função PRF_consultaMatricula     <int>index <int>matricula
+*	  "=consultaEmail"       chama a função PRF_consultaEmail         <int>index <string>email
+*	  "=consultaTelefone"    chama a função PRF_consultaTelefone      <int>index <int>telefone
+*	  "=consultaDia"         chama a função PRF_consultaDia           <int>index <int>dia
+*	  "=consultaMes"         chama a função PRF_consultaMes           <int>index <int>mes
+*	  "=consultaAno"         chama a função PRF_consultaAno           <int>index <int>ano
+*	  "=consultaPais"        chama a função PRF_consultaPais          <int>index <string>pais
+*	  "=consultaUf"          chama a função PRF_consultaUf            <int>index <string>uf
+*	  "=consultaCidade"      chama a função PRF_consultaCidade        <int>index <string>cidade
+*	  "=consultaBairro"      chama a função PRF_consultaBairro        <int>index <string>bairro
+*	  "=consultaRua"         chama a função PRF_consultaRua           <int>index <string>rua
+*	  "=consultaNumero"      chama a função PRF_consultaNumero        <int>index <int>numero
+*	  "=consultaComplemento" chama a função PRF_consultaComplemento   <int>index <string>complemento
+*
+*     "=alterarNome"         chama a função PRF_alteraNome 	         <int>index <string>nome
+*	  "=alterarRg"           chama a função PRF_alteraRg 		     <int>index <int>rg
+*	  "=alterarCpf"          chama a função PRF_alteraCpf            <int>index <string>cpf
+*	  "=alterarMatricula"    chama a função PRF_alteraMatricula      <int>index <int>matricula
+*	  "=alterarEmail"        chama a função PRF_alteraEmail          <int>index <string>email
+*	  "=alterarTelefone"     chama a função PRF_alteraTelefone       <int>index <int>telefone
+*	  "=alterarData "        chama a função PRF_alteraDataNascimento <int>index <int>dia <int>mes <int>ano
+*	  "=alterarPais"         chama a função PRF_alteraPais           <int>index <string>pais
+*	  "=alterarUf"           chama a função PRF_alteraUf             <int>index <string>uf
+*	  "=alterarCidade"       chama a função PRF_alteraCidade         <int>index <string>cidade
+*	  "=alterarBairro"       chama a função PRF_alteraBairro         <int>index <string>bairro
+*	  "=alterarRua"          chama a função PRF_alteraRua            <int>index <string>rua
+*	  "=alterarNumero"       chama a função PRF_alteraNumero         <int>index <int>numero
+*	  "=alterarComplemento"  chama a função PRF_alteraComplemento    <int>index <string>complemento
 *
 ***************************************************************************/
 
@@ -76,7 +106,7 @@
 #define		CONSULTA_BAIRRO_CMD		"=consultarBairro"
 #define		CONSULTA_RUA_CMD		"=consultarRua"
 #define		CONSULTA_NUMERO_CMD		"=consultarNumero"
-#define		CONSULTA_COMPLEMENTO_CMD	"=consultarcomplemento"
+#define		CONSULTA_COMPLEMENTO_CMD	"=consultarComplemento"
 
 #define		ALTERA_NOME_CMD		"=alterarNome"
 #define		ALTERA_RG_CMD		"=alterarRg"
@@ -91,10 +121,19 @@
 #define		ALTERA_BAIRRO_CMD	"=alterarBairro"
 #define		ALTERA_RUA_CMD		"=alterarRua"
 #define		ALTERA_NUMERO_CMD	"=alterarNumero"
-#define		ALTERA_COMPLEMENTO_CMD	"=alterarcomplemento"
+#define		ALTERA_COMPLEMENTO_CMD	"=alterarComplemento"
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
+
+/*****  Definicoes globais a serem usadas no modulo testeProf.c  *****/
+#define MAX_PROFS 10  /* no futuro deverá ser modificado ao introduzir modulo de lista encadeada */
+
+/* Vetor de ponteiros usado para que o modulo de teste possa acessar ponteiros do modulo professor.c */
+Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
+			NULL, NULL, NULL, NULL, NULL};
+			
+/*****  Fim de Definicoes globais a serem usadas no modulo testeProf.c  *****/
 
 /***********************************************************************
 *
@@ -102,7 +141,7 @@
 *
 *  $ED Descrição da função
 *     Efetua os diversos comandos de teste específicos para o módulo
-*     árvore sendo testado.
+*     professor sendo testado.
 *
 *  $EP Parâmetros
 *     $P ComandoTeste - String contendo o comando
@@ -111,20 +150,14 @@
 *     Ver TST_tpCondRet definido em TST_ESPC.H
 *
 ***********************************************************************/
-#define MAX_PROFS 10
-
-Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
-			NULL, NULL, NULL, NULL, NULL};
-
-  
 
 TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 
 	PRF_tpCondRet CondRetObtido;
 	PRF_tpCondRet CondRetEsperada;
 
+	//definicoes usadas a cada chamada de comando contida no script
 	int index;
-
 	char paramNome[80];
 	int paramRg;
 	char paramCpf[80];
