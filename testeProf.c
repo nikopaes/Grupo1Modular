@@ -10,7 +10,7 @@
 *  Gestor:  DI/PUC-Rio
 *  Autores: Bruce Marcellino, BM  
 *			Felipe Alfena, FA
-*			Nicola Paes, NP
+*			Nicolas Paes, NP
 *			Mariana Ruddy, MR
 *			Rodrigo Pumar, RP.
 *
