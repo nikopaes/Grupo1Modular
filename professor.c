@@ -109,12 +109,12 @@ PRF_tpCondRet PRF_mostra(Prof* professor){
 	if(!professor->dataNascimento) return PRF_CondRetNaoExisteProf;
 	if(!professor->endereco) return PRF_CondRetNaoExisteProf;
 	printf("Exibindo Professor...\n");
-//	printf("nome: %s\n", professor->nome);
+	printf("nome: %s\n", professor->nome);
 	printf("cpf : %s\n", professor->cpf);
-//	printf("rg : %d\n", professor->rg);
+	printf("rg : %d\n", professor->rg);
 	printf("matricula : %d\n", professor->matricula);
-//	printf("email : %s\n", professor->email);
-//	printf("telefone : %d \n", professor->telefone);
+	printf("email : %s\n", professor->email);
+	printf("telefone : %d \n", professor->telefone);
 	printf("data de nascimento : ");
 	mostraData(professor->dataNascimento);
 	printf("endereco:\n");
@@ -123,14 +123,12 @@ PRF_tpCondRet PRF_mostra(Prof* professor){
 }
 
 PRF_tpCondRet mostraEndereco(Endereco* end){
-	/* Descomentem as linhas conforme criarem*/
-
-	//printf(" %s,", end->rua);
-	//printf("No %d, ", end->numero);
-	//printf("complemento:%s, ", end->complemento);
-	//printf("%s, ", end->bairro);
-	//printf("%s, ", end->cidade);
-	//printf("%s, ", end->uf);
+	printf(" %s,", end->rua);
+	printf("No %d, ", end->numero);
+	printf("complemento:%s, ", end->complemento);
+	printf("%s, ", end->bairro);
+	printf("%s, ", end->cidade);
+	printf("%s, ", end->uf);
 	printf("%s, \n", end->pais);
 	return PRF_CondRetOk;
 }
@@ -176,7 +174,7 @@ PRF_tpCondRet PRF_consultaNome(Prof* professor, char* nome){
 }
 
 PRF_tpCondRet PRF_consultaCpf(Prof *professor, char *cpf){
-	if(!professor) return PRF_CondRetNaoExisteProf;
+	if(professor == NULL) return PRF_CondRetNaoExisteProf;
 	strcpy(cpf, professor->cpf);
 	return PRF_CondRetOk;
 }
@@ -269,7 +267,7 @@ PRF_tpCondRet PRF_consultaRg(Prof *professor, int *rg){
 //------------------------------------------------------------------- FUNÇÕES ALTERA --------------------------------------------------------------------------------------------
 /* Essas funções recebem um professor e alteram seus atributos */
 PRF_tpCondRet PRF_alteraDataNascimento(Prof* professor, int dia, int mes, int ano){
-	printf("d:%d, m:%d, a:%d", dia, mes, ano);
+	if(professor == NULL) return PRF_CondRetNaoExisteProf;
 	if(verificaData(dia, mes, ano) == 0)
 		return PRF_CondRetFormatoInvalido;
 	professor->dataNascimento->ano = ano;
@@ -352,6 +350,7 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 }
 
 PRF_tpCondRet PRF_alteraNome(Prof* professor, char* nome){
+	if(professor == NULL) return PRF_CondRetNaoExisteProf;
     if(verificaNome(nome) == 0)
 		return PRF_CondRetFormatoInvalido;
     strcpy(professor->nome, nome);
@@ -359,6 +358,7 @@ PRF_tpCondRet PRF_alteraNome(Prof* professor, char* nome){
 }
 
 PRF_tpCondRet PRF_alteraCpf(Prof* professor, char* cpf){
+	if(professor == NULL) return PRF_CondRetNaoExisteProf;
     if(verificaCpf(cpf) == 0)
 		return PRF_CondRetFormatoInvalido;
     strcpy(professor->cpf, cpf);
@@ -366,6 +366,7 @@ PRF_tpCondRet PRF_alteraCpf(Prof* professor, char* cpf){
 }
 
 PRF_tpCondRet PRF_alteraMatricula(Prof* professor, int matricula){
+	if(professor == NULL) return PRF_CondRetNaoExisteProf;
     if(verificaMatricula(matricula) == 0)
 		return PRF_CondRetFormatoInvalido;
     professor->matricula = matricula;
@@ -373,6 +374,7 @@ PRF_tpCondRet PRF_alteraMatricula(Prof* professor, int matricula){
 }
 
 PRF_tpCondRet PRF_alteraEmail(Prof* professor, char* email){
+	if(professor == NULL) return PRF_CondRetNaoExisteProf;
     if(verificaEmail(email) == 0)
 		return PRF_CondRetFormatoInvalido;
     strcpy(professor->email, email);
@@ -380,6 +382,7 @@ PRF_tpCondRet PRF_alteraEmail(Prof* professor, char* email){
 }
 
 PRF_tpCondRet PRF_alteraTelefone(Prof* professor, int telefone){
+	if(professor == NULL) return PRF_CondRetNaoExisteProf;
     if(verificaTelefone(telefone) == 0)
 		return PRF_CondRetFormatoInvalido;
     professor->telefone = telefone;
@@ -387,6 +390,7 @@ PRF_tpCondRet PRF_alteraTelefone(Prof* professor, int telefone){
 }
 
 PRF_tpCondRet PRF_alteraRg(Prof* professor, int rg){
+	if(professor == NULL) return PRF_CondRetNaoExisteProf;
     if(verificaRg(rg) == 0)
 		return PRF_CondRetFormatoInvalido;
     professor->rg = rg;
