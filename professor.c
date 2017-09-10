@@ -3,12 +3,25 @@
 #include <string.h>
 #include "professor.h"
 
+/*! \file professor.c
+    \brief Arquivo source para o modulo Professor
+    
+    Detalhes adicionais
+*/
+
+/** @defgroup moduloProfessorC Modulo Professor.c
+ *  Modulo destinado para controlar tudo relacionado ao professor 
+ *  @{
+ */
+
 /* retirar todos os comentarios deste codigo na versão final e deixar so a documentação antes mandar para o professor*/
 
 //------------------------------------------------------------------------- ESTRUTURAS --------------------------------------------------------------------------------------------
 /* Endereco e Data são estruturas bem genéricas então talvez depois fosse bom transferi-las para outro lugar depois.
 Aluno também deve usa-las..
 */
+
+
 typedef struct data{
 	int dia;
 	int mes;
@@ -25,15 +38,21 @@ typedef struct endereco{
 	char complemento[80];
 } Endereco;
 
+
+/*! \struct prof
+    \brief Struct que contem todas informacoes necessarias de um professor 
+    
+    No instaciamento de um objeto professor essa Struct e criada
+*/
 struct prof{
-	char nome[80];
-	char cpf[12];
-	int matricula;
-	char email[80];
-	int telefone;
-	Data* dataNascimento;
-	Endereco* endereco;
-	int rg;
+	char nome[80];  /**< String de no maximo 80 chars que contem o nome inteiro do professor */ 
+	char cpf[12];   /**< String de no maximo 12 chars que contem o CPF do professor */ 
+	int matricula;  /**< Int que contem a matricula do professor */ 
+	char email[80]; /**< String de no maximo 80 chars que contem o email do professor */ 
+	int telefone;   /**< Int que contem o telefone do professor */
+	Data* dataNascimento; /**<  Ponteiro que aponta para a Struct data, guarda no formato dia|mes|ano a data de nascimento do professor */
+	Endereco* endereco; /**<  Ponteiro para a Struct endereco, guarda o endereco do professor no formato pais|uf|cidade|bairro|rua|numero|complemento */
+	int rg; /**< Int que contem o RG do professor */
 /*
 	As disciplinas que aquele professor pode dar aula estão aqui numa lista
 */
@@ -494,3 +513,5 @@ int verificaRg(int rg){
 		return 0;
 	return 1;
 }
+
+/** @}*/ // Fim do Modulo ProfessorC

@@ -4,7 +4,7 @@
     Detalhes adicionais
 */
 
-/** @defgroup moduloProfessor Modulo Professor.h
+/** @defgroup moduloProfessorH Modulo Professor.h
  *  Modulo destinado para controlar tudo relacionado ao professor 
  *  @{
  */
@@ -200,21 +200,126 @@ PRF_tpCondRet PRF_consultaComplemento(Prof *professor, char *complemento);
 /** @}*/ // Fim do Bloco de Funcoes de Consulta
 
 //------------------------------------------------------------------- FUNÇÕES ALTERA --------------------------------------------------------------------------------------------
+/** \name Funcoes de Alteracao
+ *  Funcoes que alteram as informacoes guardadas referentes a um professor
+*/
+
+/**@{*/ 
+
+/*! \fn PRF_tpCondRet PRF_alteraNome(Prof* p, char* nome);
+    \brief Altera o nome de um professor
+    \param professor Ponteiro apontando para a struct professor que deseja alterar
+    \param nome O ponteiro para uma string que substituira o nome do professor apontado
+    \return Condicao de retorno como definido em \a PRF_tpCondRet
+*/
 PRF_tpCondRet PRF_alteraNome(Prof* p, char* nome);
+
+/*! \fn PRF_tpCondRet PRF_alteraRg(Prof* p, int rg);
+    \brief Altera o RG de um professor
+    \param professor Ponteiro apontando para a struct professor que deseja alterar
+    \param rg Um int que substituira o rg do professor apontado
+    \return Condicao de retorno como definido em \a PRF_tpCondRet
+*/
 PRF_tpCondRet PRF_alteraRg(Prof* p, int rg);
+
+/*! \fn PRF_tpCondRet PRF_alteraCpf(Prof* p, char* cpf);
+    \brief Altera o CPF de um professor
+    \param professor Ponteiro apontando para a struct professor que deseja alterar
+    \param cpf O ponteiro para uma string que substituira o cpf do professor apontado
+    \return Condicao de retorno como definido em \a PRF_tpCondRet
+*/
 PRF_tpCondRet PRF_alteraCpf(Prof* p, char* cpf);
+
+/*! \fn PRF_tpCondRet PRF_alteraMatricula(Prof* p, int matricula);
+    \brief Altera a matricula de um professor
+    \param professor Ponteiro apontando para a struct professor que deseja alterar
+    \param matricula Um int que substituira a matricula do professor apontado
+    \return Condicao de retorno como definido em \a PRF_tpCondRet
+*/
 PRF_tpCondRet PRF_alteraMatricula(Prof* p, int matricula);
+
+/*! \fn PRF_tpCondRet PRF_alteraEmail(Prof* p, char* email);
+    \brief Altera o email de um professor
+    \param professor Ponteiro apontando para a struct professor que deseja alterar
+    \param email O ponteiro para uma string que substituira o email do professor apontado
+    \return Condicao de retorno como definido em \a PRF_tpCondRet
+*/
 PRF_tpCondRet PRF_alteraEmail(Prof* p, char* email);
+
+/*! \fn PRF_tpCondRet PRF_alteraTelefone(Prof* p, int tel);
+    \brief Altera o telefone de um professor
+    \param professor Ponteiro apontando para a struct professor que deseja alterar
+    \param telefone Um int que substituira o telefone do professor apontado
+    \return Condicao de retorno como definido em \a PRF_tpCondRet
+*/
 PRF_tpCondRet PRF_alteraTelefone(Prof* p, int tel);
+
+/*! \fn PRF_tpCondRet PRF_alteraDataNascimento(Prof* p, int dia, int mes, int ano);
+    \brief Altera a data de nascimento completa de um professor
+    \param professor Ponteiro apontando para a struct professor que deseja alterar
+    \param dia Um int que substituira o dia de nascimento do professor apontado
+    \param mes Um int que substituira o mes de nascimento do professor apontado 
+    \param ano Um int que substituira o ano de nascimento do professor apontado
+    \return Condicao de retorno como definido em \a PRF_tpCondRet
+*/
 PRF_tpCondRet PRF_alteraDataNascimento(Prof* p, int dia, int mes, int ano);
+
+/*! \fn PRF_tpCondRet PRF_alteraPais(Prof* prof, char* pais);
+    \brief Altera o pais de um professor
+    \param professor Ponteiro apontando para a struct professor que deseja alterar
+    \param pais O ponteiro para uma string que substituira o pais do professor apontado
+    \return Condicao de retorno como definido em \a PRF_tpCondRet
+*/
 PRF_tpCondRet PRF_alteraPais(Prof* prof, char* pais);
+
+/*! \fn PRF_tpCondRet PRF_alteraUf(Prof* prof, char* uf);
+    \brief Altera o uf de um professor
+    \param professor Ponteiro apontando para a struct professor que deseja alterar
+    \param uf O ponteiro para uma string que substituira o uf do professor apontado
+    \return Condicao de retorno como definido em \a PRF_tpCondRet
+*/
 PRF_tpCondRet PRF_alteraUf(Prof* prof, char* uf);
+
+/*! \fn PRF_tpCondRet PRF_alteraCidade(Prof* prof, char* cidade);
+    \brief Altera o cidade da residencia de um professor
+    \param professor Ponteiro apontando para a struct professor que deseja alterar
+    \param cidade O ponteiro para uma string que substituira o cidade do professor apontado
+    \return Condicao de retorno como definido em \a PRF_tpCondRet
+*/
 PRF_tpCondRet PRF_alteraCidade(Prof* prof, char* cidade);
+
+/*! \fn PRF_tpCondRet PRF_alteraBairro(Prof* prof, char* bairro);
+    \brief Altera o bairro da residencia de um professor
+    \param professor Ponteiro apontando para a struct professor que deseja alterar
+    \param bairro O ponteiro para uma string que substituira o bairro da residencia do professor apontado
+    \return Condicao de retorno como definido em \a PRF_tpCondRet
+*/
 PRF_tpCondRet PRF_alteraBairro(Prof* prof, char* bairro);
+
+/*! \fn PRF_tpCondRet PRF_alteraRua(Prof* prof, char* rua);
+    \brief Altera o bairro da residencia de um professor
+    \param professor Ponteiro apontando para a struct professor que deseja alterar
+    \param rua O ponteiro para uma string que substituira a rua da residencia do professor apontado
+    \return Condicao de retorno como definido em \a PRF_tpCondRet
+*/
 PRF_tpCondRet PRF_alteraRua(Prof* prof, char* rua);
+
+/*! \fn PRF_tpCondRet PRF_alteraNumero(Prof* prof, int numero);
+    \brief Altera o numero da residencia de um professor
+    \param professor Ponteiro apontando para a struct professor que deseja alterar
+    \param numero O ponteiro para uma string que substituira o bairro da residencia do professor apontado
+    \return Condicao de retorno como definido em \a PRF_tpCondRet
+*/
 PRF_tpCondRet PRF_alteraNumero(Prof* prof, int numero);
+
+/*! \fn PRF_tpCondRet PRF_alteraComplemento(Prof* prof, char* complemento);
+    \brief Altera o complemento da residencia de um professor
+    \param professor Ponteiro apontando para a struct professor que deseja alterar
+    \param complemento O ponteiro para uma string que substituira o complemento da residencia do professor apontado
+    \return Condicao de retorno como definido em \a PRF_tpCondRet
+*/
 PRF_tpCondRet PRF_alteraComplemento(Prof* prof, char* complemento);
 
+/** @}*/ // Fim do Bloco de Funcoes de Alteracao
 
-
-/** @}*/ // Fim do Modulo Professor
+/** @}*/ // Fim do Modulo ProfessorH
