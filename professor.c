@@ -64,10 +64,10 @@
 
 	typedef struct endereco{
 		char pais[MAX_STRING]; 
-		char uf[MAX_STRING];
+		char uf[MAX_STRING]; // Unidade Federativa - Estados
 		char cidade[MAX_STRING];
 		char bairro[MAX_STRING];
-		char rua[MAX_STRING];
+		char rua[MAX_STRING]; 
 		int numero; // numero do predio
 		char complemento[MAX_STRING]; //apartamento ou casa com numero //ex: apt 101
 	} Endereco;
@@ -83,13 +83,13 @@
 
 	struct prof{
 		char nome[MAX_STRING];  
-		char cpf[MAX_STRING];
-		int matricula; 
+		char cpf[MAX_STRING]; //Numero do Cadastro de Pessoas Físicas
+		int matricula; //Numero identificador na Universidade
 		char email[MAX_STRING];
 		int telefone;
 		Data* dataNascimento;
 		Endereco* endereco;
-		int rg;
+		int rg; // Numero da indentidade - Registro Geral
 	};
 
 /*****  Dados encapsulados no módulo  *****/

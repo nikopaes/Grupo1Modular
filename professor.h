@@ -196,24 +196,263 @@ PRF_tpCondRet PRF_consultaNumero(Prof *professor, int *numero);
 */
 PRF_tpCondRet PRF_consultaComplemento(Prof *professor, char *complemento);
 
-/** @}*/ // Fim do Bloco de Funcoes de Consulta
+//---------------- FIM DAS FUNÇÕES CONSULTA --------------------------------------------------------------------------------------------
 
-//------------------------------------------------------------------- FUNÇÕES ALTERA --------------------------------------------------------------------------------------------
+/***********************************************************************
+*
+*  $FC Função: PRF altera Nome
+*
+*  $EP Parâmetros
+*     $P professor - é o parâmetro que aponta para o professor que terá seu Nome a ser alterado.
+* 					Este parâmetro é passado por referência.
+*     $P nome -  é o parametro que recebera o novo Nome a ser alterado no professor corrente.
+*						
+*  $FV Valor retornado
+*     PRF_CondRetOk
+*     PRF_CondRetNaoExisteProf - Ponteiro aponta para NULL.
+*     PRF_CondRetFormatoInvalido - Formato invalido do dado a ser atribuído.
+*
+***********************************************************************/
+
 PRF_tpCondRet PRF_alteraNome(Prof* professor, char* nome);
+
+/***********************************************************************
+*
+*  $FC Função: PRF altera RG
+*
+*  $EP Parâmetros
+*     $P professor - é o parâmetro que aponta para o professor que terá seu RG a ser alterado.
+* 					Este parâmetro é passado por referência.
+*     $P rg -  é o parametro que recebera o novo RG a ser alterado no professor corrente.
+*						
+*  $FV Valor retornado
+*     PRF_CondRetOk
+*     PRF_CondRetNaoExisteProf - Ponteiro aponta para NULL.
+*     PRF_CondRetFormatoInvalido - Formato invalido do dado a ser atribuído.
+*
+***********************************************************************/
+
 PRF_tpCondRet PRF_alteraRg(Prof* professor, int rg);
+
+/***********************************************************************
+*
+*  $FC Função: PRF altera CPF
+*
+*  $EP Parâmetros
+*     $P professor - é o parâmetro que aponta para o professor que terá seu CPF a ser alterado.
+* 					Este parâmetro é passado por referência.
+*     $P cpf -  é o parametro que recebera o novo CPF a ser alterado no professor corrente.
+*						
+*  $FV Valor retornado
+*     PRF_CondRetOk
+*     PRF_CondRetNaoExisteProf - Ponteiro aponta para NULL.
+*     PRF_CondRetFormatoInvalido - Formato invalido do dado a ser atribuído.
+*
+***********************************************************************/
+
 PRF_tpCondRet PRF_alteraCpf(Prof* professor, char* cpf);
+
+/***********************************************************************
+*
+*  $FC Função: PRF altera Matricula
+*
+*  $EP Parâmetros
+*     $P professor - é o parâmetro que aponta para o professor que terá sua matricula a ser alterado.
+* 					Este parâmetro é passado por referência.
+*     $P matricula - é o parametro que recebera o nova matricula a ser alterado no professor corrente.
+*						
+*  $FV Valor retornado
+*     PRF_CondRetOk
+*     PRF_CondRetNaoExisteProf - Ponteiro aponta para NULL.
+*     PRF_CondRetFormatoInvalido - Formato invalido do dado a ser atribuído.
+*
+***********************************************************************/
+
 PRF_tpCondRet PRF_alteraMatricula(Prof* professor, int matricula);
+
+/***********************************************************************
+*
+*  $FC Função: PRF altera Email
+*
+*  $EP Parâmetros
+*     $P professor - é o parâmetro que aponta para o professor que terá seu email a ser alterado.
+* 					Este parâmetro é passado por referência.
+*     $P email -  é o parametro que recebera o novo email a ser alterado no professor corrente.
+*						
+*  $FV Valor retornado
+*     PRF_CondRetOk
+*     PRF_CondRetNaoExisteProf - Ponteiro aponta para NULL.
+*     PRF_CondRetFormatoInvalido - Formato invalido do dado a ser atribuído.
+*
+***********************************************************************/
+
 PRF_tpCondRet PRF_alteraEmail(Prof* professor, char* email);
+
+/***********************************************************************
+*
+*  $FC Função: PRF altera Telefone
+*
+*  $EP Parâmetros
+*     $P professor - é o parâmetro que aponta para o professor que terá seu telefone a ser alterado.
+* 					Este parâmetro é passado por referência.
+*     $P tel -  é o parametro que recebera o novo telefone a ser alterado no professor corrente.
+*						
+*  $FV Valor retornado
+*     PRF_CondRetOk
+*     PRF_CondRetNaoExisteProf - Ponteiro aponta para NULL.
+*     PRF_CondRetFormatoInvalido - Formato invalido do dado a ser atribuído.
+*
+***********************************************************************/
+
 PRF_tpCondRet PRF_alteraTelefone(Prof* professor, int tel);
+
+/***********************************************************************
+*
+*  $FC Função: PRF altera Data de Nascimento
+*
+*  $EP Parâmetros
+*     $P professor - é o parâmetro que aponta para o professor que terá sua Data de Nascimento alterado.
+* 					Este parâmetro é passado por referência.
+*     $P dia -  é o parametro que recebera o novo dia a ser alterado no professor corrente.
+*     $P mes -  é o parametro que recebera o novo mes a ser alterado no professor corrente.
+*     $P ano -  é o parametro que recebera o novo ano a ser alterado no professor corrente.
+*						
+*  $FV Valor retornado
+*     PRF_CondRetOk
+*     PRF_CondRetNaoExisteProf - Ponteiro aponta para NULL.
+*     PRF_CondRetFormatoInvalido - Formato invalido do dado a ser atribuído.
+*
+***********************************************************************/
+
 PRF_tpCondRet PRF_alteraDataNascimento(Prof* professor, int dia, int mes, int ano);
+
+/***********************************************************************
+*
+*  $FC Função: PRF altera Pais
+*
+*  $EP Parâmetros
+*     $P professor - é o parâmetro que aponta para o professor que terá seu País alterado.
+* 					Este parâmetro é passado por referência.
+*     $P pais -  é o parametro que recebera o novo País a ser alterado no professor corrente.
+*						
+*  $FV Valor retornado
+*     PRF_CondRetOk
+*     PRF_CondRetNaoExisteProf - Ponteiro aponta para NULL.
+*     PRF_CondRetFormatoInvalido - Formato invalido do dado a ser atribuído.
+*
+***********************************************************************/
+
 PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais);
+
+/***********************************************************************
+*
+*  $FC Função: PRF altera UF
+*
+*  $EP Parâmetros
+*     $P professor - é o parâmetro que aponta para o professor que terá sua UF alterado.
+* 					Este parâmetro é passado por referência.
+*     $P uf -  é o parametro que recebera o nova UF a ser alterado no professor corrente.
+*						
+*  $FV Valor retornado
+*     PRF_CondRetOk
+*     PRF_CondRetNaoExisteProf - Ponteiro aponta para NULL.
+*     PRF_CondRetFormatoInvalido - Formato invalido do dado a ser atribuído.
+*
+***********************************************************************/
+
 PRF_tpCondRet PRF_alteraUf(Prof* professor, char* uf);
+
+/***********************************************************************
+*
+*  $FC Função: PRF altera Cidade
+*
+*  $EP Parâmetros
+*     $P professor - é o parâmetro que aponta para o professor que terá sua cidade alterado.
+* 					Este parâmetro é passado por referência.
+*     $P cidade -  é o parametro que recebera o nova cidade a ser alterado no professor corrente.
+*						
+*  $FV Valor retornado
+*     PRF_CondRetOk
+*     PRF_CondRetNaoExisteProf - Ponteiro aponta para NULL.
+*     PRF_CondRetFormatoInvalido - Formato invalido do dado a ser atribuído.
+*
+***********************************************************************/
+
 PRF_tpCondRet PRF_alteraCidade(Prof* professor, char* cidade);
+
+/***********************************************************************
+*
+*  $FC Função: PRF altera Bairro
+*
+*  $EP Parâmetros
+*     $P professor - é o parâmetro que aponta para o professor que terá seu bairro alterado.
+* 					Este parâmetro é passado por referência.
+*     $P bairro -  é o parametro que recebera o novo bairro a ser alterado no professor corrente.
+*						
+*  $FV Valor retornado
+*     PRF_CondRetOk
+*     PRF_CondRetNaoExisteProf - Ponteiro aponta para NULL.
+*     PRF_CondRetFormatoInvalido - Formato invalido do dado a ser atribuído.
+*
+***********************************************************************/
+
 PRF_tpCondRet PRF_alteraBairro(Prof* professor, char* bairro);
+
+/***********************************************************************
+*
+*  $FC Função: PRF altera Rua
+*
+*  $EP Parâmetros
+*     $P professor - é o parâmetro que aponta para o professor que terá sua rua alterado.
+* 					Este parâmetro é passado por referência.
+*     $P rua -  é o parametro que recebera o nova rua a ser alterado no professor corrente.
+*						
+*  $FV Valor retornado
+*     PRF_CondRetOk
+*     PRF_CondRetNaoExisteProf - Ponteiro aponta para NULL.
+*     PRF_CondRetFormatoInvalido - Formato invalido do dado a ser atribuído.
+*
+***********************************************************************/
+
 PRF_tpCondRet PRF_alteraRua(Prof* professor, char* rua);
+
+/***********************************************************************
+*
+*  $FC Função: PRF altera Numero
+*
+*  $EP Parâmetros
+*     $P professor - é o parâmetro que aponta para o professor que terá seu numero alterado.
+* 					Este parâmetro é passado por referência.
+*     $P numero -  é o parametro que recebera o novo numero a ser alterado no professor corrente.
+*						
+*  $FV Valor retornado
+*     PRF_CondRetOk
+*     PRF_CondRetNaoExisteProf - Ponteiro aponta para NULL.
+*     PRF_CondRetFormatoInvalido - Formato invalido do dado a ser atribuído.
+*
+***********************************************************************/
+
 PRF_tpCondRet PRF_alteraNumero(Prof* professor, int numero);
+
+/***********************************************************************
+*
+*  $FC Função: PRF altera Complemento
+*
+*  $EP Parâmetros
+*     $P professor - é o parâmetro que aponta para o professor que terá seu complemento alterado.
+* 					 Este parâmetro é passado por referência.
+*     $P complemento -  é o parametro que recebera o novo complemento a ser alterado no professor corrente.
+*						
+*  $FV Valor retornado
+*     PRF_CondRetOk
+*     PRF_CondRetNaoExisteProf - Ponteiro aponta para NULL.
+*     PRF_CondRetFormatoInvalido - Formato invalido do dado a ser atribuído.
+*
+***********************************************************************/
+
 PRF_tpCondRet PRF_alteraComplemento(Prof* professor, char* complemento);
 
+//---------------- FIM DAS FUNÇÕES ALTERA --------------------------------------------------------------------------------------------
 
+/********** Fim do módulo de definição: Módulo Professor **********/
 
-/** @}*/ // Fim do Modulo Professor
