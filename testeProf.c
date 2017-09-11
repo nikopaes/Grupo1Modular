@@ -126,10 +126,10 @@
 /*****  Código das funções exportadas pelo módulo  *****/
 
 
-/*****  Definicoes globais a serem usadas no modulo testeProf.c  *****/
+/*****  Definições globais a serem usadas no modulo testeProf.c  *****/
 #define MAX_PROFS 10  /* no futuro deverá ser modificado ao introduzir modulo de lista encadeada */
 
-/* Vetor de ponteiros usado para que o modulo de teste possa acessar ponteiros do modulo professor.c */
+/* Vetor de ponteiros usado para que o modulo de teste possa armazenar ponteiros do modulo professor.c */
 Prof *p[MAX_PROFS] = {NULL, NULL, NULL, NULL, NULL,
 			NULL, NULL, NULL, NULL, NULL};
 			
@@ -156,7 +156,6 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 	PRF_tpCondRet CondRetObtido;
 	PRF_tpCondRet CondRetEsperada;
 
-	//definicoes usadas a cada chamada de comando contida no script
 	int index;
 	char paramNome[80];
 	int paramRg;
@@ -175,13 +174,11 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 	int paramNumero;
 	char paramComplemento[80];
 
-	//usado nas consultas
 	int valorObtido;
 	int valorEsperado;
 	char valorStringObtido[80];
 	char valorStringEsperado[80];
 
-	//usado nas alteras
 	int paramInt;
 	char paramString[80];
 	
@@ -241,8 +238,6 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
                                     "Retorno errado ao liberar Professor." );
 
          } /* fim ativa: Testar PRF liberar professor */
-
-//------------------------------------------Consultas----------------------------------
 
 	/* Testar PRF consulta nome professor */
 
@@ -531,11 +526,6 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 				"Retorno por referencia errado ao consultar Complemento de Professor.");
 		return Ret;
 	} /* fim ativa: Testar PRF consulta Complemento professor */
-
-
-
-
-// ----------------------------------------Alteras-------------------------------
 
 	/* Testar PRF altera nome professor */
 
