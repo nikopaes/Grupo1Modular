@@ -15,11 +15,11 @@
 *			Rodrigo Pumar, RP.
 *
 *  $HA Histórico de evolução:
-*     Versão  Autor    Data     Observações
-*       1.00   BM/RP   09/09/2017 Desenvolvimento para T1 modificando TESTARV.C
+*     Versão  Autor    			  Data     Observações
+*       1.00   BM,FA,NP,MR,RP   11/09/2017 Desenvolvimento para T1 
 *
 *  $ED Descrição do módulo
-*     Este modulo contém as funções específicas para criar, modificar e consultar uma
+*     Este modulo contém as funções específicas para criar, alterar e consultar uma
 *     instância de um professor.
 ***************************************************************************/
 
@@ -63,13 +63,13 @@
 ***********************************************************************/
 
 	typedef struct endereco{
-		char pais[MAX_STRING];
+		char pais[MAX_STRING]; 
 		char uf[MAX_STRING];
 		char cidade[MAX_STRING];
 		char bairro[MAX_STRING];
 		char rua[MAX_STRING];
-		int numero;
-		char complemento[MAX_STRING];
+		int numero; // numero do predio
+		char complemento[MAX_STRING]; //apartamento ou casa com numero //ex: apt 101
 	} Endereco;
 /***********************************************************************
 *
@@ -82,9 +82,9 @@
 ***********************************************************************/
 
 	struct prof{
-		char nome[MAX_STRING];
+		char nome[MAX_STRING];  
 		char cpf[MAX_STRING];
-		int matricula;
+		int matricula; 
 		char email[MAX_STRING];
 		int telefone;
 		Data* dataNascimento;
