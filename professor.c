@@ -87,7 +87,7 @@
 		int rg;
 	};
 
-/***** Protótipos das funções encapuladas no módulo *****/
+/***** Protótipos das funções encapsuladas no módulo *****/
 
 	PRF_tpCondRet mostraEndereco(Endereco* end);
 	PRF_tpCondRet mostraData(Data* d);
