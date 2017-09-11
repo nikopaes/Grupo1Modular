@@ -21,8 +21,7 @@ typedef enum{
 	PRF_CondRetNaoHaMemoria, /**< Condicao de Retorno Nao Ha Memoria, usada quando a memoria do sistema nao apresenta mais espaco*/ 
 	PRF_CondRetNaoExisteProf, /**< Condicao de Retorno Nao Existe Prof, usada quando nao existe aquela instancia de professor que estao requisitando o acesso */ 
 	PRF_CondRetProfessorJaCriado, /**< Condicao de Retorno Professor Ja Criado, usada quando tentam criar um professor qe ja esta instaciado no sistema */ 
-	PRF_CondRetFormatoInvalido, /**< Condicao de Retorno Formato Invalido, usada quando o formato de algum parametro esta errado*/ 
-	PRF_CondRetErro /**< Condicao de Retorno ERRO, quando a funcao nao funciona como esperado e nao apresenta erro especifico e ja esperado*/ 
+	PRF_CondRetFormatoInvalido, /**< Condicao de Retorno Formato Invalido, usada quando o formato de algum parametro esta errado*/
 } PRF_tpCondRet;
 
 

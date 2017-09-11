@@ -15,7 +15,6 @@
 =declararparm  NaoExisteProf		int 2 
 =declararparm  ProfessorJaCriado	int 3 
 =declararparm  FormatoInvalido		int 4
-=declararparm  Erro			int 5
 
 == Declarar os conteúdos dos nós
 
@@ -81,10 +80,10 @@
 == Verificar criar
 =criar 0 nome rg cpf matricula email telefone dia mes ano pais uf cidade bairro rua numero complemento OK
 
-== Veriicando criação em mais de uma posição
+== Verificando criação em mais de uma posição
 =criar 1 nomeSegundo rgSegundo cpfSegundo matriculaSegundo emailSegundo telefoneSegundo diaSegundo mesSegundo anoSegundo paisSegundo ufSegundo cidadeSegundo bairroSegundo ruaSegundo numeroSegundo complementoSegundo OK
 
-== Veriicando criação em mais de uma posição
+== Verificando criação em mais de uma posição
 =criar 2 nomeSegundo rg cpfSegundo matricula emailSegundo telefone diaSegundo mes anoSegundo pais ufSegundo cidade bairroSegundo rua numeroSegundo complemento OK
 
 == Verificar mostrar

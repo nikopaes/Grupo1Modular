@@ -35,15 +35,14 @@
 #define  CPF_TAM 11
 #define  ANO_BISSEXTO 4
 
-static int maxDias[] = {31,29,31,30,31,30,31,31,30,31,30,31};
-
 /***********************************************************************
 *
 *  $TC Tipo de dados: Data
 *
 *
 *  $ED Descrição do tipo
-*     Estrutura dados com dia/mes/ano
+*     Estrutura que armazena os dados com dia, mes e ano.
+*	  Usado na estrutura Professor para armazenar a data de nascimento.
 *
 ***********************************************************************/
 	typedef struct data{
@@ -58,7 +57,8 @@ static int maxDias[] = {31,29,31,30,31,30,31,31,30,31,30,31};
 *
 *
 *  $ED Descrição do tipo
-*     
+*     Estrutura que armazena dos dados um local.
+*	  Usado na estrutura Professor para armazenar o local de sua residência.
 *
 ***********************************************************************/
 
@@ -77,7 +77,7 @@ static int maxDias[] = {31,29,31,30,31,30,31,31,30,31,30,31};
 *
 *
 *  $ED Descrição do tipo
-*     
+*     Estrutura principal que armazena os dados de um professor ao qual este módulo se dedica.
 *
 ***********************************************************************/
 
@@ -91,6 +91,11 @@ static int maxDias[] = {31,29,31,30,31,30,31,31,30,31,30,31};
 		Endereco* endereco;
 		int rg;
 	};
+
+/*****  Dados encapsulados no módulo  *****/
+	
+static int maxDias[] = {31,29,31,30,31,30,31,31,30,31,30,31};
+		/* vetor contendo o máximo de dias válidos em cada mês. Usado na função verificaData */
 
 /***** Protótipos das funções encapsuladas no módulo *****/
 
@@ -161,9 +166,6 @@ PRF_tpCondRet PRF_cria(Prof** professor, char *nome, int rg, char *cpf, int matr
 	return PRF_CondRetOk;
 } /* Fim função: PRF Criar professor */
 
-
-//------------------------------------------------------------------- FUNÇÕES MOSTRA --------------------------------------------------------------------------------------------
-
 /***************************************************************************
 *
 *  Função: PRF Mostra professor
@@ -187,10 +189,15 @@ PRF_tpCondRet PRF_mostra(Prof* professor){
 	return PRF_CondRetOk;
 } /* Fim função: PRF Mostra professor */
 
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: PRF Mostra endereço
-*  ****/
+*  $FC Função: PRF Mostra endereço
+*
+*  $FV Valor retornado
+*     PRF_tpCondRet condição de retorno padrão do módulo
+*     Retorna PRF_CondRetOk caso todos os dados tenham sido exibidos.
+*
+***********************************************************************/
 
 	PRF_tpCondRet mostraEndereco(Endereco* end){
 		printf(" %s,", end->rua);
@@ -203,18 +210,20 @@ PRF_tpCondRet PRF_mostra(Prof* professor){
 		return PRF_CondRetOk;
 	} /* Fim função: PRF Mostra professor */
 
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: Mostra data
-*  ****/	
+*  $FC Função: PRF Mostra data
+*
+*  $FV Valor retornado
+*     PRF_tpCondRet condição de retorno padrão do módulo
+*     Retorna PRF_CondRetOk caso todos os dados tenham sido exibidos.
+*
+***********************************************************************/
 
 	PRF_tpCondRet mostraData(Data* d){
 		printf("%d/%d/%d\n", d->dia, d->mes, d->ano);
 		return PRF_CondRetOk;
 	} /* Fim função: Mostra professor */
-
-
-//------------------------------------------------------------------- FUNÇÃO LIBERA --------------------------------------------------------------------------------------------
 
 /***************************************************************************
 *
@@ -229,9 +238,6 @@ PRF_tpCondRet PRF_mostra(Prof* professor){
 		*professor=NULL;
 		return PRF_CondRetOk;
 	} /* Fim função: Libera professor */
-
-
-//------------------------------------------------------------------- FUNÇÕES CONSULTA --------------------------------------------------------------------------------------------
 
 /***************************************************************************
 *
@@ -424,11 +430,6 @@ PRF_tpCondRet PRF_mostra(Prof* professor){
 		return PRF_CondRetOk;
 	} /* Fim função: PRF Consulta rg */
 
-
-//------------------------------------------------------------------- FUNÇÕES ALTERA --------------------------------------------------------------------------------------------
-/* Essas funções recebem um professor e alteram seus atributos */
-
-
 /***************************************************************************
 *
 *  Função: PRF Altera data de Nascimento
@@ -527,12 +528,10 @@ PRF_tpCondRet PRF_mostra(Prof* professor){
 *  ****/
 
 	PRF_tpCondRet PRF_alteraUf(Prof* professor, char* uf){
-	    //essa funcao altera bairro, rua, numero da casa e complemento
 		if(professor == NULL || professor->endereco == NULL)
 			return PRF_CondRetNaoExisteProf; /* if */
 		if(verificaUf(uf) == 0)
 			return PRF_CondRetFormatoInvalido; /* if */
-		// altera dados
 		strcpy(professor->endereco->uf,uf);
 		return PRF_CondRetOk;
 	} /* Fim função: PRF Altera UF*/
@@ -637,12 +636,15 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 	} /* Fim função: PRF altera RG*/
  
 
-/* Essas funções retornam 1 se a verificação for válida e 0 caso contrário, são funções auxiliares para as funções cria e altera, portanto não são funções de acesso */
-
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: Verifica data
-*  ****/
+*  $FC Função: PRF Verifica Data
+*
+*  $FV Valor retornado
+*     Inteiro 0 ou 1.
+*     Retorna 1 caso a data seja válida, retorna 0 caso contrário.
+*
+***********************************************************************/
 
 	int verificaData(int dia, int mes, int ano){
 		int maxDias[] = {31,29,31,30,31,30,31,31,30,31,30,31};
@@ -651,10 +653,15 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 	} /* Fim função: Verifica data*/
 
 
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: Verifica rua
-*  ****/
+*  $FC Função: PRF Verifica rua
+*
+*  $FV Valor retornado
+*     Inteiro 0 ou 1.
+*     Retorna 1 caso a rua seja válida, retorna 0 caso contrário.
+*
+***********************************************************************/
 
 	int verificaRua(char* rua){
 		int tamRua = strlen(rua);
@@ -664,10 +671,15 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 	} /* Fim função: Verifica rua*/
 
 
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: Verifica numero
-*  ****/
+*  $FC Função: PRF Verifica numero
+*
+*  $FV Valor retornado
+*     Inteiro 0 ou 1.
+*     Retorna 1 caso o numero seja válido, retorna 0 caso contrário.
+*
+***********************************************************************/
 
 	int verificaNumero(int numero){
 		if(numero < 0)
@@ -676,10 +688,15 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 	} /* Fim função: Verifica numero*/
 
 
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: Verifica complemento
-*  ****/
+*  $FC Função: PRF Verifica Complemento
+*
+*  $FV Valor retornado
+*     Inteiro 0 ou 1.
+*     Retorna 1 caso o complemento seja válido, retorna 0 caso contrário.
+*
+***********************************************************************/
 
 	int verificaComplemento(char* complemento){
 		int tamComplemento = strlen(complemento);
@@ -688,10 +705,15 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 		return 1;
 	} /* Fim função: Verifica complemento*/
 
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: Verifica bairro
-*  ****/
+*  $FC Função: PRF Verifica bairro
+*
+*  $FV Valor retornado
+*     Inteiro 0 ou 1.
+*     Retorna 1 caso bairro seja válido, retorna 0 caso contrário.
+*
+***********************************************************************/
 
 	int verificaBairro(char* bairro){
 		int tamBairro = strlen(bairro);
@@ -700,10 +722,15 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 		return 1;
 	} /* Fim função: Verifica bairro*/
 
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: Verifica cidade
-*  ****/
+*  $FC Função: PRF Verifica cidade
+*
+*  $FV Valor retornado
+*     Inteiro 0 ou 1.
+*     Retorna 1 caso cidade seja válida, retorna 0 caso contrário.
+*
+***********************************************************************/
 
 	int verificaCidade(char* cidade){
 		int tamCidade = strlen(cidade);
@@ -713,10 +740,15 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 	} /* Fim função: Verifica cidade*/
 
 
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: Verifica bairro
-*  ****/
+*  $FC Função: PRF Verifica Uf
+*
+*  $FV Valor retornado
+*     Inteiro 0 ou 1.
+*     Retorna 1 caso uf seja válido, retorna 0 caso contrário.
+*
+***********************************************************************/
 
 	int verificaUf(char* uf){
 		int tamUf = strlen(uf);
@@ -726,10 +758,15 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 	} /* Fim função: Verifica complemento*/
 
 
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: Verifica país
-*  ****/
+*  $FC Função: PRF Verifica pais
+*
+*  $FV Valor retornado
+*     Inteiro 0 ou 1.
+*     Retorna 1 caso o pais seja válido, retorna 0 caso contrário.
+*
+***********************************************************************/
 
 	int verificaPais(char* pais){
 		int tamPais =  strlen(pais);
@@ -739,10 +776,15 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 	} /* Fim função: Verifica país*/
 
 
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: Verifica nome
-*  ****/
+*  $FC Função: PRF Verifica nome
+*
+*  $FV Valor retornado
+*     Inteiro 0 ou 1.
+*     Retorna 1 caso nome seja válido, retorna 0 caso contrário.
+*
+***********************************************************************/
 
 	int verificaNome(char* nome){
 		int tamNome = strlen(nome);
@@ -752,10 +794,15 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 	} /* Fim função: Verifica nome*/
 
 
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: Verifica cpf
-*  ****/
+*  $FC Função: PRF Verifica cpf
+*
+*  $FV Valor retornado
+*     Inteiro 0 ou 1.
+*     Retorna 1 caso o cpf seja válido, retorna 0 caso contrário.
+*
+***********************************************************************/
 
 	int verificaCpf(char* cpf){
 		if(cpf == NULL || strlen(cpf) != CPF_TAM)
@@ -764,10 +811,15 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 	} /* Fim função: Verifica cpf*/
 
 
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: Verifica email
-*  ****/
+*  $FC Função: PRF Verifica matrícula
+*
+*  $FV Valor retornado
+*     Inteiro 0 ou 1.
+*     Retorna 1 caso a matrícula seja válida, retorna 0 caso contrário.
+*
+***********************************************************************/
 
 	int verificaMatricula(int matricula){
 		if(matricula < 0)
@@ -776,10 +828,15 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 	} /* Fim função: Verifica email*/
 
 
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: Verifica email
-*  ****/
+*  $FC Função: PRF Verifica email
+*
+*  $FV Valor retornado
+*     Inteiro 0 ou 1.
+*     Retorna 1 caso o email seja válido, retorna 0 caso contrário.
+*
+***********************************************************************/
 
 	int verificaEmail(char* email){
 		int tamMail = strlen(email);
@@ -788,10 +845,15 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 		return 1;
 	} /* Fim função: Verifica email*/
 
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: Verifica telefone
-*  ****/
+*  $FC Função: PRF Verifica telefone
+*
+*  $FV Valor retornado
+*     Inteiro 0 ou 1.
+*     Retorna 1 caso o telefone seja válido, retorna 0 caso contrário.
+*
+***********************************************************************/
 
 	int verificaTelefone(int telefone){
 		if(telefone < 0)
@@ -800,10 +862,15 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 	} /* Fim função: Verifica telefone*/
 
 
-/***************************************************************************
+/***********************************************************************
 *
-*  Função: Verifica rg
-*  ****/
+*  $FC Função: PRF Verifica rg
+*
+*  $FV Valor retornado
+*     Inteiro 0 ou 1.
+*     Retorna 1 caso o rg seja válido, retorna 0 caso contrário.
+*
+***********************************************************************/
 
 	int verificaRg(int rg){
 		if(rg < 0)
