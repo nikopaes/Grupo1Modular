@@ -151,9 +151,7 @@ PRF_tpCondRet PRF_cria(Prof** professor, char *nome, int rg, char *cpf, int matr
 	if((ret = PRF_alteraMatricula(p, matricula)) 	!= PRF_CondRetOk) return ret; /* if */
 	if((ret = PRF_alteraEmail(p, email)) 		!= PRF_CondRetOk) return ret; /* if */
 	if((ret = PRF_alteraTelefone(p, telefone)) 	!= PRF_CondRetOk) return ret; /* if */
-	printf("f\n");
 	if((ret = PRF_alteraDataNascimento(p, dia, mes, ano))	!= PRF_CondRetOk) return ret; /* if */
-	printf("g\n");
 	if((ret = PRF_alteraPais(p, pais)) 		!= PRF_CondRetOk) return ret; /* if */
 	if((ret = PRF_alteraUf(p, uf)) 			!= PRF_CondRetOk) return ret; /* if */
 	if((ret = PRF_alteraCidade(p, cidade)) 		!= PRF_CondRetOk) return ret; /* if */

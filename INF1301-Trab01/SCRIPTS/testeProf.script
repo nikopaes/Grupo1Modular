@@ -1,0 +1,287 @@
+// Script:    testeProf.script
+// Autores:	Bruce Marcellino, BM
+//		Nicolas Paes, NP
+//		Rodrigo Pumar, RP
+//		Felipe Alfena, FA
+//		Mariana Ruddy, MR.
+// Data:      11/setembro/2017
+// Propósito: Testar módulo professor, 
+//            Testa o uso do modulo professor usando parâmetros simbólicos
+
+
+== Declarar as condicoes de retorno
+=declararparm  OK			int 0
+=declararparm  NaoHaMemoria		int 1 
+=declararparm  NaoExisteProf		int 2 
+=declararparm  ProfessorJaCriado	int 3 
+=declararparm  FormatoInvalido		int 4
+
+== Declarar os conteúdos dos nós
+
+=declararparm  nome		string	"Bruce"
+=declararparm  rg		int	111222333
+=declararparm  cpf		string	"12345678901"
+=declararparm  matricula	int	1112223
+=declararparm  email		string	"bmMail@mail"
+=declararparm  telefone		int	111222333
+=declararparm  dia		int	11
+=declararparm  mes		int	12
+=declararparm  ano		int	2196
+=declararparm  pais		string	"BrasilComS"
+=declararparm  uf		string	"RJ"
+=declararparm  cidade		string	"RioDeJaneiro"
+=declararparm  bairro		string	"umBairro"
+=declararparm  rua		string	"AvQualquer"
+=declararparm  numero		int	666
+=declararparm  complemento	string	"defrontePuc"
+
+=declararparm  nomeSegundo		string	"Flavio"
+=declararparm  rgSegundo		int	333222111
+=declararparm  cpfSegundo		string	"11122233344"
+=declararparm  matriculaSegundo		int	9998887
+=declararparm  emailSegundo		string	"f@mail"
+=declararparm  telefoneSegundo		int	911122233
+=declararparm  diaSegundo		int	10
+=declararparm  mesSegundo		int	9
+=declararparm  anoSegundo		int	2150
+=declararparm  paisSegundo		string	"BrazilComZ"
+=declararparm  ufSegundo		string	"DF"
+=declararparm  cidadeSegundo		string	"CidadeQualquer"
+=declararparm  bairroSegundo		string	"QualquerBairro"
+=declararparm  ruaSegundo		string	"QualquerAvenida"
+=declararparm  numeroSegundo		int	123
+=declararparm  complementoSegundo	string	"proximoPuc"
+
+=declararparm  nomeInvalido		string	""
+=declararparm  rgInvalido		int	-1
+=declararparm  cpfInvalido		string	""
+=declararparm  matriculaInvalido	int	-1
+=declararparm  emailInvalido		string	""
+=declararparm  telefoneInvalido		int	-1
+=declararparm  diaInvalido		int	0
+=declararparm  mesInvalido		int	0
+=declararparm  anoInvalido		int	0
+=declararparm  paisInvalido		string	""
+=declararparm  ufInvalido		string	""
+=declararparm  cidadeInvalido		string	""
+=declararparm  bairroInvalido		string	""
+=declararparm  ruaInvalido		string	""
+=declararparm  numeroInvalido		int	-1
+=declararparm  complementoInvalido	string	""
+
+
+== Verificar comando mostrar
+=mostrar     0 NaoExisteProf
+
+== Verificar recuperar
+=mostrar 5 OK
+=recuperar
+
+== Verificar criar
+=criar 0 nome rg cpf matricula email telefone dia mes ano pais uf cidade bairro rua numero complemento OK
+
+== Verificando criação em mais de uma posição
+=criar 1 nomeSegundo rgSegundo cpfSegundo matriculaSegundo emailSegundo telefoneSegundo diaSegundo mesSegundo anoSegundo paisSegundo ufSegundo cidadeSegundo bairroSegundo ruaSegundo numeroSegundo complementoSegundo OK
+
+== Verificando criação em mais de uma posição
+=criar 2 nomeSegundo rg cpfSegundo matricula emailSegundo telefone diaSegundo mes anoSegundo pais ufSegundo cidade bairroSegundo rua numeroSegundo complemento OK
+
+== Verificar mostrar
+=mostrar 0 OK
+
+//Verificando consultas ------------------------------------------------
+
+==Verificar posiçao vazia
+=alterarCPF 3 cpfSegundo NaoExisteProf
+
+==Verificar consulta nome
+=consultarNome 0 nome OK
+
+==Verificar consulta rg
+=consultarRg 1 rgSegundo OK
+
+==Verificar consulta cpf
+=consultarCPF 2 cpfSegundo OK
+
+==Verificar consulta matricula
+=consultarMatricula 0 matricula OK
+
+==Verificar consulta email
+=consultarEmail 1 emailSegundo  OK
+
+==Verificar consulta telefone
+=consultarTelefone 2 telefone OK
+
+==Verificar consulta dia
+=consultarDia 0 dia OK
+
+==Verificar consulta mes
+=consultarMes 1 mesSegundo OK
+
+==Verificar consulta ano
+=consultarAno 2 anoSegundo OK
+
+==Verificar consulta pais
+=consultarPais 0 pais OK
+
+==Verificar consulta cpf
+=consultarUf 1 ufSegundo OK
+
+==Verificar consulta cidade
+=consultarCidade 2 cidade OK
+
+==Verificar consulta bairro
+=consultarBairro 0 bairro OK
+
+==Verificar consulta rua
+=consultarRua 1 ruaSegundo OK
+
+==Verificar consulta numero
+=consultarNumero 2 numeroSegundo OK
+
+==Verificar consulta complemento
+=consultarComplemento 0 complemento OK
+
+//Verificando alteras-------------------------------------
+
+==Verificar altera nome
+=alterarNome 0 nomeSegundo OK
+==Verificar consulta nome
+=consultarNome 0 nomeSegundo OK
+
+==Verificar altera rg
+=alterarRg 1 rg OK
+==Verificar consulta rg
+=consultarRg 1 rg OK
+
+==Verificar altera cpf
+=alterarCPF 2 cpf OK
+==Verificar consulta cpf
+=consultarCPF 2 cpf OK
+
+==Verificar altera matricula
+=alterarMatricula 0 matriculaSegundo OK
+==Verificar consulta matricula
+=consultarMatricula 0 matriculaSegundo OK
+
+==Verificar altera email
+=alterarEmail 1 email  OK
+==Verificar consulta email
+=consultarEmail 1 email  OK
+
+==Verificar altera telefone
+=alterarTelefone 2 telefoneSegundo OK
+==Verificar consulta telefone
+=consultarTelefone 2 telefoneSegundo OK
+
+==Verificar altera data
+=alterarData 0 diaSegundo mesSegundo anoSegundo OK
+==Verificar consulta dia
+=consultarDia 0 diaSegundo OK
+==Verificar consulta mes
+=consultarMes 0 mesSegundo OK
+==Verificar consulta ano
+=consultarAno 0 anoSegundo OK
+
+==Verificar altera pais
+=alterarPais 0 paisSegundo OK
+==Verificar consulta pais
+=consultarPais 0 paisSegundo OK
+
+==Verificar altera cpf
+=alterarUf 1 uf OK
+==Verificar consulta cpf
+=consultarUf 1 uf OK
+
+==Verificar altera cidade
+=alterarCidade 2 cidadeSegundo OK
+==Verificar consulta cidade
+=consultarCidade 2 cidadeSegundo OK
+
+==Verificar altera bairro
+=alterarBairro 0 bairroSegundo OK
+==Verificar consulta bairro
+=consultarBairro 0 bairroSegundo OK
+
+==Verificar altera rua
+=alterarRua 1 rua OK
+==Verificar consulta rua
+=consultarRua 1 rua OK
+
+==Verificar altera numero
+=alterarNumero 2 numero OK
+==Verificar consulta numero
+=consultarNumero 2 numero OK
+
+==Verificar altera complemento
+=alterarComplemento 0 complementoSegundo OK
+==Verificar consulta complemento
+=consultarComplemento 0 complementoSegundo OK
+
+//Verificando formato invalido-----------------------------------
+
+==Verificar altera nome
+=alterarNome 0 nomeInvalido FormatoInvalido
+
+==Verificar altera rg
+=alterarRg 1 rgInvalido FormatoInvalido
+
+==Verificar altera cpf
+=alterarCPF 2 cpfInvalido FormatoInvalido
+
+==Verificar altera matricula
+=alterarMatricula 0 matriculaInvalido FormatoInvalido
+
+==Verificar altera email
+=alterarEmail 1 emailInvalido  FormatoInvalido
+
+==Verificar altera telefone
+=alterarTelefone 2 telefoneInvalido FormatoInvalido
+
+==Verificar altera data
+=alterarData 0 diaInvalido mesInvalido anoInvalido FormatoInvalido
+
+==Verificar altera pais
+=alterarPais 0 paisInvalido FormatoInvalido
+
+==Verificar altera cpf
+=alterarUf 1 ufInvalido FormatoInvalido
+
+==Verificar altera cidade
+=alterarCidade 2 cidadeInvalido FormatoInvalido
+
+==Verificar altera bairro
+=alterarBairro 0 bairroInvalido FormatoInvalido
+
+==Verificar altera rua
+=alterarRua 1 ruaInvalido FormatoInvalido
+
+==Verificar altera numero
+=alterarNumero 2 numeroInvalido FormatoInvalido
+
+==Verificar altera complemento
+=alterarComplemento 0 complementoInvalido FormatoInvalido
+
+//Verificacoes de memória-----------------------------------------
+
+== Verificar acesso a professor inexistente
+=alterarCPF 4 cpf NaoExisteProf
+
+== Verificar tentativa de recriar um professor já criado
+=criar 0 nome rg cpf matricula email telefone dia mes ano pais uf cidade bairro rua numero complemento ProfessorJaCriado
+
+== Verificar Mostrar
+=mostrar 0 OK
+
+== Verificar liberar
+=liberar 0 OK
+
+== Verificar mostrar
+=mostrar 0 NaoExisteProf
+
+== Verificar que apenas um professor foi liberado
+=mostrar 1 OK
+
+
+// fim
+

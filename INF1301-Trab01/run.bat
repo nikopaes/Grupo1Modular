@@ -1,0 +1,1 @@
+"EXECUTAVEL/Trab01.exe" /sSCRIPTS/testeProf.script > saida.txt

@@ -36,7 +36,7 @@
 #define  PRF_TAM_STRING  80
 #define  PRF_TAM_UF 3
 #define  PRF_TAM_CPF 11
-#define  PRF_ANO_BISSEXTO 4
+
 
 /* Tipo professor */
 typedef struct prof Prof;
