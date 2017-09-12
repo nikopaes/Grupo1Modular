@@ -151,7 +151,9 @@ PRF_tpCondRet PRF_cria(Prof** professor, char *nome, int rg, char *cpf, int matr
 	if((ret = PRF_alteraMatricula(p, matricula)) 	!= PRF_CondRetOk) return ret; /* if */
 	if((ret = PRF_alteraEmail(p, email)) 		!= PRF_CondRetOk) return ret; /* if */
 	if((ret = PRF_alteraTelefone(p, telefone)) 	!= PRF_CondRetOk) return ret; /* if */
+	printf("f\n");
 	if((ret = PRF_alteraDataNascimento(p, dia, mes, ano))	!= PRF_CondRetOk) return ret; /* if */
+	printf("g\n");
 	if((ret = PRF_alteraPais(p, pais)) 		!= PRF_CondRetOk) return ret; /* if */
 	if((ret = PRF_alteraUf(p, uf)) 			!= PRF_CondRetOk) return ret; /* if */
 	if((ret = PRF_alteraCidade(p, cidade)) 		!= PRF_CondRetOk) return ret; /* if */
@@ -645,7 +647,7 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 
 	int verificaData(int dia, int mes, int ano){
 		int maxDias[] = {31,29,31,30,31,30,31,31,30,31,30,31};
-		if(dia < 1 || ano < PRF_MIN_ANO  || ano % PRF_ANO_BISSEXTO !=0 || dia > maxDias[mes-1]) return 0;
+		if(dia < 1 || ano < PRF_MIN_ANO || dia > maxDias[mes-1]) return 0;
 		return 1;
 	} /* Fim função: Verifica data*/
 
