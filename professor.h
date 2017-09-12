@@ -1,6 +1,6 @@
 /***************************************************************************
 *
-*  $MCD MÛdulo de definiÁ„o: MÛdulo ·rvore
+*  $MCD M√≥dulo de defini√ß√£o: M√≥dulo √°rvore
 *
 *  Arquivo gerado:              professor.h
 *  Letras identificadoras:      PRF
@@ -15,22 +15,22 @@
 *			Mariana Ruddy, MR
 *			Rodrigo Pumar, RP.
 *
-*  $HA HistÛrico de evoluÁ„o:
-*     Vers„o	Autor				Data		ObservaÁıes
+*  $HA Hist√≥rico de evolu√ß√£o:
+*     Vers√£o	Autor				Data		Observa√ß√µes
 *       1.00	BM,FA,NP,MR,RP	11/09/2017		Desenvolvimento para T1.
 *
-*  $ED DescriÁ„o do mÛdulo
-*	  Este mÛdulo implementa um conjunto simples de funÁıes e estruturas para criar e manipular um professor.
-*     A estrutura professor guarda uma referÍncia para estruturas que armazenam data e endereÁo.
-*     O mÛdulo admite m˙ltiplas inst‚ncias de professor.
-*     Ao iniciar a execuÁ„o do programa n„o existe professor algum.
-*     Ao chamar a funÁ„o criar, as referÍncias para data e estrutura s„o alocadas.
-*	  Deve-se usar a funÁ„o libera para que a memÛria alocada seja liberada.
-*	  Passar argumentos inv·lidos como 0 ou "" podem causar erro de formato (PRF_CondRetFormatoInvalido).
+*  $ED Descri√ß√£o do m√≥dulo
+*	  Este m√≥dulo implementa um conjunto simples de fun√ß√µes e estruturas para criar e manipular um professor.
+*     A estrutura professor guarda uma refer√™ncia para estruturas que armazenam data e endere√ßo.
+*     O m√≥dulo admite m√∫ltiplas inst√¢ncias de professor.
+*     Ao iniciar a execu√ß√£o do programa n√£o existe professor algum.
+*     Ao chamar a fun√ß√£o criar, as refer√™ncias para data e estrutura s√£o alocadas.
+*	  Deve-se usar a fun√ß√£o libera para que a mem√≥ria alocada seja liberada.
+*	  Passar argumentos inv√°lidos como 0 ou "" podem causar erro de formato (PRF_CondRetFormatoInvalido).
 *
 ***************************************************************************/
 
-/***** DeclaraÁıes exportadas pelo mÛdulo *****/
+/***** Declara√ß√µes exportadas pelo m√≥dulo *****/
 
 #define  PRF_MIN_ANO  1850
 #define  PRF_TAM_STRING  80
@@ -44,37 +44,37 @@ typedef struct prof Prof;
 
 /***********************************************************************
 *
-*  $TC Tipo de dados: PRF CondiÁıes de retorno
+*  $TC Tipo de dados: PRF Condi√ß√µes de retorno
 *
 *
-*  $ED DescriÁ„o do tipo
-*     CondiÁıes de retorno
+*  $ED Descri√ß√£o do tipo
+*     Condi√ß√µes de retorno
 *
 ***********************************************************************/
 
 typedef enum{
 	PRF_CondRetOk,
-			/* Condicao de Retorno OK, usada quando a funÁ„o executa corretamente */
+			/* Condicao de Retorno OK, usada quando a fun√ß√£o executa corretamente */
 	PRF_CondRetNaoHaMemoria,
 			/* Condicao de Retorno Nao Ha Memoria, usada quando a memoria do sistema nao apresenta mais espaco */ 
 	PRF_CondRetNaoExisteProf,
-			/* Condicao de Retorno Nao Existe Prof, usada quando aquela inst‚ncia de professor ou algum dado que ele armazena e que est· sendo acessado, n„o foi alocado. */ 
+			/* Condicao de Retorno Nao Existe Prof, usada quando aquela inst√¢ncia de professor ou algum dado que ele armazena e que est√° sendo acessado, n√£o foi alocado. */ 
 	PRF_CondRetProfessorJaCriado,
-			/* Condicao de Retorno Professor Ja Criado, usada ao tentar inst‚nciar um professor duas vezes no mesmo bloco de memÛria (no mesmo ponteiro). */ 
+			/* Condicao de Retorno Professor Ja Criado, usada ao tentar inst√¢nciar um professor duas vezes no mesmo bloco de mem√≥ria (no mesmo ponteiro). */ 
 	PRF_CondRetFormatoInvalido,
-			/* Condicao de Retorno Formato Inv·lido, usada quando o formato de algum par‚metro est· errado */
+			/* Condicao de Retorno Formato Inv√°lido, usada quando o formato de algum par√¢metro est√° errado */
 } PRF_tpCondRet;
 
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF  Criar professor
+*  $FC Fun√ß√£o: PRF  Criar professor
 *
-*  $ED DescriÁ„o da funÁ„o
-*     Cria uma inst‚ncia de professor, e o aloca no ponteiro passado por referÍncia.
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Cria uma inst√¢ncia de professor, e o aloca no ponteiro passado por refer√™ncia.
 *
-*  $EP Par‚metros
-*	  $P professor		- endereÁo de um ponteiro, nele ser· alocado o professor criado.
+*  $EP Par√¢metros
+*	  $P professor		- endere√ßo de um ponteiro, nele ser√° alocado o professor criado.
 *	  $P nome			- nome do professor criado.
 *	  $P rg			- rg do professor criado.
 *	  $P cpf			- cpf do professor criado.
@@ -89,14 +89,14 @@ typedef enum{
 *	  $P cidade		- cidade do professor criado.
 *	  $P bairro		- bairro do professor criado.
 *	  $P rua			- rua do professor criado.
-*	  $P numero		- numero da casa do professor criado.
-*	  $P complemento	- complemento para o endereÁo do professor criado.
+*	  $P numero		- numero da casa ou do predio do professor criado.
+*	  $P complemento	- complemento para o endere√ßo do professor criado.
 *
 *  $FV Valor retornado
 *	  PRF_CondRetOk
 *	  PRF_CondRetNaoHaMemoria
-*	  PRF_CondRetProfessorJaCriado - usado ao tentar inst‚nciar um professor duas vezes no mesmo bloco de memÛria (no mesmo ponteiro).
-*	  PRF_CondRetFormatoInvalido - usado quando o formato de algum par‚metro est· errado.
+*	  PRF_CondRetProfessorJaCriado - usado ao tentar inst√¢nciar um professor duas vezes no mesmo bloco de mem√≥ria (no mesmo ponteiro).
+*	  PRF_CondRetFormatoInvalido - usado quando o formato de algum par√¢metro est√° errado.
 *
 ***********************************************************************/
 PRF_tpCondRet PRF_cria(Prof** professor, char *nome, int rg, char *cpf, int matricula, char *email, int telefone, int dia, int mes, int ano, char *pais, char *uf, char *cidade, char *bairro, char *rua, int numero, char *complemento);
@@ -104,14 +104,14 @@ PRF_tpCondRet PRF_cria(Prof** professor, char *nome, int rg, char *cpf, int matr
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF  Liberar professor
+*  $FC Fun√ß√£o: PRF  Liberar professor
 *
-*  $ED DescriÁ„o da funÁ„o
-*     DestrÛi o professor fornecido.
-*     OBS. n„o existe previs„o para possÌveis falhas de execuÁ„o.
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Destr√≥i o professor fornecido.
+*     OBS. n√£o existe previs√£o para poss√≠veis falhas de execu√ß√£o.
 
-*  $EP Par‚metros
-*	  $P professor		- endereÁo de um ponteiro, que ser· liberado.
+*  $EP Par√¢metros
+*	  $P professor		- endere√ßo de um ponteiro, que ser√° liberado.
 
 *  $FV Valor retornado
 *     PRF_CondRetOK    - destruiu sem problemas
@@ -121,13 +121,13 @@ PRF_tpCondRet PRF_libera(Prof** professor);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF  Mostrar professor
+*  $FC Fun√ß√£o: PRF  Mostrar professor
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Exibe na tela todos os dados de professor.
 
-*  $EP Par‚metros
-*	  $P professor		- ponteiro armazenando um professor que ser· exibido.
+*  $EP Par√¢metros
+*	  $P professor		- ponteiro armazenando um professor que ser√° exibido.
 
 *  $FV Valor retornado
 *     PRF_CondRetOK    - exibiu na tela com sucesso.
@@ -137,14 +137,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta nome professor
+*  $FC Fun√ß√£o: PRF Consulta nome professor
 *
-*  $ED DescriÁ„o da funÁ„o
-*     Retorna por referÍncia o nome de um professor
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Retorna por refer√™ncia o nome de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor - Ponteiro para um professor
-*     $P nome - Ponteiro para uma string para o qual a funÁ„o retornar· o nome requisitado por referÍncia
+*     $P nome - Ponteiro para uma string para o qual a fun√ß√£o retornar√° o nome requisitado por refer√™ncia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -158,14 +158,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta rg
+*  $FC Fun√ß√£o: PRF Consulta rg
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Retorna por referencia o RG de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor -  Ponteiro para um professor
-*     $P rg - Ponteiro para um inteiro para o qual a funÁ„o retornar· o RG requisitado por referencia
+*     $P rg - Ponteiro para um inteiro para o qual a fun√ß√£o retornar√° o RG requisitado por referencia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -177,14 +177,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta cpf
+*  $FC Fun√ß√£o: PRF Consulta cpf
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Retorna por referencia o CPF de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor - Ponteiro para um professor
-*     $P cpf - Ponteiro para uma string para o qual a funÁ„o retornar· o cpf requisitado por referÍncia
+*     $P cpf - Ponteiro para uma string para o qual a fun√ß√£o retornar√° o cpf requisitado por refer√™ncia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -196,14 +196,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta matricula
+*  $FC Fun√ß√£o: PRF Consulta matricula
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Retorna por referencia a matricula de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor - Ponteiro para um professor
-*     $P matricula - Ponteiro para um inteiro para o qual a funÁ„o retornar· o matricula requisitado por referÍncia
+*     $P matricula - Ponteiro para um inteiro para o qual a fun√ß√£o retornar√° o matricula requisitado por refer√™ncia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -215,14 +215,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta email
+*  $FC Fun√ß√£o: PRF Consulta email
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Retorna por referencia o email de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor - Ponteiro para um professor
-*     $P email - Ponteiro para uma string para o qual a funÁ„o retornar· o email requisitado por referÍncia
+*     $P email - Ponteiro para uma string para o qual a fun√ß√£o retornar√° o email requisitado por refer√™ncia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -234,14 +234,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta telefone
+*  $FC Fun√ß√£o: PRF Consulta telefone
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Retorna por referencia o telefone de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor - Ponteiro para um professor
-*     $P telefone - Ponteiro para um inteiro para o qual a funÁ„o retornar· o telefone requisitado por referÍncia
+*     $P telefone - Ponteiro para um inteiro para o qual a fun√ß√£o retornar√° o telefone requisitado por refer√™ncia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -253,14 +253,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta data de nascimento
+*  $FC Fun√ß√£o: PRF Consulta data de nascimento
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Retorna por referencia a data de nascimento de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor - Ponteiro para um professor
-*     $P dia - Ponteiro para um inteiro para o qual a funÁ„o retornar· o dia de nascimento requisitado por referÍncia
+*     $P dia - Ponteiro para um inteiro para o qual a fun√ß√£o retornar√° o dia de nascimento requisitado por refer√™ncia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -272,14 +272,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta mÍs de nascimento
+*  $FC Fun√ß√£o: PRF Consulta m√™s de nascimento
 *
-*  $ED DescriÁ„o da funÁ„o
-*     Retorna por referencia o mÍs de nascimento de um professor
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Retorna por referencia o m√™s de nascimento de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor - Ponteiro para um professor
-*     $P mes - Ponteiro para um inteiro para o qual a funÁ„o retornar· o mes de nascimento requisitado por referÍncia
+*     $P mes - Ponteiro para um inteiro para o qual a fun√ß√£o retornar√° o mes de nascimento requisitado por refer√™ncia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -291,14 +291,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta ano de nascimento
+*  $FC Fun√ß√£o: PRF Consulta ano de nascimento
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Retorna por referencia o ano de nascimento de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor - Ponteiro para um professor
-*     $P ano - Ponteiro para um inteiro para o qual a funÁ„o retornar· o ano de nascimento requisitado por referÍncia
+*     $P ano - Ponteiro para um inteiro para o qual a fun√ß√£o retornar√° o ano de nascimento requisitado por refer√™ncia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -310,14 +310,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta paÌs de moradia
+*  $FC Fun√ß√£o: PRF Consulta pa√≠s de moradia
 *
-*  $ED DescriÁ„o da funÁ„o
-*     Retorna por referencia o paÌs de moradia de um professor
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Retorna por referencia o pa√≠s de moradia de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor - Ponteiro para um professor
-*     $P pais - Ponteiro para uma string para o qual a funÁ„o retornar· o pais de moradia requisitado por referÍncia
+*     $P pais - Ponteiro para uma string para o qual a fun√ß√£o retornar√° o pais de moradia requisitado por refer√™ncia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -329,14 +329,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta uf
+*  $FC Fun√ß√£o: PRF Consulta uf
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Retorna por referencia o uf de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor - Ponteiro para um professor
-*     $P uf - Ponteiro para uma string para o qual a funÁ„o retornar· o uf requisitado por referÍncia
+*     $P uf - Ponteiro para uma string para o qual a fun√ß√£o retornar√° o uf requisitado por refer√™ncia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -348,14 +348,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta cidade
+*  $FC Fun√ß√£o: PRF Consulta cidade
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Retorna por referencia o cidade de moradia de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor - Ponteiro para um professor
-*     $P cidade - Ponteiro para uma string para o qual a funÁ„o retornar· a cidade requisitado por referÍncia
+*     $P cidade - Ponteiro para uma string para o qual a fun√ß√£o retornar√° a cidade requisitado por refer√™ncia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -367,14 +367,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta bairro
+*  $FC Fun√ß√£o: PRF Consulta bairro
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Retorna por referencia o bairro de moradia de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor - Ponteiro para um professor
-*     $P cidade - Ponteiro para uma string para o qual a funÁ„o retornar· o bairro requisitado por referÍncia
+*     $P cidade - Ponteiro para uma string para o qual a fun√ß√£o retornar√° o bairro requisitado por refer√™ncia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -386,14 +386,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta bairro
+*  $FC Fun√ß√£o: PRF Consulta bairro
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Retorna por referencia o bairro de moradia de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor - Ponteiro para um professor
-*     $P bairro - Ponteiro para uma string para o qual a funÁ„o retornar· a rua requisitada por referÍncia
+*     $P bairro - Ponteiro para uma string para o qual a fun√ß√£o retornar√° a rua requisitada por refer√™ncia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -405,14 +405,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta numero
+*  $FC Fun√ß√£o: PRF Consulta numero
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Retorna por referencia o numero de moradia de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor - Ponteiro para um professor
-*     $P numero - Ponteiro para um inteiro para o qual a funÁ„o ao retornar· o numero da moradia requisitado por referÍncia
+*     $P numero - Ponteiro para um inteiro para o qual a fun√ß√£o ao retornar√° o numero da moradia requisitado por refer√™ncia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -424,14 +424,14 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF Consulta complemento
+*  $FC Fun√ß√£o: PRF Consulta complemento
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Retorna por referencia o complemento de moradia de um professor
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     $P professor - Ponteiro para um professor
-*     $P complemento - Ponteiro para uma string para o qual a funcao retornar· o complemento da moradia requisitado por referencia
+*     $P complemento - Ponteiro para uma string para o qual a funcao retornar√° o complemento da moradia requisitado por referencia
 *
 *  $FV Valor retornado
 *     PRF_tpCondRetOK
@@ -443,24 +443,24 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
  
 /* Fim do Bloco de Funcoes de Consulta */
 
-/* InÌcio do Bloco de Funcoes de Altera */
+/* In√≠cio do Bloco de Funcoes de Altera */
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF altera Nome
+*  $FC Fun√ß√£o: PRF altera Nome
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Altera o Nome do professor
 *
-*  $EP Par‚metros
-*     $P professor - È o par‚metro que aponta para o professor que ter· seu Nome a ser alterado.
-* 					Este par‚metro È passado por referÍncia.
-*     $P nome -  È o parametro que receber· o novo Nome a ser alterado no professor atual.
+*  $EP Par√¢metros
+*     $P professor - √© o par√¢metro que aponta para o professor que ter√° seu Nome a ser alterado.
+* 					Este par√¢metro √© passado por refer√™ncia.
+*     $P nome -  √© o parametro que receber√° o novo Nome a ser alterado no professor atual.
 *						
 *  $FV Valor retornado
 *     PRF_CondRetOk
-*     PRF_CondRetNaoExisteProf - Inst‚ncia de professor ou o argumento passado n„o foi alocado.
-*     PRF_CondRetFormatoInvalido - Formato inv·lido do dado a ser atribuÌdo.
+*     PRF_CondRetNaoExisteProf - Inst√¢ncia de professor ou o argumento passado n√£o foi alocado.
+*     PRF_CondRetFormatoInvalido - Formato inv√°lido do dado a ser atribu√≠do.
 *
 ***********************************************************************/
 
@@ -468,20 +468,20 @@ PRF_tpCondRet PRF_alteraNome(Prof* professor, char* nome);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF altera RG
+*  $FC Fun√ß√£o: PRF altera RG
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Altera o RG do professor
 *
-*  $EP Par‚metros
-*     $P professor - È o par‚metro que aponta para o professor que ter· seu RG a ser alterado.
-* 					Este par‚metro È passado por referÍncia.
-*     $P rg -  È o parametro que receber· o novo RG a ser alterado no professor atual.
+*  $EP Par√¢metros
+*     $P professor - √© o par√¢metro que aponta para o professor que ter√° seu RG a ser alterado.
+* 					Este par√¢metro √© passado por refer√™ncia.
+*     $P rg -  √© o parametro que receber√° o novo RG a ser alterado no professor atual.
 *						
 *  $FV Valor retornado
 *     PRF_CondRetOk
-*     PRF_CondRetNaoExisteProf - Inst‚ncia de professor ou o argumento passado n„o foi alocado.
-*     PRF_CondRetFormatoInvalido - Formato inv·lido do dado a ser atribuÌdo.
+*     PRF_CondRetNaoExisteProf - Inst√¢ncia de professor ou o argumento passado n√£o foi alocado.
+*     PRF_CondRetFormatoInvalido - Formato inv√°lido do dado a ser atribu√≠do.
 *
 ***********************************************************************/
 
@@ -489,20 +489,20 @@ PRF_tpCondRet PRF_alteraRg(Prof* professor, int rg);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF altera CPF
+*  $FC Fun√ß√£o: PRF altera CPF
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Altera o CPF do professor
 *
-*  $EP Par‚metros
-*     $P professor - È o par‚metro que aponta para o professor que ter· seu CPF a ser alterado.
-* 					Este par‚metro È passado por referÍncia.
-*     $P cpf -  È o parametro que receber· o novo CPF a ser alterado no professor atual.
+*  $EP Par√¢metros
+*     $P professor - √© o par√¢metro que aponta para o professor que ter√° seu CPF a ser alterado.
+* 					Este par√¢metro √© passado por refer√™ncia.
+*     $P cpf -  √© o parametro que receber√° o novo CPF a ser alterado no professor atual.
 *						
 *  $FV Valor retornado
 *     PRF_CondRetOk
-*     PRF_CondRetNaoExisteProf - Inst‚ncia de professor ou o argumento passado n„o foi alocado.
-*     PRF_CondRetFormatoInvalido - Formato inv·lido do dado a ser atribuÌdo.
+*     PRF_CondRetNaoExisteProf - Inst√¢ncia de professor ou o argumento passado n√£o foi alocado.
+*     PRF_CondRetFormatoInvalido - Formato inv√°lido do dado a ser atribu√≠do.
 *
 ***********************************************************************/
 
@@ -510,20 +510,20 @@ PRF_tpCondRet PRF_alteraCpf(Prof* professor, char* cpf);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF altera Matricula
+*  $FC Fun√ß√£o: PRF altera Matricula
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Altera o Matricula do professor
 *
-*  $EP Par‚metros
-*     $P professor - È o par‚metro que aponta para o professor que ter· sua matricula a ser alterado.
-* 					Este par‚metro È passado por referÍncia.
-*     $P matricula - È o parametro que receber· o nova matricula a ser alterado no professor atual.
+*  $EP Par√¢metros
+*     $P professor - √© o par√¢metro que aponta para o professor que ter√° sua matricula a ser alterado.
+* 					Este par√¢metro √© passado por refer√™ncia.
+*     $P matricula - √© o parametro que receber√° o nova matricula a ser alterado no professor atual.
 *						
 *  $FV Valor retornado
 *     PRF_CondRetOk
-*     PRF_CondRetNaoExisteProf - Inst‚ncia de professor ou o argumento passado n„o foi alocado.
-*     PRF_CondRetFormatoInvalido - Formato inv·lido do dado a ser atribuÌdo.
+*     PRF_CondRetNaoExisteProf - Inst√¢ncia de professor ou o argumento passado n√£o foi alocado.
+*     PRF_CondRetFormatoInvalido - Formato inv√°lido do dado a ser atribu√≠do.
 *
 ***********************************************************************/
 
@@ -531,20 +531,20 @@ PRF_tpCondRet PRF_alteraMatricula(Prof* professor, int matricula);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF altera Email
+*  $FC Fun√ß√£o: PRF altera Email
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Altera o email do professor
 *
-*  $EP Par‚metros
-*     $P professor - È o par‚metro que aponta para o professor que ter· seu email a ser alterado.
-* 					Este par‚metro È passado por referÍncia.
-*     $P email -  È o parametro que receber· o novo email a ser alterado no professor atual.
+*  $EP Par√¢metros
+*     $P professor - √© o par√¢metro que aponta para o professor que ter√° seu email a ser alterado.
+* 					Este par√¢metro √© passado por refer√™ncia.
+*     $P email -  √© o parametro que receber√° o novo email a ser alterado no professor atual.
 *						
 *  $FV Valor retornado
 *     PRF_CondRetOk
-*     PRF_CondRetNaoExisteProf - Inst‚ncia de professor ou o argumento passado n„o foi alocado.
-*     PRF_CondRetFormatoInvalido - Formato inv·lido do dado a ser atribuÌdo.
+*     PRF_CondRetNaoExisteProf - Inst√¢ncia de professor ou o argumento passado n√£o foi alocado.
+*     PRF_CondRetFormatoInvalido - Formato inv√°lido do dado a ser atribu√≠do.
 *
 ***********************************************************************/
 
@@ -552,20 +552,20 @@ PRF_tpCondRet PRF_alteraEmail(Prof* professor, char* email);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF altera Telefone
+*  $FC Fun√ß√£o: PRF altera Telefone
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Altera o telefone do professor
 *
-*  $EP Par‚metros
-*     $P professor - È o par‚metro que aponta para o professor que ter· seu telefone a ser alterado.
-* 					Este par‚metro È passado por referÍncia.
-*     $P tel -  È o parametro que receber· o novo telefone a ser alterado no professor atual.
+*  $EP Par√¢metros
+*     $P professor - √© o par√¢metro que aponta para o professor que ter√° seu telefone a ser alterado.
+* 					Este par√¢metro √© passado por refer√™ncia.
+*     $P tel -  √© o parametro que receber√° o novo telefone a ser alterado no professor atual.
 *						
 *  $FV Valor retornado
 *     PRF_CondRetOk
-*     PRF_CondRetNaoExisteProf - Inst‚ncia de professor ou o argumento passado n„o foi alocado.
-*     PRF_CondRetFormatoInvalido - Formato inv·lido do dado a ser atribuÌdo.
+*     PRF_CondRetNaoExisteProf - Inst√¢ncia de professor ou o argumento passado n√£o foi alocado.
+*     PRF_CondRetFormatoInvalido - Formato inv√°lido do dado a ser atribu√≠do.
 *
 ***********************************************************************/
 
@@ -573,22 +573,22 @@ PRF_tpCondRet PRF_alteraTelefone(Prof* professor, int tel);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF altera Data de Nascimento
+*  $FC Fun√ß√£o: PRF altera Data de Nascimento
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Altera o data de nascimento do professor
 *
-*  $EP Par‚metros
-*     $P professor - È o par‚metro que aponta para o professor que ter· sua Data de Nascimento alterado.
-* 					Este par‚metro È passado por referÍncia.
-*     $P dia -  È o parametro que receber· o novo dia a ser alterado no professor atual.
-*     $P mes -  È o parametro que receber· o novo mes a ser alterado no professor atual.
-*     $P ano -  È o parametro que receber· o novo ano a ser alterado no professor atual.
+*  $EP Par√¢metros
+*     $P professor - √© o par√¢metro que aponta para o professor que ter√° sua Data de Nascimento alterado.
+* 					Este par√¢metro √© passado por refer√™ncia.
+*     $P dia -  √© o parametro que receber√° o novo dia a ser alterado no professor atual.
+*     $P mes -  √© o parametro que receber√° o novo mes a ser alterado no professor atual.
+*     $P ano -  √© o parametro que receber√° o novo ano a ser alterado no professor atual.
 *						
 *  $FV Valor retornado
 *     PRF_CondRetOk
-*     PRF_CondRetNaoExisteProf - Inst‚ncia de professor ou o argumento passado n„o foi alocado.
-*     PRF_CondRetFormatoInvalido - Formato inv·lido do dado a ser atribuÌdo.
+*     PRF_CondRetNaoExisteProf - Inst√¢ncia de professor ou o argumento passado n√£o foi alocado.
+*     PRF_CondRetFormatoInvalido - Formato inv√°lido do dado a ser atribu√≠do.
 *
 ***********************************************************************/
 
@@ -596,20 +596,20 @@ PRF_tpCondRet PRF_alteraDataNascimento(Prof* professor, int dia, int mes, int an
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF altera Pais
+*  $FC Fun√ß√£o: PRF altera Pais
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Altera o Pais do professor
 *
-*  $EP Par‚metros
-*     $P professor - È o par‚metro que aponta para o professor que ter· seu PaÌs alterado.
-* 					Este par‚metro È passado por referÍncia.
-*     $P pais -  È o parametro que receber· o novo PaÌs a ser alterado no professor atual.
+*  $EP Par√¢metros
+*     $P professor - √© o par√¢metro que aponta para o professor que ter√° seu Pa√≠s alterado.
+* 					Este par√¢metro √© passado por refer√™ncia.
+*     $P pais -  √© o parametro que receber√° o novo Pa√≠s a ser alterado no professor atual.
 *						
 *  $FV Valor retornado
 *     PRF_CondRetOk
-*     PRF_CondRetNaoExisteProf - Inst‚ncia de professor ou o argumento passado n„o foi alocado.
-*     PRF_CondRetFormatoInvalido - Formato inv·lido do dado a ser atribuÌdo.
+*     PRF_CondRetNaoExisteProf - Inst√¢ncia de professor ou o argumento passado n√£o foi alocado.
+*     PRF_CondRetFormatoInvalido - Formato inv√°lido do dado a ser atribu√≠do.
 *
 ***********************************************************************/
 
@@ -617,20 +617,20 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF altera UF
+*  $FC Fun√ß√£o: PRF altera UF
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Altera o UF do professor
 *
-*  $EP Par‚metros
-*     $P professor - È o par‚metro que aponta para o professor que ter· sua UF alterado.
-* 					Este par‚metro È passado por referÍncia.
-*     $P uf -  È o parametro que receber· o nova UF a ser alterado no professor atual.
+*  $EP Par√¢metros
+*     $P professor - √© o par√¢metro que aponta para o professor que ter√° sua UF alterado.
+* 					Este par√¢metro √© passado por refer√™ncia.
+*     $P uf -  √© o parametro que receber√° o nova UF a ser alterado no professor atual.
 *						
 *  $FV Valor retornado
 *     PRF_CondRetOk
-*     PRF_CondRetNaoExisteProf - Inst‚ncia de professor ou o argumento passado n„o foi alocado.
-*     PRF_CondRetFormatoInvalido - Formato inv·lido do dado a ser atribuÌdo.
+*     PRF_CondRetNaoExisteProf - Inst√¢ncia de professor ou o argumento passado n√£o foi alocado.
+*     PRF_CondRetFormatoInvalido - Formato inv√°lido do dado a ser atribu√≠do.
 *
 ***********************************************************************/
 
@@ -638,20 +638,20 @@ PRF_tpCondRet PRF_alteraUf(Prof* professor, char* uf);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF altera Cidade
+*  $FC Fun√ß√£o: PRF altera Cidade
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Altera o Cidade do professor
 *
-*  $EP Par‚metros
-*     $P professor - È o par‚metro que aponta para o professor que ter· sua cidade alterado.
-* 					Este par‚metro È passado por referÍncia.
-*     $P cidade -  È o parametro que receber· o nova cidade a ser alterado no professor atual.
+*  $EP Par√¢metros
+*     $P professor - √© o par√¢metro que aponta para o professor que ter√° sua cidade alterado.
+* 					Este par√¢metro √© passado por refer√™ncia.
+*     $P cidade -  √© o parametro que receber√° o nova cidade a ser alterado no professor atual.
 *						
 *  $FV Valor retornado
 *     PRF_CondRetOk
-*     PRF_CondRetNaoExisteProf - Inst‚ncia de professor ou o argumento passado n„o foi alocado.
-*     PRF_CondRetFormatoInvalido - Formato inv·lido do dado a ser atribuÌdo.
+*     PRF_CondRetNaoExisteProf - Inst√¢ncia de professor ou o argumento passado n√£o foi alocado.
+*     PRF_CondRetFormatoInvalido - Formato inv√°lido do dado a ser atribu√≠do.
 *
 ***********************************************************************/
 
@@ -659,20 +659,20 @@ PRF_tpCondRet PRF_alteraCidade(Prof* professor, char* cidade);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF altera Bairro
+*  $FC Fun√ß√£o: PRF altera Bairro
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Altera o Bairro do professor
 *
-*  $EP Par‚metros
-*     $P professor - È o par‚metro que aponta para o professor que ter· seu bairro alterado.
-* 					Este par‚metro È passado por referÍncia.
-*     $P bairro -  È o parametro que receber· o novo bairro a ser alterado no professor atual.
+*  $EP Par√¢metros
+*     $P professor - √© o par√¢metro que aponta para o professor que ter√° seu bairro alterado.
+* 					Este par√¢metro √© passado por refer√™ncia.
+*     $P bairro -  √© o parametro que receber√° o novo bairro a ser alterado no professor atual.
 *						
 *  $FV Valor retornado
 *     PRF_CondRetOk
-*     PRF_CondRetNaoExisteProf - Inst‚ncia de professor ou o argumento passado n„o foi alocado.
-*     PRF_CondRetFormatoInvalido - Formato inv·lido do dado a ser atribuÌdo.
+*     PRF_CondRetNaoExisteProf - Inst√¢ncia de professor ou o argumento passado n√£o foi alocado.
+*     PRF_CondRetFormatoInvalido - Formato inv√°lido do dado a ser atribu√≠do.
 *
 ***********************************************************************/
 
@@ -680,20 +680,20 @@ PRF_tpCondRet PRF_alteraBairro(Prof* professor, char* bairro);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF altera Rua
+*  $FC Fun√ß√£o: PRF altera Rua
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Altera o Rua do professor
 *
-*  $EP Par‚metros
-*     $P professor - È o par‚metro que aponta para o professor que ter· sua rua alterado.
-* 					Este par‚metro È passado por referÍncia.
-*     $P rua -  È o parametro que receber· o nova rua a ser alterado no professor atual.
+*  $EP Par√¢metros
+*     $P professor - √© o par√¢metro que aponta para o professor que ter√° sua rua alterado.
+* 					Este par√¢metro √© passado por refer√™ncia.
+*     $P rua -  √© o parametro que receber√° o nova rua a ser alterado no professor atual.
 *						
 *  $FV Valor retornado
 *     PRF_CondRetOk
-*     PRF_CondRetNaoExisteProf - Inst‚ncia de professor ou o argumento passado n„o foi alocado.
-*     PRF_CondRetFormatoInvalido - Formato inv·lido do dado a ser atribuÌdo.
+*     PRF_CondRetNaoExisteProf - Inst√¢ncia de professor ou o argumento passado n√£o foi alocado.
+*     PRF_CondRetFormatoInvalido - Formato inv√°lido do dado a ser atribu√≠do.
 *
 ***********************************************************************/
 
@@ -701,20 +701,20 @@ PRF_tpCondRet PRF_alteraRua(Prof* professor, char* rua);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF altera Numero
+*  $FC Fun√ß√£o: PRF altera Numero
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Altera o Numero do professor
 *
-*  $EP Par‚metros
-*     $P professor - È o par‚metro que aponta para o professor que ter· seu numero alterado.
-* 					Este par‚metro È passado por referÍncia.
-*     $P numero -  È o parametro que receber· o novo numero a ser alterado no professor atual.
+*  $EP Par√¢metros
+*     $P professor - √© o par√¢metro que aponta para o professor que ter√° seu numero alterado.
+* 					Este par√¢metro √© passado por refer√™ncia.
+*     $P numero -  √© o parametro que receber√° o novo numero a ser alterado no professor atual.
 *						
 *  $FV Valor retornado
 *     PRF_CondRetOk
-*     PRF_CondRetNaoExisteProf - Inst‚ncia de professor ou o argumento passado n„o foi alocado.
-*     PRF_CondRetFormatoInvalido - Formato inv·lido do dado a ser atribuÌdo.
+*     PRF_CondRetNaoExisteProf - Inst√¢ncia de professor ou o argumento passado n√£o foi alocado.
+*     PRF_CondRetFormatoInvalido - Formato inv√°lido do dado a ser atribu√≠do.
 *
 ***********************************************************************/
 
@@ -722,20 +722,20 @@ PRF_tpCondRet PRF_alteraNumero(Prof* professor, int numero);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: PRF altera Complemento
+*  $FC Fun√ß√£o: PRF altera Complemento
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Altera o Complemento do professor
 *
-*  $EP Par‚metros
-*     $P professor - È o par‚metro que aponta para o professor que ter· seu complemento alterado.
-* 					 Este par‚metro È passado por referÍncia.
-*     $P complemento -  È o parametro que receber· o novo complemento a ser alterado no professor atual.
+*  $EP Par√¢metros
+*     $P professor - √© o par√¢metro que aponta para o professor que ter√° seu complemento alterado.
+* 					 Este par√¢metro √© passado por refer√™ncia.
+*     $P complemento -  √© o parametro que receber√° o novo complemento a ser alterado no professor atual.
 *						
 *  $FV Valor retornado
 *     PRF_CondRetOk
-*     PRF_CondRetNaoExisteProf - Inst‚ncia de professor ou o argumento passado n„o foi alocado.
-*     PRF_CondRetFormatoInvalido - Formato inv·lido do dado a ser atribuÌdo.
+*     PRF_CondRetNaoExisteProf - Inst√¢ncia de professor ou o argumento passado n√£o foi alocado.
+*     PRF_CondRetFormatoInvalido - Formato inv√°lido do dado a ser atribu√≠do.
 *
 ***********************************************************************/
 
@@ -743,4 +743,4 @@ PRF_tpCondRet PRF_alteraComplemento(Prof* professor, char* complemento);
 
 /* Fim do Bloco de Funcoes de Altera */
 
-/********** Fim do mÛdulo de definiÁ„o: MÛdulo Professor **********/
+/********** Fim do m√≥dulo de defini√ß√£o: M√≥dulo Professor **********/
