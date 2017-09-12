@@ -29,12 +29,6 @@
 #include <string.h>
 #include "professor.h"
 
-#define  MIN_ANO  1850
-#define  MAX_STRING  80
-#define  UF_TAM 3
-#define  CPF_TAM 11
-#define  ANO_BISSEXTO 4
-
 /***********************************************************************
 *
 *  $TC Tipo de dados: Data
@@ -63,13 +57,16 @@
 ***********************************************************************/
 
 	typedef struct endereco{
-		char pais[MAX_STRING]; 
-		char uf[MAX_STRING]; // Unidade Federativa - Estados
-		char cidade[MAX_STRING];
-		char bairro[MAX_STRING];
-		char rua[MAX_STRING]; 
-		int numero; // numero do predio
-		char complemento[MAX_STRING]; //apartamento ou casa com numero //ex: apt 101
+		char pais[PRF_TAM_STRING];
+		char uf[PRF_TAM_STRING]; 
+			/* Unidade Federativa - Estados */
+		char cidade[PRF_TAM_STRING];
+		char bairro[PRF_TAM_STRING];
+		char rua[PRF_TAM_STRING];
+		int numero;
+			/* numero do predio */
+		char complemento[PRF_TAM_STRING];
+			/*apartamento ou casa com numero //ex: apt 101 */
 	} Endereco;
 /***********************************************************************
 *
@@ -82,10 +79,10 @@
 ***********************************************************************/
 
 	struct prof{
-		char nome[MAX_STRING];  
-		char cpf[MAX_STRING]; //Numero do Cadastro de Pessoas Físicas
+		char nome[PRF_TAM_STRING];
+		char cpf[PRF_TAM_STRING]; //Numero do Cadastro de Pessoas Físicas
 		int matricula; //Numero identificador na Universidade
-		char email[MAX_STRING];
+		char email[PRF_TAM_STRING];
 		int telefone;
 		Data* dataNascimento;
 		Endereco* endereco;
@@ -648,7 +645,7 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 
 	int verificaData(int dia, int mes, int ano){
 		int maxDias[] = {31,29,31,30,31,30,31,31,30,31,30,31};
-		if(dia < 1 || ano < MIN_ANO  || ano % ANO_BISSEXTO !=0 || dia > maxDias[mes-1]) return 0;
+		if(dia < 1 || ano < PRF_MIN_ANO  || ano % PRF_ANO_BISSEXTO !=0 || dia > maxDias[mes-1]) return 0;
 		return 1;
 	} /* Fim função: Verifica data*/
 
@@ -665,7 +662,7 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 
 	int verificaRua(char* rua){
 		int tamRua = strlen(rua);
-		if(rua == NULL || tamRua == 0 || tamRua >= MAX_STRING)
+		if(rua == NULL || tamRua == 0 || tamRua >= PRF_TAM_STRING)
 			return 0; /* if */
 		return 1;
 	} /* Fim função: Verifica rua*/
@@ -700,7 +697,7 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 
 	int verificaComplemento(char* complemento){
 		int tamComplemento = strlen(complemento);
-		if(complemento == NULL || tamComplemento == 0 || tamComplemento >= MAX_STRING)
+		if(complemento == NULL || tamComplemento == 0 || tamComplemento >= PRF_TAM_STRING)
 			return 0; /* if */
 		return 1;
 	} /* Fim função: Verifica complemento*/
@@ -717,7 +714,7 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 
 	int verificaBairro(char* bairro){
 		int tamBairro = strlen(bairro);
-		if(bairro == NULL || tamBairro == 0 || tamBairro >= MAX_STRING)
+		if(bairro == NULL || tamBairro == 0 || tamBairro >= PRF_TAM_STRING)
 			return 0; /* if */
 		return 1;
 	} /* Fim função: Verifica bairro*/
@@ -734,7 +731,7 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 
 	int verificaCidade(char* cidade){
 		int tamCidade = strlen(cidade);
-		if(cidade == NULL || tamCidade == 0 || tamCidade >= MAX_STRING)
+		if(cidade == NULL || tamCidade == 0 || tamCidade >= PRF_TAM_STRING)
 			return 0; /* if */
 		return 1;
 	} /* Fim função: Verifica cidade*/
@@ -752,7 +749,7 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 
 	int verificaUf(char* uf){
 		int tamUf = strlen(uf);
-		if(uf == NULL || tamUf == 0 || tamUf >= UF_TAM)
+		if(uf == NULL || tamUf == 0 || tamUf >= PRF_TAM_UF)
 			return 0; /* if */
 		return 1;
 	} /* Fim função: Verifica complemento*/
@@ -770,7 +767,7 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 
 	int verificaPais(char* pais){
 		int tamPais =  strlen(pais);
-		if(pais == NULL || tamPais == 0 || tamPais >= MAX_STRING)
+		if(pais == NULL || tamPais == 0 || tamPais >= PRF_TAM_STRING)
 			return 0; /* if */
 		return 1;
 	} /* Fim função: Verifica país*/
@@ -788,7 +785,7 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 
 	int verificaNome(char* nome){
 		int tamNome = strlen(nome);
-		if(nome == NULL || tamNome == 0 || tamNome >= MAX_STRING)
+		if(nome == NULL || tamNome == 0 || tamNome >= PRF_TAM_STRING)
 			return 0; /* if */
 		return 1;
 	} /* Fim função: Verifica nome*/
@@ -805,7 +802,7 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 ***********************************************************************/
 
 	int verificaCpf(char* cpf){
-		if(cpf == NULL || strlen(cpf) != CPF_TAM)
+		if(cpf == NULL || strlen(cpf) != PRF_TAM_CPF)
 			return 0; /* if */
 		return 1;
 	} /* Fim função: Verifica cpf*/
@@ -840,7 +837,7 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 
 	int verificaEmail(char* email){
 		int tamMail = strlen(email);
-		if(email == NULL || tamMail == 0 || tamMail >= MAX_STRING)
+		if(email == NULL || tamMail == 0 || tamMail >= PRF_TAM_STRING)
 			return 0; /* if */
 		return 1;
 	} /* Fim função: Verifica email*/
