@@ -28,30 +28,81 @@
 #include <stdlib.h>
 #include <string.h>
 #include "corpoDocente.h"
-#include "lista.h"
+#include "professor.h"
+#include "listas.h"
+
+/*
+
+QUESTÃO PARA DISCUTIR:
+
+	Pode parecer estranho ter feito uma estrutura para armazenar apenas uma variável.	
+Não sei se durante a execução do programa precisaremos de mais do que um corpo docente. O formato que está pode ser facilmente alterado para suportar mais de uma instância.	
+	Basta colocar um parametro doc, ponteiro para um corpo docente em cada variável, e retirar o que está no módulo.
+
+*/
+
 
 typedef struct corpoDocente{
-	Lista *professores;
+	List *professores;
 } CorpoDocente;
 
-corpoDocente *doc;
+CorpoDocente *doc;
+
+/*
+LST_cria createList
+LIS_adiciona push_front
+LIS_reset first()
+LIS_getVal get_val_cursor
+LIS_next next
+LIS_limpa clear
+LIS_libera del
+*/
+
+typedef Prof *PRF_ptProfessor;
 
 CDO_tpCondRet CDO_cria(){
 	doc = (CorpoDocente*) malloc(sizeof(CorpoDocente));
-	LST_cria(&doc->professores);
+	createList(&doc->professores);
+	return CDO_CondRetOk;
 }
-CDO_tpCondRet CDO_cadastra(Prof** professor, char *nome, int rg, char *cpf, int matricula, char *email, int telefone, int dia, int mes, int ano, char *pais, char *uf, char *cidade, char *bairro, char *rua, int numero, char *complemento){
-	PRF_ptProfessor prof = PRF_cria(professor, nome, rg, cpf, matricula, email, telefone, dia, mes, nao, pais, uf, cidade, bairro, rua, complemento);
-	LIS_adiciona(doc->professores, prof);
+
+CDO_tpCondRet CDO_cadastra(char *nome, int rg, char *cpf, int matricula, char *email, int telefone, int dia, int mes, int ano, char *pais, char *uf, char *cidade, char *bairro, char *rua, int numero, char *complemento){
+	PRF_ptProfessor prof;
+	PRF_cria(&prof, nome, rg, cpf, matricula, email, telefone, dia, mes, ano, pais, uf, cidade, bairro, rua, numero, complemento);
+	push_front(doc->professores, prof);
+	return CDO_CondRetOk;
 }
-CDO_tpCondRet CDO_busca(char *nome){
-	ptProfessor prof;
-	LIS_reset();
+CDO_tpCondRet CDO_buscaNome(char *key){
+	PRF_ptProfessor prof;
+	char nome[80];
+	first(doc->professores);
 	do{
-		if(LIS_getVal(doc->professores, &prof)) break;
+		if(get_val_cursor(doc->professores, (void**) &prof)) break;
+		PRF_consultaNome(prof, &nome);
+		if(strcmp(key, nome))==0) return CDO_achei;
 
-		if(strcmp(nome, PRF_getNome(prof)==0) return CDO_achei;
-
-	}while(LIS_next()==LIS_CondRetOK);
-	return CDO_naoAchei;
+	}while(next(doc->professores)==LIS_CondRetOK);
+	//return CDO_naoAchei;
+	return CDO_CondRetOk;
 }
+CDO_tpCondRet CDO_mostraAtual(){
+	PRF_ptProfessor prof;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_mostra(prof);
+	return CDO_CondRetOk;
+}
+CDO_tpCondRet CDO_alteraNome(char *nome){
+	PRF_ptProfessor prof;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_alteraNome(prof, nome);
+	return CDO_CondRetOk;
+}
+CDO_tpCondRet CDO_limpa(){
+	clear(&doc->professores);
+	return CDO_CondRetOk;
+}
+CDO_tpCondRet CDO_libera(){
+	del(doc->professores);
+	return CDO_CondRetOk;
+}
+
