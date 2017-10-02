@@ -78,8 +78,8 @@ CDO_tpCondRet CDO_buscaNome(char *key){
 	first(doc->professores);
 	do{
 		if(get_val_cursor(doc->professores, (void**) &prof)) break;
-		PRF_consultaNome(prof, &nome);
-		if(strcmp(key, nome))==0) return CDO_achei;
+		PRF_consultaNome(prof, nome);
+		if(strcmp(key, nome)==0) return CDO_CondRetOk;
 
 	}while(next(doc->professores)==LIS_CondRetOK);
 	//return CDO_naoAchei;
@@ -98,7 +98,7 @@ CDO_tpCondRet CDO_alteraNome(char *nome){
 	return CDO_CondRetOk;
 }
 CDO_tpCondRet CDO_limpa(){
-	clear(&doc->professores);
+	clear(doc->professores);
 	return CDO_CondRetOk;
 }
 CDO_tpCondRet CDO_libera(){
