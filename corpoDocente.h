@@ -56,8 +56,8 @@ CDO_tpCondRet CDO_consultaEndereco(char *pais, char *uf, char *cidade, char *bai
 CDO_tpCondRet CDO_alteraNome(char *nome);
 CDO_tpCondRet CDO_alteraRg(int rg);
 CDO_tpCondRet CDO_alteraCpf(char *cpf);
-CDO_tpCondRet CDO_alteraMatricula(int *matricula);
+CDO_tpCondRet CDO_alteraMatricula(int matricula);
 CDO_tpCondRet CDO_alteraEmail(char* email);
-CDO_tpCondRet CDO_alteraTelefone(int* tel);
-CDO_tpCondRet CDO_alteraDataNascimento(int *dia, int *mes, int *ano);
-CDO_tpCondRet CDO_alteraEndereco(char *pais, char *uf, char *cidade, char *bairro, char *rua, int *numero, char *complemento);
+CDO_tpCondRet CDO_alteraTelefone(int tel);
+CDO_tpCondRet CDO_alteraDataNascimento(int dia, int mes, int ano);
+CDO_tpCondRet CDO_alteraEndereco(char *pais, char *uf, char *cidade, char *bairro, char *rua, int numero, char *complemento);

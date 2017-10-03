@@ -219,7 +219,7 @@ CDO_tpCondRet CDO_alteraCpf(char *cpf){
 	return CDO_CondRetOk;
 }
 
-CDO_tpCondRet CDO_alteraMatricula(int *matricula){
+CDO_tpCondRet CDO_alteraMatricula(int matricula){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_alteraMatricula(prof,matricula);
@@ -233,21 +233,21 @@ CDO_tpCondRet CDO_alteraEmail(char* email){
 	return CDO_CondRetOk;
 }
 
-CDO_tpCondRet CDO_alteraTelefone(int* tel){
+CDO_tpCondRet CDO_alteraTelefone(int tel){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_alteraTelefone(prof, tel);
 	return CDO_CondRetOk;
 }
 
-CDO_tpCondRet CDO_alteraDataNascimento(int *dia, int *mes, int *ano){
+CDO_tpCondRet CDO_alteraDataNascimento(int dia, int mes, int ano){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_alteraDataNascimento(prof, &dia, &mes, &ano);
 	return CDO_CondRetOk;
 }
 
-CDO_tpCondRet CDO_alteraEndereco(char *pais, char *uf, char *cidade, char *bairro, char *rua, int *numero, char *complemento){
+CDO_tpCondRet CDO_alteraEndereco(char *pais, char *uf, char *cidade, char *bairro, char *rua, int numero, char *complemento){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_alteraPais(prof,pais);
