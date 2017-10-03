@@ -15,8 +15,9 @@
 *			Rodrigo Pumar, RP.
 *
 *  $HA Histórico de evolução:
-*     Versão  Autor    		Data     	Observações
-*       0.01   BM,FA,NP,MR,RP   01/10/2017	Desenvolvimento para T2 
+*     Versão  Autor Data     	Observações
+*       0.01   BM   02/10/2017	Funcoes modelo adicionadas 
+*       0.00   BM   01/10/2017	Inicio do desenvolvimento 
 *
 *  $ED Descrição do módulo
 *     TODO
@@ -37,7 +38,7 @@ QUESTÃO PARA DISCUTIR:
 
 	Pode parecer estranho ter feito uma estrutura para armazenar apenas uma variável.	
 Não sei se durante a execução do programa precisaremos de mais do que um corpo docente. O formato que está pode ser facilmente alterado para suportar mais de uma instância.	
-	Basta colocar um parametro doc, ponteiro para um corpo docente em cada variável, e retirar o que está no módulo.
+	Basta colocar um parametro "doc", ponteiro para um corpo docente em cada variável, e retirar o "doc" que está no módulo.
 
 */
 
@@ -58,6 +59,7 @@ LIS_limpa clear
 LIS_libera del
 */
 
+// TODO colocar isso no professor.h
 typedef Prof *PRF_ptProfessor;
 
 CDO_tpCondRet CDO_cria(){
@@ -81,7 +83,6 @@ CDO_tpCondRet CDO_buscaNome(char *chave){
 		//TODO verificar retorno de get_val
 		get_val_cursor(doc->professores, (void**) &prof);
 		PRF_consultaNome(prof, nome);
-		printf("|%s|-|%s|\n", nome, chave);
 		if(strcmp(chave, nome)==0) return CDO_CondRetOk;// TODO trocar para condRet_achei?
 	}while(next(doc->professores)==LIS_CondRetOK);
 	//return CDO_naoAchei;
@@ -93,14 +94,47 @@ CDO_tpCondRet CDO_mostraAtual(){
 	PRF_mostra(prof);
 	return CDO_CondRetOk;
 }
+CDO_tpCondRet CDO_mostraTodos(){
+	PRF_ptProfessor prof = NULL;
+	first(doc->professores);
+	do{
+		//TODO verificar retorno de get_val
+		get_val_cursor(doc->professores, (void**) &prof);
+		PRF_mostra(prof);
+	}while(next(doc->professores)==LIS_CondRetOK);
+	return CDO_CondRetOk;
+}
 CDO_tpCondRet CDO_alteraNome(char *nome){
 	PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_alteraNome(prof, nome);
 	return CDO_CondRetOk;
 }
+CDO_tpCondRet CDO_consultaNome(char *nome){
+	PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_consultaNome(prof, nome);
+	return CDO_CondRetOk;
+}
 CDO_tpCondRet CDO_limpa(){
 	clear(doc->professores);
+	return CDO_CondRetOk;
+}
+CDO_tpCondRet CDO_retira(){
+	void *nulo;
+	pop_cursor(doc->professores, &nulo);
+	//pop_cursor(doc->professores, NULL);
+	/* TODO 
+		colocar uma verificação na lista para ponteiros nulos.
+		Assim será possível usar a função pop sem retornar.
+		Sem precisar criar uma função só para isso.
+
+		a função pop da lista tenta deferenciar o ponteiro passado,
+		passar null pode quebrar o programa,
+		não é possivel passar &null
+
+		Para contornar isso, a gambiarra acima foi usada
+	*/
 	return CDO_CondRetOk;
 }
 CDO_tpCondRet CDO_libera(){
