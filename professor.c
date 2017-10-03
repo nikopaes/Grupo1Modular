@@ -166,7 +166,7 @@ PRF_tpCondRet PRF_cria(Prof** professor, char *nome, int rg, char *cpf, int matr
 
 	/* Caso algum parâmetro for inválido libera a memória alocada */
 	if(ret != PRF_CondRetOk){
-		PRF_libera(Prof** professor);
+		PRF_libera(professor);
 		return ret;
 	}
 
@@ -191,7 +191,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor){
 	printf("telefone : %d \n", professor->telefone);
 	printf("data de nascimento : ");
 	mostraData(professor->dataNascimento);
-	printf("endereco:\n");
+	printf("endereco:");
 	mostraEndereco(professor->endereco);
 	return PRF_CondRetOk;
 } /* Fim função: PRF Mostra professor */
