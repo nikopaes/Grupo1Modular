@@ -89,8 +89,18 @@
 /* Tabela dos nomes dos comandos de teste específicos */
 
 #define		CRIAR_CMD		"=criar"
-#define		MOSTRAR_CMD		"=mostrar"
+#define		CADASTRAR_CMD		"=cadastrar"
+#define		MOSTRARATUAL_CMD	"=mostrarAtual"
+#define		MOSTRARTODOS_CMD	"=mostrarTodos"
+#define		RETIRAR_CMD		"=retirar"
+#define		LIMPAR_CMD		"=limpar"
 #define		LIBERAR_CMD		"=liberar"
+
+#define		BUSCA_NOME_CMD		"=buscarNome"
+#define		BUSCA_RG_CMD		"=buscarRg"
+#define		BUSCA_CPF_CMD		"=buscarCPF"
+#define		BUSCA_MATRICULA_CMD	"=buscarMatricula"
+#define		BUSCA_EMAIL_CMD		"=buscarEmail"
 
 #define		CONSULTA_NOME_CMD		"=consultarNome"
 #define		CONSULTA_RG_CMD			"=consultarRg"
@@ -98,16 +108,8 @@
 #define		CONSULTA_MATRICULA_CMD		"=consultarMatricula"
 #define		CONSULTA_EMAIL_CMD		"=consultarEmail"
 #define		CONSULTA_TELEFONE_CMD		"=consultarTelefone"
-#define		CONSULTA_DIA_CMD		"=consultarDia"
-#define		CONSULTA_MES_CMD		"=consultarMes"
-#define		CONSULTA_ANO_CMD		"=consultarAno"
-#define		CONSULTA_PAIS_CMD		"=consultarPais"
-#define		CONSULTA_UF_CMD			"=consultarUf"
-#define		CONSULTA_CIDADE_CMD		"=consultarCidade"
-#define		CONSULTA_BAIRRO_CMD		"=consultarBairro"
-#define		CONSULTA_RUA_CMD		"=consultarRua"
-#define		CONSULTA_NUMERO_CMD		"=consultarNumero"
-#define		CONSULTA_COMPLEMENTO_CMD	"=consultarComplemento"
+#define		CONSULTA_DIA_CMD		"=consultarData"
+#define		CONSULTA_ENDERECO_CMD		"=consultarEndereco"
 
 #define		ALTERA_NOME_CMD		"=alterarNome"
 #define		ALTERA_RG_CMD		"=alterarRg"
@@ -116,13 +118,7 @@
 #define		ALTERA_EMAIL_CMD	"=alterarEmail"
 #define		ALTERA_TELEFONE_CMD	"=alterarTelefone"
 #define		ALTERA_DATA_CMD		"=alterarData"
-#define		ALTERA_PAIS_CMD		"=alterarPais"
-#define		ALTERA_UF_CMD		"=alterarUf"
-#define		ALTERA_CIDADE_CMD	"=alterarCidade"
-#define		ALTERA_BAIRRO_CMD	"=alterarBairro"
-#define		ALTERA_RUA_CMD		"=alterarRua"
-#define		ALTERA_NUMERO_CMD	"=alterarNumero"
-#define		ALTERA_COMPLEMENTO_CMD	"=alterarComplemento"
+#define		ALTERA_ENDERECO_CMD		"=alterarEndereco"
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -219,6 +215,22 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 
          } /* fim ativa: Testar CDO Cadastrar Corpo Docente */
 
+	/* Testar CDO Retirar Corpo Docente */
+
+         if ( strcmp( ComandoTeste , RETIRAR_CMD ) == 0 ){
+            NumLidos = LER_LerParametros( "i" ,  &CondRetEsperada ) ;
+            if ( NumLidos != 1 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+			CondRetObtido = CDO_retira();
+			
+            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
+					"Retorno errado ao retirar Corpo Docente." );
+
+         } /* fim ativa: Testar CDO Retirar Corpo Docente */
+
 	/* Testar mostrar todos Corpo Docente */
 
          else if ( strcmp( ComandoTeste , MOSTRAR_TODOS_CMD ) == 0 )
@@ -290,6 +302,77 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
                                     "Retorno errado ao liberar Corpo Docente." );
 
          } /* fim ativa: Testar CDO liberar Corpo Docente */
+
+	/* Testar CDO busca Nome Corpo Docente */	
+
+	else if ( strcmp( ComandoTeste , BUSCA_NOME_CMD ) == 0 ){
+		NumLidos = LER_LerParametros( "si" , paramString, &CondRetEsperada );
+		if(NumLidos != 2){
+			return TST_CondRetParm;
+		} /* if */
+
+		CondRetObtido = CDO_buscaNome(paramString);
+
+		return TST_CompararInt(CondRetEsperada, CondRetObtido,
+				"Retorno errado ao por Nome em Corpo Docente.");
+	} /* fim ativa: Testar CDO busca Nome Corpo Docente  */
+
+	/* Testar CDO busca Rg Corpo Docente */	
+
+	else if ( strcmp( ComandoTeste , BUSCA_RG_CMD ) == 0 ){
+		NumLidos = LER_LerParametros( "ii" , paramInt, &CondRetEsperada );
+		if(NumLidos != 2){
+			return TST_CondRetParm;
+		} /* if */
+
+		CondRetObtido = CDO_buscaRg(paramString);
+
+		return TST_CompararInt(CondRetEsperada, CondRetObtido,
+				"Retorno errado ao por Rg em Corpo Docente.");
+	} /* fim ativa: Testar CDO busca Nome Corpo Docente  */
+
+	/* Testar CDO busca Nome Corpo Docente */	
+
+	else if ( strcmp( ComandoTeste , BUSCA_CPF_CMD ) == 0 ){
+		NumLidos = LER_LerParametros( "si" , paramString, &CondRetEsperada );
+		if(NumLidos != 2){
+			return TST_CondRetParm;
+		} /* if */
+
+		CondRetObtido = CDO_buscaCPF(paramString);
+
+		return TST_CompararInt(CondRetEsperada, CondRetObtido,
+				"Retorno errado ao por CPF em Corpo Docente.");
+	} /* fim ativa: Testar CDO busca Nome Corpo Docente  */
+
+	/* Testar CDO busca Nome Corpo Docente */	
+
+	else if ( strcmp( ComandoTeste , BUSCA_MATRICULA_CMD ) == 0 ){
+		NumLidos = LER_LerParametros( "ii" , paramInt, &CondRetEsperada );
+		if(NumLidos != 2){
+			return TST_CondRetParm;
+		} /* if */
+
+		CondRetObtido = CDO_buscaMatricula(paramString);
+
+		return TST_CompararInt(CondRetEsperada, CondRetObtido,
+				"Retorno errado ao por Matricula em Corpo Docente.");
+	} /* fim ativa: Testar CDO busca Nome Corpo Docente  */
+
+	/* Testar CDO busca Nome Corpo Docente */	
+
+	else if ( strcmp( ComandoTeste , BUSCA_EMAIL_CMD ) == 0 ){
+		NumLidos = LER_LerParametros( "si" , paramString, &CondRetEsperada );
+		if(NumLidos != 2){
+			return TST_CondRetParm;
+		} /* if */
+
+		CondRetObtido = CDO_buscaEmail(paramString);
+
+		return TST_CompararInt(CondRetEsperada, CondRetObtido,
+				"Retorno errado ao por Email em Corpo Docente.");
+	} /* fim ativa: Testar CDO busca Nome Corpo Docente  */
+
 
 	/* Testar CDO consulta nome Corpo Docente */
 
@@ -581,14 +664,6 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
 				"Retorno errado ao alterar Endereco de um professor em Corpo Docente.");
 	} /* fim ativa: Testar CDO altera Endereco professor */
-
-
-	/*
-	TODO
-	adicionar funções de busca
-
-*/
-
 
       return TST_CondRetNaoConhec ;
 
