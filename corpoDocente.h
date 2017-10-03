@@ -37,4 +37,4 @@ CDO_tpCondRet CDO_mostraAtual();
 CDO_tpCondRet CDO_limpa();
 CDO_tpCondRet CDO_libera();
 CDO_tpCondRet CDO_alteraNome(char *nome);
-CDO_tpCondRet CDO_buscaNome(char *nome);
+CDO_tpCondRet CDO_buscaNome(char *chave);
