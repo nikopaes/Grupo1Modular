@@ -48,7 +48,7 @@ CDO_tpCondRet CDO_consultaNome(char *nome);
 CDO_tpCondRet CDO_consultaRg(int *rg);
 CDO_tpCondRet CDO_consultaCpf(char *cpf);
 CDO_tpCondRet CDO_consultaMatricula(int *matricula);
-CDO_tpCondRet CDO_consultaEmail(int *email);
+CDO_tpCondRet CDO_consultaEmail(char *email);
 CDO_tpCondRet CDO_consultaTelefone(int *tel);
 CDO_tpCondRet CDO_consultaDataNascimento(int *dia, int *mes, int *ano);
 CDO_tpCondRet CDO_consultaEndereco(char *pais, char *uf, char *cidade, char *bairro, char *rua, int *numero, char *complemento);
