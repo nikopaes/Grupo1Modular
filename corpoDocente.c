@@ -76,19 +76,7 @@ CDO_tpCondRet CDO_cadastra(char *nome, int rg, char *cpf, int matricula, char *e
 	push_back(doc->professores, prof);
 	return CDO_CondRetOk;
 }
-CDO_tpCondRet CDO_buscaNome(char *chave){
-	PRF_ptProfessor prof = NULL;
-	char nome[80];
-	first(doc->professores);
-	do{
-		//TODO verificar retorno de get_val
-		get_val_cursor(doc->professores, (void**) &prof);
-		PRF_consultaNome(prof, nome);
-		if(strcmp(chave, nome)==0) return CDO_CondRetOk;// TODO trocar para condRet_achei?
-	}while(next(doc->professores)==LIS_CondRetOK);
-	//return CDO_naoAchei;
-	return CDO_CondRetOk;
-}
+
 CDO_tpCondRet CDO_mostraAtual(){
 	PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
@@ -105,120 +93,6 @@ CDO_tpCondRet CDO_mostraTodos(){
 	}while(next(doc->professores)==LIS_CondRetOK);
 	return CDO_CondRetOk;
 }
-CDO_tpCondRet CDO_alteraNome(char *nome){
-	PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_alteraNome(prof, nome);
-	return CDO_CondRetOk;
-}
-CDO_tpCondRet CDO_consultaNome(char *nome){
-	PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_consultaNome(prof, nome);
-	return CDO_CondRetOk;
-}
-
-/**********************************Mariana v********************************/
-CDO_tpCondRet CDO_alteraCpf(char *cpf){
-	PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_alteraCpf(prof, cpf);
-	return CDO_CondRetOk;
-}
-CDO_tpCondRet CDO_consultaCpf(char *cpf){
-	PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_consultaCpf(prof, cpf);
-	return CDO_CondRetOk;
-}
-CDO_tpCondRet CDO_alteraMatricula(int *matricula){
-    PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_alteraMatricula(prof,matricula);
-	return CDO_CondRetOk;
-}
-CDO_tpCondRet CDO_consultaMatricula(int *matricula){
-    PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_consultaMatricula(prof,matricula);
-	return CDO_CondRetOk;
-}
-CDO_tpCondRet CDO_alteraEmail(char* email){
-    PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_alteraEmail(prof, email);
-	return CDO_CondRetOk;
-}
-CDO_tpCondRet CDO_consultaEmail(int *email){
-    PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_consultaEmail(prof, email);
-	return CDO_CondRetOk;
-}
-CDO_tpCondRet CDO_alteraTelefone(int* tel){
-    PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_alteraTelefone(prof, tel);
-	return CDO_CondRetOk;
-}
-CDO_tpCondRet CDO_consultaTelefone(int *tel){
-    PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_consultaTelefone(prof, tel);
-	return CDO_CondRetOk;
-}
-
-CDO_tpCondRet CDO_alteraDataNascimento(int *dia, int *mes, int *ano){
-    PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_alteraDataNascimento(prof, &dia, &mes, &ano);
-	return CDO_CondRetOk;
-}
-CDO_tpCondRet CDO_consultaDataNascimento(int *dia, int *mes, int *ano){
-    PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_consultaDiaNascimento(prof, dia);
-	PRF_consultaMesNascimento(prof, mes);
-	PRF_consultaAnoNascimento(prof, ano);
-	return CDO_CondRetOk;
-}
-CDO_tpCondRet CDO_consultaEndereco(char *pais, char *uf, char *cidade, char *bairro, char *rua, int *numero, char *complemento){
-    PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_consultaPais(prof,pais);
-	PRF_consultaUf(prof,uf);
-	PRF_consultaCidade(prof,cidade);
-	PRF_consultaBairro(prof,bairro);
-	PRF_consultaRua(prof,rua);
-	PRF_consultaNumero(prof,numero);
-	PRF_consultaComplemento(prof,complemento);
-	return CDO_CondRetOk;
-}
-CDO_tpCondRet CDO_alteraEndereco(char *pais, char *uf, char *cidade, char *bairro, char *rua, int *numero, char *complemento){
-    PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_alteraPais(prof,pais);
-	PRF_alteraUf(prof,uf);
-	PRF_alteraCidade(prof,cidade);
-	PRF_alteraBairro(prof,bairro);
-	PRF_alteraRua(prof,rua);
-	PRF_alteraNumero(prof,numero);
-	PRF_alteraComplemento(prof,complemento);
-	return CDO_CondRetOk;
-}
-CDO_tpCondRet CDO_alteraRg(int rg){
-    PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_alteraRg(prof,rg);
-	return CDO_CondRetOk;
-}
-CDO_tpCondRet CDO_consultaRg(int *rg){
-    PRF_ptProfessor prof = NULL;
-	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_PRF_consultaRg(prof,rg);
-	return CDO_CondRetOk;
-}
-/*********************************Mariana ^ *********************************/
 
 CDO_tpCondRet CDO_limpa(){
 	clear(doc->professores);
@@ -243,6 +117,146 @@ CDO_tpCondRet CDO_retira(){
 }
 CDO_tpCondRet CDO_libera(){
 	del(doc->professores);
+	return CDO_CondRetOk;
+}
+
+CDO_tpCondRet CDO_buscaNome(char *chave){
+	PRF_ptProfessor prof = NULL;
+	char nome[80];
+	first(doc->professores);
+	do{
+		//TODO verificar retorno de get_val
+		get_val_cursor(doc->professores, (void**) &prof);
+		PRF_consultaNome(prof, nome);
+		if(strcmp(chave, nome)==0) return CDO_CondRetOk;// TODO trocar para condRet_achei?
+	}while(next(doc->professores)==LIS_CondRetOK);
+	//return CDO_naoAchei;
+	return CDO_CondRetOk;
+}
+
+
+CDO_tpCondRet CDO_consultaNome(char *nome){
+	PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_consultaNome(prof, nome);
+	return CDO_CondRetOk;
+}
+
+CDO_tpCondRet CDO_consultaRg(int *rg){
+    PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_PRF_consultaRg(prof,rg);
+	return CDO_CondRetOk;
+}
+
+CDO_tpCondRet CDO_consultaCpf(char *cpf){
+	PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_consultaCpf(prof, cpf);
+	return CDO_CondRetOk;
+}
+
+CDO_tpCondRet CDO_consultaMatricula(int *matricula){
+    PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_consultaMatricula(prof,matricula);
+	return CDO_CondRetOk;
+}
+
+CDO_tpCondRet CDO_consultaEmail(int *email){
+    PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_consultaEmail(prof, email);
+	return CDO_CondRetOk;
+}
+
+CDO_tpCondRet CDO_consultaTelefone(int *tel){
+    PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_consultaTelefone(prof, tel);
+	return CDO_CondRetOk;
+}
+
+CDO_tpCondRet CDO_consultaDataNascimento(int *dia, int *mes, int *ano){
+    PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_consultaDiaNascimento(prof, dia);
+	PRF_consultaMesNascimento(prof, mes);
+	PRF_consultaAnoNascimento(prof, ano);
+	return CDO_CondRetOk;
+}
+CDO_tpCondRet CDO_consultaEndereco(char *pais, char *uf, char *cidade, char *bairro, char *rua, int *numero, char *complemento){
+    PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_consultaPais(prof,pais);
+	PRF_consultaUf(prof,uf);
+	PRF_consultaCidade(prof,cidade);
+	PRF_consultaBairro(prof,bairro);
+	PRF_consultaRua(prof,rua);
+	PRF_consultaNumero(prof,numero);
+	PRF_consultaComplemento(prof,complemento);
+	return CDO_CondRetOk;
+}
+
+CDO_tpCondRet CDO_alteraNome(char *nome){
+	PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_alteraNome(prof, nome);
+	return CDO_CondRetOk;
+}
+
+CDO_tpCondRet CDO_alteraRg(int rg){
+    PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_alteraRg(prof,rg);
+	return CDO_CondRetOk;
+}
+
+CDO_tpCondRet CDO_alteraCpf(char *cpf){
+	PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_alteraCpf(prof, cpf);
+	return CDO_CondRetOk;
+}
+
+CDO_tpCondRet CDO_alteraMatricula(int *matricula){
+    PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_alteraMatricula(prof,matricula);
+	return CDO_CondRetOk;
+}
+
+CDO_tpCondRet CDO_alteraEmail(char* email){
+    PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_alteraEmail(prof, email);
+	return CDO_CondRetOk;
+}
+
+CDO_tpCondRet CDO_alteraTelefone(int* tel){
+    PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_alteraTelefone(prof, tel);
+	return CDO_CondRetOk;
+}
+
+CDO_tpCondRet CDO_alteraDataNascimento(int *dia, int *mes, int *ano){
+    PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_alteraDataNascimento(prof, &dia, &mes, &ano);
+	return CDO_CondRetOk;
+}
+
+CDO_tpCondRet CDO_alteraEndereco(char *pais, char *uf, char *cidade, char *bairro, char *rua, int *numero, char *complemento){
+    PRF_ptProfessor prof = NULL;
+	get_val_cursor(doc->professores, (void**) &prof);
+	PRF_alteraPais(prof,pais);
+	PRF_alteraUf(prof,uf);
+	PRF_alteraCidade(prof,cidade);
+	PRF_alteraBairro(prof,bairro);
+	PRF_alteraRua(prof,rua);
+	PRF_alteraNumero(prof,numero);
+	PRF_alteraComplemento(prof,complemento);
 	return CDO_CondRetOk;
 }
 
