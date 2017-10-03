@@ -26,7 +26,7 @@
 *
 ***************************************************************************/
 typedef enum{
-	CDO_CondRetOk,
+	CDO_CondRetOk
 	CDO_CondRetNaoHaMemoria,
 	CDO_CondRetNaoExisteCorpo,
 	CDO_CondRetProfessorNaoEncontrado,

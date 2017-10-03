@@ -145,7 +145,7 @@ CDO_tpCondRet CDO_consultaNome(char *nome){
 CDO_tpCondRet CDO_consultaRg(int *rg){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_consultaRg(prof,rg);
+	PRF_PRF_consultaRg(prof,rg);
 	return CDO_CondRetOk;
 }
 
