@@ -16,6 +16,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor Data     	Observações
+*       0.01   MR   03/10/2017	Funções de get/set adicionadas 
 *       0.01   BM   02/10/2017	Funcoes modelo adicionadas 
 *       0.00   BM   01/10/2017	Inicio do desenvolvimento 
 *
@@ -154,7 +155,7 @@ CDO_tpCondRet CDO_consultaEmail(int *email){
 	PRF_consultaEmail(prof, email);
 	return CDO_CondRetOk;
 }
-CDO_tpCondRet CDO_ateraTelefone(int* tel){
+CDO_tpCondRet CDO_alteraTelefone(int* tel){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_alteraTelefone(prof, tel);
@@ -167,7 +168,7 @@ CDO_tpCondRet CDO_consultaTelefone(int *tel){
 	return CDO_CondRetOk;
 }
 
-CDO_tpCondRet CDO_ateraDataNascimento(int *dia, int *mes, int *ano){
+CDO_tpCondRet CDO_alteraDataNascimento(int *dia, int *mes, int *ano){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_alteraDataNascimento(prof, &dia, &mes, &ano);
