@@ -100,7 +100,7 @@ typedef enum{
 *	  PRF_CondRetFormatoInvalido - usado quando o formato de algum parâmetro está errado.
 *
 *  Assertiva de Entrada: 
-*		-professor recebe endereço do ponteiro aonde será declarado e definido o novo professor.
+*		-professor recebe endereço do ponteiro que aponta para NULL aonde será declarado e definido o novo professor.
 *  Assertiva de Saída: 
 *		-O ponteiro professor aponta para o novo professor alocado e cada variável da estrutura professor desse ponteiro contêm um valor válido caso todos parâmetros estajam válidos.
 *		-Professor não é criado caso algum parâmetro seja inválido e ponteiro professor aponta para NULL.
