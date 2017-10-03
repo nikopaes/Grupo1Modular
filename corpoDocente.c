@@ -163,7 +163,7 @@ CDO_tpCondRet CDO_consultaMatricula(int *matricula){
 	return CDO_CondRetOk;
 }
 
-CDO_tpCondRet CDO_consultaEmail(int *email){
+CDO_tpCondRet CDO_consultaEmail(char *email){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_consultaEmail(prof, email);
