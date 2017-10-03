@@ -58,7 +58,7 @@ LIS_limpa clear
 LIS_libera del
 */
 
-//typedef struct Prof *PRF_ptProfessor;
+typedef Prof *PRF_ptProfessor;
 
 CDO_tpCondRet CDO_cria(){
 	doc = (CorpoDocente*) malloc(sizeof(CorpoDocente));
@@ -67,43 +67,34 @@ CDO_tpCondRet CDO_cria(){
 }
 
 CDO_tpCondRet CDO_cadastra(char *nome, int rg, char *cpf, int matricula, char *email, int telefone, int dia, int mes, int ano, char *pais, char *uf, char *cidade, char *bairro, char *rua, int numero, char *complemento){
-	//PRF_ptProfessor prof;
-	Prof *prof = NULL;
-	printf("cria: %d\n",PRF_cria(&prof, nome, rg, cpf, matricula, email, telefone, dia, mes, ano, pais, uf, cidade, bairro, rua, numero, complemento));
+	PRF_ptProfessor prof = NULL;
+	//TODO verificar retorno de PRF_cria
+	PRF_cria(&prof, nome, rg, cpf, matricula, email, telefone, dia, mes, ano, pais, uf, cidade, bairro, rua, numero, complemento);
 	push_back(doc->professores, prof);
 	return CDO_CondRetOk;
 }
 CDO_tpCondRet CDO_buscaNome(char *chave){
-	//PRF_ptProfessor prof;
-	Prof *prof;
-	int n;
-	//char nome[80];
+	PRF_ptProfessor prof = NULL;
+	char nome[80];
 	first(doc->professores);
-	list_size(doc->professores, &n);
-	printf("tamLista: %d\n", n);
 	do{
 		//TODO verificar retorno de get_val
-		printf("comeca procura\t");
 		get_val_cursor(doc->professores, (void**) &prof);
-		//PRF_consultaNome(prof, nome);
-		//printf("|%s|-|%s|\t", nome, chave);
-		PRF_mostra(prof);
-		//if(strcmp(chave, nome)==0) return CDO_CondRetOk;
-		printf("termina procura\n");
+		PRF_consultaNome(prof, nome);
+		printf("|%s|-|%s|\n", nome, chave);
+		if(strcmp(chave, nome)==0) return CDO_CondRetOk;// TODO trocar para condRet_achei?
 	}while(next(doc->professores)==LIS_CondRetOK);
 	//return CDO_naoAchei;
 	return CDO_CondRetOk;
 }
 CDO_tpCondRet CDO_mostraAtual(){
-	//PRF_ptProfessor prof;
-	Prof *prof;
+	PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_mostra(prof);
 	return CDO_CondRetOk;
 }
 CDO_tpCondRet CDO_alteraNome(char *nome){
-	//PRF_ptProfessor prof;
-	Prof *prof;
+	PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_alteraNome(prof, nome);
 	return CDO_CondRetOk;

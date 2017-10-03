@@ -6,13 +6,12 @@ int main(void){
 	CDO_cria();
 
 	CDO_cadastra( "Bruce" , 111222333, "12345678901", 1112223, "bmMail@mail", 111222333, 11, 12, 2196, "BrasilComS", "Ra", "RioDeJaneiro", "umBairro", "AvQalquer", 666, "defrontePuc");
-/*
 	CDO_mostraAtual();
 
 	printf("vamos alterar nome\n");
 	printf("%d\n", CDO_alteraNome("Marcellino"));
 	CDO_mostraAtual();
-*/
+
 	CDO_cadastra( "Souza" , 121222333, "22345678901", 2112223, "cmMail@mail", 211222333, 12, 12, 2196, "BrasilComB", "Rb", "RioDeJaneiro", "umBairro", "AvQalquer", 666, "defrontePuc");
 	CDO_cadastra( "Pereira" , 131222333, "32345678901", 3112223, "dmMail@mail", 311222333, 13, 12, 2196, "BrasilComC", "Rc", "RioDeJaneiro", "umBairro", "AvQalquer", 666, "defrontePuc");
 	CDO_cadastra( "De" , 141222333, "42345678901", 4112223, "emMail@mail", 411222333, 14, 12, 2196, "BrasilComD", "Rd", "RioDeJaneiro", "umBairro", "AvQalquer", 666, "defrontePuc");
@@ -21,7 +20,7 @@ int main(void){
 
 
 	CDO_buscaNome("Pereira");
-//	CDO_mostraAtual();
+	CDO_mostraAtual();
 
 	CDO_limpa();
 	CDO_libera();
