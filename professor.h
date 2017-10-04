@@ -42,6 +42,16 @@
 /* Tipo professor */
 typedef struct prof Prof;
 
+/***********************************************************************
+*
+*  $TC Tipo de dados: *PRF_ptProfessor
+*
+*  $ED Descrição do tipo
+*     Ponteiro para estrutura Prof do modulo professor
+*
+***********************************************************************/
+typedef Prof *PRF_ptProfessor;// TODO colocar isso no professor.h
+
 
 /***********************************************************************
 *
