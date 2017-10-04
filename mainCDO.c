@@ -24,7 +24,7 @@ int main(void){
 
 
 	printf("vamos procurar por um nome\n");
-	CDO_buscaNome("Pereira");
+	CDO_buscaPorNome("Pereira");
 	CDO_mostraAtual();
 
 	printf("vamos retirar o atual\n");

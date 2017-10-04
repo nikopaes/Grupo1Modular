@@ -17,9 +17,9 @@
 *
 *  $HA Histórico de evolução:
 *     Versão	Autor		Data		Observações
-*       0.01   BM   02/10/2017	Protótipos adicionados 
-*       0.01   BM   02/10/2017	Funcoes modelo adicionadas 
-*       0.00   BM   01/10/2017	Inicio do desenvolvimento 
+*       0.30   BM   02/10/2017	Protótipos adicionados 
+*       0.20   BM   02/10/2017	Funcoes modelo adicionadas 
+*       0.10   BM   01/10/2017	Inicio do desenvolvimento 
 *
 *  $ED Descrição do módulo
 *	  TODO
@@ -42,7 +42,7 @@ CDO_tpCondRet CDO_retira();
 CDO_tpCondRet CDO_limpa();
 CDO_tpCondRet CDO_libera();
 
-CDO_tpCondRet CDO_buscaNome(char *chave);
+CDO_tpCondRet CDO_buscaPorNome(char *chave);
 CDO_tpCondRet CDO_buscaPorEmail(char *chave);
 CDO_tpCondRet CDO_buscaPorCpf(char *chave);
 CDO_tpCondRet CDO_buscaPorRg(int chave);
