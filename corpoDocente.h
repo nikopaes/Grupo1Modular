@@ -1,11 +1,11 @@
 /***************************************************************************
 *
-*  $MCD MÛdulo de definiÁ„o: MÛdulo Corpo Docente
+*  $MCD M√≥dulo de defini√ß√£o: M√≥dulo Corpo Docente
 *
 *  Arquivo gerado:              corpoDocente.h
 *  Letras identificadoras:      CDO
 *
-*  Nome da base de software:    Fonte do mÛdulo Corpo Docente
+*  Nome da base de software:    Fonte do m√≥dulo Corpo Docente
 *
 *  Projeto: Disciplina INF 1301
 *  Gestor:  DI/PUC-Rio
@@ -15,23 +15,24 @@
 *			Mariana Ruddy, MR
 *			Rodrigo Pumar, RP.
 *
-*  $HA HistÛrico de evoluÁ„o:
-*     Vers„o	Autor		Data		ObservaÁıes
-*       0.30   BM   02/10/2017	ProtÛtipos adicionados 
+*  $HA Hist√≥rico de evolu√ß√£o:
+*     Vers√£o	Autor		Data		Observa√ß√µes
+	0.31   NP   03/10/2017 	Documenta√ß√£o iniciada
+*       0.30   BM   02/10/2017	Prot√≥tipos adicionados 
 *       0.20   BM   02/10/2017	Funcoes modelo adicionadas 
 *       0.10   BM   01/10/2017	Inicio do desenvolvimento 
 *
-*  $ED DescriÁ„o do mÛdulo
+*  $ED Descri√ß√£o do m√≥dulo
 *	  TODO
 *
 ***************************************************************************/
 typedef enum{
-	CDO_CondRetOk,
+	//TODO documentar os comentarios neste enum corretamente
 	CDO_CondRetNaoHaMemoria,
-	CDO_CondRetNaoExisteCorpo,
-	CDO_CondRetProfessorNaoEncontrado,
-	CDO_CondRetIdJaCriado,
-	CDO_CondRetFormatoInvalido
+	CDO_CondRetCorpoDocenteVazio,
+	CDO_CondRetProfessorNaoEncontrado, // nas buscas, caso o professor nao seja encontrado, e em outras funcoes caso a lista esteja vazia (cursor aponta para null)
+	CDO_CondRetIdJaCriado, //nao pode haver dois professores com o mesmo rg/cpf/matricula/email entao ao criar/alterar deve-se fazer uma busca.
+	CDO_CondRetFormatoInvalido // quando uma altera/cria retorna formato invalido
 } CDO_tpCondRet;
 
 CDO_tpCondRet CDO_cria();
@@ -44,27 +45,27 @@ CDO_tpCondRet CDO_libera();
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: CDO Busca por Nome
+*  $FC Fun√ß√£o: CDO Busca por Nome
 *
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Busca no Corpo Docente (Lista de Professores) um Professor pelo Nome
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     
 *     $P chave - Nome do Professor que deseja buscar no corpo Docente
 *						
 *  $FV Valor retornado
 *     CDO_CondRetOk 
-*     CDO_CondRetProfessorNaoEncontrado - Inst‚ncia de professor desejada n„o encontrada n„o encontrado no Corpo Docente
-*     CDO_CondRetNaoExisteCorpo - Caso n„o exista uma Inst‚ncia de Corpo Docente 
+*     CDO_CondRetProfessorNaoEncontrado - Inst√¢ncia de professor desejada n√£o encontrada n√£o encontrado no Corpo Docente
+*     CDO_CondRetNaoExisteCorpo - Caso n√£o exista uma Inst√¢ncia de Corpo Docente 
 *
 *  Assertiva de Entrada: 
-*		-A chave tem atÈ 80 caracteres
+*		-A chave tem at√© 80 caracteres
 *                    
-*  Assertiva de SaÌda: 
-*		-Caso exista uma inst‚ncia de Professor com o Nome igual aquele enviado para a funÁ„o via par‚metro a funÁ„o retorno condiÁ„o OK
-*		-Caso n„o exista uma inst‚ncia de Professor com o Nome igual aquele enviado para a func„o via par‚metro a funÁ„o retorna condiÁ„o de Prof n„o encontrado
-*		-Caso n„o exista Corpo Docente v·lido a funÁ„o retorna N„o Existe Corpo
+*  Assertiva de Sa√≠da: 
+*		-Caso exista uma inst√¢ncia de Professor com o Nome igual aquele enviado para a fun√ß√£o via par√¢metro a fun√ß√£o retorno condi√ß√£o OK
+*		-Caso n√£o exista uma inst√¢ncia de Professor com o Nome igual aquele enviado para a func√£o via par√¢metro a fun√ß√£o retorna condi√ß√£o de Prof n√£o encontrado
+*		-Caso n√£o exista Corpo Docente v√°lido a fun√ß√£o retorna N√£o Existe Corpo
 *
 ***********************************************************************/
 
@@ -72,83 +73,27 @@ CDO_tpCondRet CDO_buscaPorNome(char *chave);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: CDO Busca por Email
+*  $FC Fun√ß√£o: CDO Busca por RG
 *
-*  $ED DescriÁ„o da funÁ„o
-*     Busca no Corpo Docente (Lista de Professores) um Professor pelo Email
-*
-*  $EP Par‚metros
-*     
-*     $P chave - Email do Professor que deseja buscar no corpo Docente
-*						
-*  $FV Valor retornado
-*     CDO_CondRetOk 
-*     CDO_CondRetProfessorNaoEncontrado - Inst‚ncia de professor desejada n„o encontrada no Corpo Docente
-*     CDO_CondRetNaoExisteCorpo - Caso n„o exista uma Inst‚ncia de Corpo Docente 
-*
-*  Assertiva de Entrada: 
-*		-A chave tem atÈ 80 caracteres
-*                    
-*  Assertiva de SaÌda: 
-*		-Caso exista uma inst‚ncia de Professor com o Email igual aquele enviado para a funÁ„o via par‚metro a funÁ„o retorno condiÁ„o OK
-*		-Caso n„o exista uma inst‚ncia de Professor com o Email igual aquele enviado para a func„o via par‚metro a funÁ„o retorna condiÁ„o de Prof n„o encontrado
-*		-Caso n„o exista Corpo Docente v·lido a funÁ„o retorna N„o Existe Corpo
-*
-***********************************************************************/
-
-CDO_tpCondRet CDO_buscaPorEmail(char *chave);
-
-/***********************************************************************
-*
-*  $FC FunÁ„o: CDO Busca por CPF
-*
-*  $ED DescriÁ„o da funÁ„o
-*     Busca no Corpo Docente (Lista de Professores) um Professor pelo CPF
-*
-*  $EP Par‚metros
-*     
-*     $P chave - CPF do Professor que deseja buscar no corpo Docente
-*						
-*  $FV Valor retornado
-*     CDO_CondRetOk 
-*     CDO_CondRetProfessorNaoEncontrado - Inst‚ncia de professor desejada n„o encontrada no Corpo Docente
-*     CDO_CondRetNaoExisteCorpo - Caso n„o exista uma Inst‚ncia de Corpo Docente 
-*
-*  Assertiva de Entrada: 
-*		-A chave tem atÈ 80 caracteres
-*                    
-*  Assertiva de SaÌda: 
-*		-Caso exista uma inst‚ncia de Professor com o CPF igual aquele enviado para a funÁ„o via par‚metro a funÁ„o retorno condiÁ„o OK
-*		-Caso n„o exista uma inst‚ncia de Professor com o CPF igual aquele enviado para a func„o via par‚metro a funÁ„o retorna condiÁ„o de Prof n„o encontrado
-*		-Caso n„o exista Corpo Docente v·lido a funÁ„o retorna N„o Existe Corpo
-*
-***********************************************************************/
-
-CDO_tpCondRet CDO_buscaPorCpf(char *chave);
-
-/***********************************************************************
-*
-*  $FC FunÁ„o: CDO Busca por RG
-*
-*  $ED DescriÁ„o da funÁ„o
+*  $ED Descri√ß√£o da fun√ß√£o
 *     Busca no Corpo Docente (Lista de Professores) um Professor pelo RG
 *
-*  $EP Par‚metros
+*  $EP Par√¢metros
 *     
 *     $P chave - RG do Professor que deseja buscar no corpo Docente
 *						
 *  $FV Valor retornado
 *     CDO_CondRetOk 
-*     CDO_CondRetProfessorNaoEncontrado - Inst‚ncia de professor desejada n„o encontrada no Corpo Docente
-*     CDO_CondRetNaoExisteCorpo - Caso n„o exista uma Inst‚ncia de Corpo Docente 
+*     CDO_CondRetProfessorNaoEncontrado - Inst√¢ncia de professor desejada n√£o encontrada no Corpo Docente
+*     CDO_CondRetNaoExisteCorpo - Caso n√£o exista uma Inst√¢ncia de Corpo Docente 
 *
 *  Assertiva de Entrada: 
-*		-A chave tem atÈ 80 caracteres
+*		-A chave tem at√© 80 caracteres
 *                    
-*  Assertiva de SaÌda: 
-*		-Caso exista uma inst‚ncia de Professor com o RG igual aquele enviado para a funÁ„o via par‚metro a funÁ„o retorno condiÁ„o OK
-*		-Caso n„o exista uma inst‚ncia de Professor com o RG igual aquele enviado para a func„o via par‚metro a funÁ„o retorna condiÁ„o de Prof n„o encontrado
-*		-Caso n„o exista Corpo Docente v·lido a funÁ„o retorna N„o Existe Corpo
+*  Assertiva de Sa√≠da: 
+*		-Caso exista uma inst√¢ncia de Professor com o RG igual aquele enviado para a fun√ß√£o via par√¢metro a fun√ß√£o retorno condi√ß√£o OK
+*		-Caso n√£o exista uma inst√¢ncia de Professor com o RG igual aquele enviado para a func√£o via par√¢metro a fun√ß√£o retorna condi√ß√£o de Prof n√£o encontrado
+*		-Caso n√£o exista Corpo Docente v√°lido a fun√ß√£o retorna N√£o Existe Corpo
 *
 ***********************************************************************/
 
@@ -156,23 +101,107 @@ CDO_tpCondRet CDO_buscaPorRg(int chave);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: CDO Consulta Nome
+*  $FC Fun√ß√£o: CDO Busca por CPF
 *
-*  $ED DescriÁ„o da funÁ„o
-*     Consulta o Nome da inst‚ncia de Professor selecionada naquele momento
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Busca no Corpo Docente (Lista de Professores) um Professor pelo CPF
 *
-*  $EP Par‚metros     
-*     $P nome - Cadeia de caracteres que receber· o nome do professor selecionado, por referÍncia
+*  $EP Par√¢metros
+*     
+*     $P chave - CPF do Professor que deseja buscar no corpo Docente
+*						
+*  $FV Valor retornado
+*     CDO_CondRetOk 
+*     CDO_CondRetProfessorNaoEncontrado - Inst√¢ncia de professor desejada n√£o encontrada no Corpo Docente
+*     CDO_CondRetNaoExisteCorpo - Caso n√£o exista uma Inst√¢ncia de Corpo Docente 
+*
+*  Assertiva de Entrada: 
+*		-A chave tem at√© 80 caracteres
+*                    
+*  Assertiva de Sa√≠da: 
+*		-Caso exista uma inst√¢ncia de Professor com o CPF igual aquele enviado para a fun√ß√£o via par√¢metro a fun√ß√£o retorno condi√ß√£o OK
+*		-Caso n√£o exista uma inst√¢ncia de Professor com o CPF igual aquele enviado para a func√£o via par√¢metro a fun√ß√£o retorna condi√ß√£o de Prof n√£o encontrado
+*		-Caso n√£o exista Corpo Docente v√°lido a fun√ß√£o retorna N√£o Existe Corpo
+*
+***********************************************************************/
+
+CDO_tpCondRet CDO_buscaPorCpf(char *chave);
+
+/***********************************************************************
+*
+*  $FC Fun√ß√£o: CDO Busca por Matricula
+*
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Busca no Corpo Docente (Lista de Professores) um Professor pela Matricula
+*
+*  $EP Par√¢metros
+*     
+*     $P chave - Matricula do Professor que deseja buscar no corpo Docente
+*						
+*  $FV Valor retornado
+*     CDO_CondRetOk 
+*     CDO_CondRetProfessorNaoEncontrado - Inst√¢ncia de professor desejada n√£o encontrada no Corpo Docente
+*     CDO_CondRetNaoExisteCorpo - Caso n√£o exista uma Inst√¢ncia de Corpo Docente 
+*
+*  Assertiva de Entrada: 
+*		-A chave tem at√© 80 caracteres
+*                    
+*  Assertiva de Sa√≠da: 
+*		-Caso exista uma inst√¢ncia de Professor com a Matricula igual aquele enviado para a fun√ß√£o via par√¢metro a fun√ß√£o retorno condi√ß√£o OK
+*		-Caso n√£o exista uma inst√¢ncia de Professor com a Matricula igual aquele enviado para a func√£o via par√¢metro a fun√ß√£o retorna condi√ß√£o de Prof n√£o encontrado
+*		-Caso n√£o exista Corpo Docente v√°lido a fun√ß√£o retorna N√£o Existe Corpo
+*
+***********************************************************************/
+
+CDO_tpCondRet CDO_buscaPorMatricula(int *chave);
+
+/***********************************************************************
+*
+*  $FC Fun√ß√£o: CDO Busca por Email
+*
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Busca no Corpo Docente (Lista de Professores) um Professor pelo Email
+*
+*  $EP Par√¢metros
+*     
+*     $P chave - Email do Professor que deseja buscar no corpo Docente
+*						
+*  $FV Valor retornado
+*     CDO_CondRetOk 
+*     CDO_CondRetProfessorNaoEncontrado - Inst√¢ncia de professor desejada n√£o encontrada no Corpo Docente
+*     CDO_CondRetNaoExisteCorpo - Caso n√£o exista uma Inst√¢ncia de Corpo Docente 
+*
+*  Assertiva de Entrada: 
+*		-A chave tem at√© 80 caracteres
+*                    
+*  Assertiva de Sa√≠da: 
+*		-Caso exista uma inst√¢ncia de Professor com o Email igual aquele enviado para a fun√ß√£o via par√¢metro a fun√ß√£o retorno condi√ß√£o OK
+*		-Caso n√£o exista uma inst√¢ncia de Professor com o Email igual aquele enviado para a func√£o via par√¢metro a fun√ß√£o retorna condi√ß√£o de Prof n√£o encontrado
+*		-Caso n√£o exista Corpo Docente v√°lido a fun√ß√£o retorna N√£o Existe Corpo
+*
+***********************************************************************/
+
+CDO_tpCondRet CDO_buscaPorEmail(char *chave);
+
+/***********************************************************************
+*
+*  $FC Fun√ß√£o: CDO Consulta Nome
+*
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Consulta o Nome da inst√¢ncia de Professor selecionada naquele momento
+*
+*  $EP Par√¢metros     
+*     $P nome - Cadeia de caracteres que receber√° o nome do professor selecionado, por refer√™ncia
 *						
 *  $FV Valor retornado
 *     CDO_CondRetOk 
 *
 *  Assertiva de Entrada: 
-*		-O ponteiro para o a cadeia nome È v·lido
+*		-O ponteiro para o a cadeia nome √© v√°lido
 *                    
-*  Assertiva de SaÌda: 
-*	    -… necess·rio que a FunÁ„o PRF_consultaNome tenha suas assertivas de entrada e saida corretamente implementadas
-*       -Caso isso ocorra o conteudo do ponteiro para nome ser· preenchido com o nome do Professor em quest„o
+*  Assertiva de Sa√≠da: 
+*	    -√â necess√°rio que a Fun√ß√£o PRF_consultaNome tenha suas assertivas de entrada e saida corretamente implementadas
+*       -Caso isso ocorra o conteudo do ponteiro para nome ser√° preenchido com o nome do Professor em quest√£o
 *
 ***********************************************************************/
 
@@ -180,23 +209,23 @@ CDO_tpCondRet CDO_consultaNome(char *nome);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: CDO Consulta RG
+*  $FC Fun√ß√£o: CDO Consulta RG
 *
-*  $ED DescriÁ„o da funÁ„o
-*     Consulta o RG da inst‚ncia de Professor selecionada naquele momento
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Consulta o RG da inst√¢ncia de Professor selecionada naquele momento
 *
-*  $EP Par‚metros     
-*     $P rg - Inteiro que receber· o rg do professor selecionado, por referÍncia
+*  $EP Par√¢metros     
+*     $P rg - Inteiro que receber√° o rg do professor selecionado, por refer√™ncia
 *						
 *  $FV Valor retornado
 *     CDO_CondRetOk 
 *
 *  Assertiva de Entrada: 
-*		-O ponteiro para o inteiro RG È v·lido
+*		-O ponteiro para o inteiro RG √© v√°lido
 *                    
-*  Assertiva de SaÌda: 
-*	    -… necess·rio que a FunÁ„o PRF_consultaRg tenha suas assertivas de entrada e saida corretamente implementadas
-*       -Caso isso ocorra o conte˙do do ponteiro para RG ser· preenchido com o RG do Professor em quest„o
+*  Assertiva de Sa√≠da: 
+*	    -√â necess√°rio que a Fun√ß√£o PRF_consultaRg tenha suas assertivas de entrada e saida corretamente implementadas
+*       -Caso isso ocorra o conte√∫do do ponteiro para RG ser√° preenchido com o RG do Professor em quest√£o
 *
 ***********************************************************************/
 
@@ -204,23 +233,23 @@ CDO_tpCondRet CDO_consultaRg(int *rg);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: CDO Consulta CPF
+*  $FC Fun√ß√£o: CDO Consulta CPF
 *
-*  $ED DescriÁ„o da funÁ„o
-*     Consulta o CPF da inst‚ncia de Professor selecionada naquele momento
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Consulta o CPF da inst√¢ncia de Professor selecionada naquele momento
 *
-*  $EP Par‚metros     
-*     $P cpf - Cadeia de caracteres que receber· o cpf do professor selecionado, por referÍncia
+*  $EP Par√¢metros     
+*     $P cpf - Cadeia de caracteres que receber√° o cpf do professor selecionado, por refer√™ncia
 *						
 *  $FV Valor retornado
 *     CDO_CondRetOk 
 *
 *  Assertiva de Entrada: 
-*		-O ponteiro para o cadeia CPF È v·lido
+*		-O ponteiro para o cadeia CPF √© v√°lido
 *                    
-*  Assertiva de SaÌda: 
-*	    -… necess·rio que a FunÁ„o PRF_consultaCpf tenha suas assertivas de entrada e saida corretamente implementadas
-*       -Caso isso ocorra o conte˙do do ponteiro para CPF ser· preenchido com o CPF do Professor em quest„o
+*  Assertiva de Sa√≠da: 
+*	    -√â necess√°rio que a Fun√ß√£o PRF_consultaCpf tenha suas assertivas de entrada e saida corretamente implementadas
+*       -Caso isso ocorra o conte√∫do do ponteiro para CPF ser√° preenchido com o CPF do Professor em quest√£o
 *
 ***********************************************************************/
 
@@ -228,23 +257,23 @@ CDO_tpCondRet CDO_consultaCpf(char *cpf);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: CDO Consulta Matricula
+*  $FC Fun√ß√£o: CDO Consulta Matricula
 *
-*  $ED DescriÁ„o da funÁ„o
-*     Consulta a Matricula da inst‚ncia de Professor selecionada naquele momento
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Consulta a Matricula da inst√¢ncia de Professor selecionada naquele momento
 *
-*  $EP Par‚metros     
-*     $P matricula - Inteiro que receber· o cpf do professor selecionado, por referÍncia
+*  $EP Par√¢metros     
+*     $P matricula - Inteiro que receber√° o cpf do professor selecionado, por refer√™ncia
 *						
 *  $FV Valor retornado
 *     CDO_CondRetOk 
 *
 *  Assertiva de Entrada: 
-*		-O ponteiro para o inteiro matricula È v·lido
+*		-O ponteiro para o inteiro matricula √© v√°lido
 *                    
-*  Assertiva de SaÌda: 
-*	    -… necess·rio que a FunÁ„o PRF_consultaMatricula tenha suas assertivas de entrada e saida corretamente implementadas
-*       -Caso isso ocorra o conte˙do do ponteiro para matricula ser· preenchido com a matricula do Professor em quest„o
+*  Assertiva de Sa√≠da: 
+*	    -√â necess√°rio que a Fun√ß√£o PRF_consultaMatricula tenha suas assertivas de entrada e saida corretamente implementadas
+*       -Caso isso ocorra o conte√∫do do ponteiro para matricula ser√° preenchido com a matricula do Professor em quest√£o
 *
 ***********************************************************************/
 
@@ -252,23 +281,23 @@ CDO_tpCondRet CDO_consultaMatricula(int *matricula);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: CDO Consulta Email
+*  $FC Fun√ß√£o: CDO Consulta Email
 *
-*  $ED DescriÁ„o da funÁ„o
-*     Consulta o Email da inst‚ncia de Professor selecionada naquele momento
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Consulta o Email da inst√¢ncia de Professor selecionada naquele momento
 *
-*  $EP Par‚metros     
-*     $P email - Cadeia de Caracteres que receber· o cpf do professor selecionado, por referÍncia
+*  $EP Par√¢metros     
+*     $P email - Cadeia de Caracteres que receber√° o cpf do professor selecionado, por refer√™ncia
 *						
 *  $FV Valor retornado
 *     CDO_CondRetOk 
 *
 *  Assertiva de Entrada: 
-*		-O ponteiro para a cadeia email È v·lido
+*		-O ponteiro para a cadeia email √© v√°lido
 *                    
-*  Assertiva de SaÌda: 
-*	    -… necess·rio que a FunÁ„o PRF_consultaEmail tenha suas assertivas de entrada e saida corretamente implementadas
-*       -Caso isso ocorra o conte˙do do ponteiro para email ser· preenchido com o email do Professor em quest„o
+*  Assertiva de Sa√≠da: 
+*	    -√â necess√°rio que a Fun√ß√£o PRF_consultaEmail tenha suas assertivas de entrada e saida corretamente implementadas
+*       -Caso isso ocorra o conte√∫do do ponteiro para email ser√° preenchido com o email do Professor em quest√£o
 *
 ***********************************************************************/
 
@@ -276,23 +305,23 @@ CDO_tpCondRet CDO_consultaEmail(char *email);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: CDO Consulta Telefone
+*  $FC Fun√ß√£o: CDO Consulta Telefone
 *
-*  $ED DescriÁ„o da funÁ„o
-*     Consulta o Telefone da inst‚ncia de Professor selecionada naquele momento
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Consulta o Telefone da inst√¢ncia de Professor selecionada naquele momento
 *
-*  $EP Par‚metros     
-*     $P telefone - Inteiro que receber· o cpf do professor selecionado, por referÍncia
+*  $EP Par√¢metros     
+*     $P telefone - Inteiro que receber√° o cpf do professor selecionado, por refer√™ncia
 *						
 *  $FV Valor retornado
 *     CDO_CondRetOk 
 *
 *  Assertiva de Entrada: 
-*		-O ponteiro para o inteiro telefone È v·lido
+*		-O ponteiro para o inteiro telefone √© v√°lido
 *                    
-*  Assertiva de SaÌda: 
-*	    -… necess·rio que a FunÁ„o PRF_consultaTelefone tenha suas assertivas de entrada e saida corretamente implementadas
-*       -Caso isso ocorra o conte˙do do ponteiro para telefone ser· preenchido com o telefone do Professor em quest„o
+*  Assertiva de Sa√≠da: 
+*	    -√â necess√°rio que a Fun√ß√£o PRF_consultaTelefone tenha suas assertivas de entrada e saida corretamente implementadas
+*       -Caso isso ocorra o conte√∫do do ponteiro para telefone ser√° preenchido com o telefone do Professor em quest√£o
 *
 ***********************************************************************/
 
@@ -300,27 +329,27 @@ CDO_tpCondRet CDO_consultaTelefone(int *tel);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: CDO Consulta Data de Nasciemnto
+*  $FC Fun√ß√£o: CDO Consulta Data de Nasciemnto
 *
-*  $ED DescriÁ„o da funÁ„o
-*     Consulta a data de Nascimento da inst‚ncia de Professor selecionada naquele momento
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Consulta a data de Nascimento da inst√¢ncia de Professor selecionada naquele momento
 *
-*  $EP Par‚metros     
-*     $P dia - Inteiro que receber· o dia de nascimento do professor selecionado, por referÍncia
-*	  $P mes - Inteiro que receber· o mes de nascimento do professor selecionado, por referÍncia
-*     $P ano - Inteiro que receber· o ano de nascimento do professor selecionado, por referÍncia
+*  $EP Par√¢metros     
+*     $P dia - Inteiro que receber√° o dia de nascimento do professor selecionado, por refer√™ncia
+*	  $P mes - Inteiro que receber√° o mes de nascimento do professor selecionado, por refer√™ncia
+*     $P ano - Inteiro que receber√° o ano de nascimento do professor selecionado, por refer√™ncia
 *
 *  $FV Valor retornado
 *     CDO_CondRetOk 
 *
 *  Assertiva de Entrada: 
-*		-O ponteiro para o inteiro dia È v·lido
-*		-O ponteiro para o inteiro mes È v·lido
-*		-O ponteiro para o inteiro ano È valido
+*		-O ponteiro para o inteiro dia √© v√°lido
+*		-O ponteiro para o inteiro mes √© v√°lido
+*		-O ponteiro para o inteiro ano √© valido
 *                    
-*  Assertiva de SaÌda: 
-*	    -… necess·rio que as funÁ„o  PRF_consultaDiaNascimento,	PRF_consultaMesNascimento, PRF_consultaAnoNascimento tenha suas assertivas de entrada e saida corretamente implementadas
-*       -Caso isso ocorra o conte˙do dos ponteiros para dia/mes/ano ser„o preenchidos com o dia/mes/ano da data de nascimento do Professor em quest„o
+*  Assertiva de Sa√≠da: 
+*	    -√â necess√°rio que as fun√ß√£o  PRF_consultaDiaNascimento,	PRF_consultaMesNascimento, PRF_consultaAnoNascimento tenha suas assertivas de entrada e saida corretamente implementadas
+*       -Caso isso ocorra o conte√∫do dos ponteiros para dia/mes/ano ser√£o preenchidos com o dia/mes/ano da data de nascimento do Professor em quest√£o
 *
 ***********************************************************************/
 
@@ -328,19 +357,19 @@ CDO_tpCondRet CDO_consultaDataNascimento(int *dia, int *mes, int *ano);
 
 /***********************************************************************
 *
-*  $FC FunÁ„o: CDO Consulta EndereÁo
+*  $FC Fun√ß√£o: CDO Consulta Endere√ßo
 *
-*  $ED DescriÁ„o da funÁ„o
-*     Consulta o EndereÁo da inst‚ncia de Professor selecionada naquele momento
+*  $ED Descri√ß√£o da fun√ß√£o
+*     Consulta o Endere√ßo da inst√¢ncia de Professor selecionada naquele momento
 *
-*  $EP Par‚metros     
-*     $P pais - Cadeia de Caracteres que receber· o pais de moradia do professor selecionado, por referÍncia
-*	  $P uf - Cadeia de Caracteres que receber· o uf de moradia do professor selecionado, por referÍncia
-*     $P cidade - Cadeia de Caracteres que receber· a cidade de moradia do professor selecionado, por referÍncia
-*     $P bairro - Cadeia de Caracteres que receber· o bairro de moradia do professor selecionado, por referÍncia
-*	  $P rua - Cadeia de Caracteres que receber· o a rua de moradia professor selecionado, por referÍncia
-*     $P numero - Inteiro que receber· o numero da moradia do professor selecionado, por referÍncia
-*     $P complemento - Cadeia de Caracteres que receber· o complemento da moradia do professor selecionado, por referÍncia
+*  $EP Par√¢metros     
+*     $P pais - Cadeia de Caracteres que receber√° o pais de moradia do professor selecionado, por refer√™ncia
+*	  $P uf - Cadeia de Caracteres que receber√° o uf de moradia do professor selecionado, por refer√™ncia
+*     $P cidade - Cadeia de Caracteres que receber√° a cidade de moradia do professor selecionado, por refer√™ncia
+*     $P bairro - Cadeia de Caracteres que receber√° o bairro de moradia do professor selecionado, por refer√™ncia
+*	  $P rua - Cadeia de Caracteres que receber√° o a rua de moradia professor selecionado, por refer√™ncia
+*     $P numero - Inteiro que receber√° o numero da moradia do professor selecionado, por refer√™ncia
+*     $P complemento - Cadeia de Caracteres que receber√° o complemento da moradia do professor selecionado, por refer√™ncia
 *						
 *  $FV Valor retornado
 *     CDO_CondRetOk 
@@ -348,7 +377,7 @@ CDO_tpCondRet CDO_consultaDataNascimento(int *dia, int *mes, int *ano);
 *  Assertiva de Entrada: 
 *		-
 *                    
-*  Assertiva de SaÌda: 
+*  Assertiva de Sa√≠da: 
 *	    -
 *       -
 *
