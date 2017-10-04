@@ -16,9 +16,10 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor Data     	Observações
+*       0.51   BM   04/10/2017	Revisão
 *       0.50   RP   03/10/2017	Documentação
 *       0.40   FA   03/10/2017	Funções busca adicionadas
-*       0.30   MR   03/10/2017	Funções de get/set adicionadas 
+*       0.30   MR   03/10/2017	Funções de consulta/altera adicionadas 
 *       0.20   BM   02/10/2017	Funcoes modelo adicionadas 
 *       0.10   BM   01/10/2017	Inicio do desenvolvimento 
 *
@@ -91,6 +92,7 @@ CDO_tpCondRet CDO_cria(){
 CDO_tpCondRet CDO_cadastra(char *nome, int rg, char *cpf, int matricula, char *email, int telefone, int dia, int mes, int ano, char *pais, char *uf, char *cidade, char *bairro, char *rua, int numero, char *complemento){
 	PRF_ptProfessor prof = NULL;
 	//TODO verificar retorno de PRF_cria
+	//TODO busca
 	PRF_cria(&prof, nome, rg, cpf, matricula, email, telefone, dia, mes, ano, pais, uf, cidade, bairro, rua, numero, complemento);
 	push_back(doc->professores, prof);
 	return CDO_CondRetOk;
@@ -173,6 +175,7 @@ CDO_tpCondRet CDO_libera(){
 CDO_tpCondRet CDO_buscaPorNome(char *chave){
 	PRF_ptProfessor prof = NULL;
 	char nome[80];
+	//TODO tratar nomes repetidos
 	first(doc->professores);
 	do{
 		if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
@@ -187,25 +190,25 @@ CDO_tpCondRet CDO_buscaPorNome(char *chave){
 
  /***************************************************************************
  *
- *  Função: CDO Busca Por Email
+ *  Função: CDO Busca Por RG
  *  ****/
 
-CDO_tpCondRet CDO_buscaPorEmail(char *chave){
+CDO_tpCondRet CDO_buscaPorRg(int chave){
 	PRF_ptProfessor prof = NULL;
-	char email[80];
+	int rg;
 
 	first(doc->professores);
 	do{
 		if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
 			return CDO_CondRetNaoExisteCorpo;
 
-		PRF_consultaEmail(prof, email);
-		if(strcmp(chave, email)==0)
+		PRF_consultaRg(prof, &rg);
+		if(chave == rg) 
 			return CDO_CondRetOk;
 	}while(next(doc->professores)==LIS_CondRetOK);
 
 	return CDO_CondRetProfessorNaoEncontrado;
-}/* Fim função: CDO Busca Por Email */
+}/* Fim função: CDO Busca Por RG */
 
  /***************************************************************************
  *
@@ -230,25 +233,47 @@ CDO_tpCondRet CDO_buscaPorCpf(char *chave){
 
  /***************************************************************************
  *
- *  Função: CDO Busca Por RG
+ *  Função: CDO Busca Por Matricula
  *  ****/
 
-CDO_tpCondRet CDO_buscaPorRg(int chave){
+CDO_tpCondRet CDO_buscaPorMatricula(int chave){
 	PRF_ptProfessor prof = NULL;
-	int rg;
+	int matricula;
 
 	first(doc->professores);
 	do{
 		if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
 			return CDO_CondRetNaoExisteCorpo;
 
-		PRF_consultaRg(prof, &rg);
-		if(chave == rg) 
+		PRF_consultaMatricula(prof, &matricula);
+		if(chave == matricula) 
 			return CDO_CondRetOk;
 	}while(next(doc->professores)==LIS_CondRetOK);
 
 	return CDO_CondRetProfessorNaoEncontrado;
 }/* Fim função: CDO Busca Por RG */
+
+ /***************************************************************************
+ *
+ *  Função: CDO Busca Por Email
+ *  ****/
+
+CDO_tpCondRet CDO_buscaPorEmail(char *chave){
+	PRF_ptProfessor prof = NULL;
+	char email[80];
+
+	first(doc->professores);
+	do{
+		if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
+			return CDO_CondRetNaoExisteCorpo;
+
+		PRF_consultaEmail(prof, email);
+		if(strcmp(chave, email)==0)
+			return CDO_CondRetOk;
+	}while(next(doc->professores)==LIS_CondRetOK);
+
+	return CDO_CondRetProfessorNaoEncontrado;
+}/* Fim função: CDO Busca Por Email */
 
  /***************************************************************************
  *

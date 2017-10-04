@@ -90,8 +90,8 @@
 
 #define		CRIAR_CMD		"=criar"
 #define		CADASTRAR_CMD		"=cadastrar"
-#define		MOSTRARATUAL_CMD	"=mostrarAtual"
-#define		MOSTRARTODOS_CMD	"=mostrarTodos"
+#define		MOSTRAR_ATUAL_CMD	"=mostrarAtual"
+#define		MOSTRAR_TODOS_CMD	"=mostrarTodos"
 #define		RETIRAR_CMD		"=retirar"
 #define		LIMPAR_CMD		"=limpar"
 #define		LIBERAR_CMD		"=liberar"
@@ -108,7 +108,7 @@
 #define		CONSULTA_MATRICULA_CMD		"=consultarMatricula"
 #define		CONSULTA_EMAIL_CMD		"=consultarEmail"
 #define		CONSULTA_TELEFONE_CMD		"=consultarTelefone"
-#define		CONSULTA_DIA_CMD		"=consultarData"
+#define		CONSULTA_DATA_CMD		"=consultarData"
 #define		CONSULTA_ENDERECO_CMD		"=consultarEndereco"
 
 #define		ALTERA_NOME_CMD		"=alterarNome"
@@ -177,6 +177,7 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 	int paramNumeroEsperado;
 	char paramComplementoEsperado[80];
 
+	int paramInt;
 	char paramString[80];
 	
 	int NumLidos = -1 ;
@@ -311,7 +312,7 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 			return TST_CondRetParm;
 		} /* if */
 
-		CondRetObtido = CDO_buscaNome(paramString);
+		CondRetObtido = CDO_buscaPorNome(paramString);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
 				"Retorno errado ao por Nome em Corpo Docente.");
@@ -320,12 +321,12 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 	/* Testar CDO busca Rg Corpo Docente */	
 
 	else if ( strcmp( ComandoTeste , BUSCA_RG_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "ii" , paramInt, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "ii" , &paramInt, &CondRetEsperada );
 		if(NumLidos != 2){
 			return TST_CondRetParm;
 		} /* if */
 
-		CondRetObtido = CDO_buscaRg(paramString);
+		CondRetObtido = CDO_buscaPorRg(paramInt);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
 				"Retorno errado ao por Rg em Corpo Docente.");
@@ -339,7 +340,7 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 			return TST_CondRetParm;
 		} /* if */
 
-		CondRetObtido = CDO_buscaCPF(paramString);
+		CondRetObtido = CDO_buscaPorCpf(paramString);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
 				"Retorno errado ao por CPF em Corpo Docente.");
@@ -348,12 +349,12 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 	/* Testar CDO busca Nome Corpo Docente */	
 
 	else if ( strcmp( ComandoTeste , BUSCA_MATRICULA_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "ii" , paramInt, &CondRetEsperada );
+		NumLidos = LER_LerParametros( "ii" , &paramInt, &CondRetEsperada );
 		if(NumLidos != 2){
 			return TST_CondRetParm;
 		} /* if */
 
-		CondRetObtido = CDO_buscaMatricula(paramString);
+		CondRetObtido = CDO_buscaPorMatricula(paramInt);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
 				"Retorno errado ao por Matricula em Corpo Docente.");
@@ -367,7 +368,7 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 			return TST_CondRetParm;
 		} /* if */
 
-		CondRetObtido = CDO_buscaEmail(paramString);
+		CondRetObtido = CDO_buscaPorEmail(paramString);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
 				"Retorno errado ao por Email em Corpo Docente.");
@@ -484,13 +485,13 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 
 	/* Testar CDO consulta dia professor */
 
-	else if ( strcmp( ComandoTeste , CONSULTA_­DATA_CMD ) == 0 ){
+	else if ( strcmp( ComandoTeste , CONSULTA_DATA_CMD ) == 0 ){
 		NumLidos = LER_LerParametros( "iiii" , &paramDiaEsperado, &paramMesEsperado, &paramAnoEsperado, &CondRetEsperada );
 		if(NumLidos != 4){
 			return TST_CondRetParm;
 		} /* if */
 
-		CondRetObtido = CDO_consultaDataNascimento(&paramDia,&paramMes,&paramAno,&valorObtido);
+		CondRetObtido = CDO_consultaDataNascimento(&paramDia,&paramMes,&paramAno);
 
 		Ret = TST_CompararInt(CondRetEsperada, CondRetObtido,
 				"Retorno errado ao consultar Data de um professor em Corpo Docente.");
@@ -645,7 +646,7 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 			return TST_CondRetParm;
 		} /* if */
 
-		CondRetObtido = CDO_alteraData(paramDia, paramMes, paramAno);
+		CondRetObtido = CDO_alteraDataNascimento(paramDia, paramMes, paramAno);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
 				"Retorno errado ao alterar Data de um professor em Corpo Docente.");
@@ -659,7 +660,7 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
 			return TST_CondRetParm;
 		} /* if */
 
-		CondRetObtido = CDO_alteraEndereco(paramPais, paramUf, paramCidade, paramBairro, paramRua, &paramNumero, paramComplemento);
+		CondRetObtido = CDO_alteraEndereco(paramPais, paramUf, paramCidade, paramBairro, paramRua, paramNumero, paramComplemento);
 
 		return TST_CompararInt(CondRetEsperada, CondRetObtido,
 				"Retorno errado ao alterar Endereco de um professor em Corpo Docente.");
