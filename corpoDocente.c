@@ -16,7 +16,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor Data     	Observações
-*       0.50   FA   03/10/2017	Funções busca adicionadas
+*       0.50   RP   03/10/2017	Documentação
 *       0.40   FA   03/10/2017	Funções busca adicionadas
 *       0.30   MR   03/10/2017	Funções de get/set adicionadas 
 *       0.20   BM   02/10/2017	Funcoes modelo adicionadas 
