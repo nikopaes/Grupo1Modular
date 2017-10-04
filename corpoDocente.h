@@ -17,7 +17,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão	Autor		Data		Observações
-*       0.01   BM   02/10/2017	Protótipos adicionados 
+*       0.02   BM   02/10/2017	Protótipos adicionados 
 *       0.01   BM   02/10/2017	Funcoes modelo adicionadas 
 *       0.00   BM   01/10/2017	Inicio do desenvolvimento 
 *

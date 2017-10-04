@@ -16,13 +16,14 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor Data     	Observações
-*       0.01   MR   03/10/2017	Funções de get/set adicionadas 
+*       0.03   RP   03/10/2017	Documentação e comentarios
+*       0.02   MR   03/10/2017	Funções de get/set adicionadas 
 *       0.01   BM   02/10/2017	Funcoes modelo adicionadas 
 *       0.00   BM   01/10/2017	Inicio do desenvolvimento 
 *
 *  $ED Descrição do módulo
-*     TODO
-*
+*     Este módulo contém as funções específicas para manipular os professores na lista de corpo docente.
+*     Este módulo utiliza funcões de interface do modulo professor.
 ***************************************************************************/
 
 
