@@ -165,7 +165,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro nome recebe o Nome desse professor.
@@ -193,7 +193,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro rg recebe o RG desse professor.
@@ -219,7 +219,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro cpf recebe o CPF desse professor.
@@ -245,7 +245,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro matricula recebe o Matricula desse professor.
@@ -271,7 +271,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro email recebe o Email desse professor.
@@ -297,7 +297,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro telefone recebe o Telefone desse professor.
@@ -323,7 +323,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro dia recebe o Dia de Nascimento desse professor.
@@ -349,7 +349,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro mes recebe o Mês de Nascimento desse professor.
@@ -375,7 +375,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro ano recebe o Ano de Nascimento desse professor.
@@ -401,7 +401,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro pais recebe o País desse professor.
@@ -427,7 +427,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro uf recebe o UF desse professor.
@@ -453,7 +453,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro cidade recebe o Cidade desse professor.
@@ -479,7 +479,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro bairro recebe o Bairro desse professor.
@@ -505,7 +505,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro rua recebe o Rua desse professor.
@@ -531,7 +531,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro numero recebe o numero da moradia desse professor.
@@ -557,7 +557,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetNaoExisteProf
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido o ponteiro complemento recebe o Complemento da moradia desse professor.
@@ -589,7 +589,7 @@ PRF_tpCondRet PRF_mostra(Prof* professor);
 *     PRF_CondRetFormatoInvalido - Formato inválido do dado a ser atribuído.
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido e o parâmetro nome esteja num formato válido o 
@@ -620,7 +620,7 @@ PRF_tpCondRet PRF_alteraNome(Prof* professor, char* nome);
 *     PRF_CondRetFormatoInvalido - Formato inválido do dado a ser atribuído.
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido e o parâmetro rg esteja num formato válido o 
@@ -651,7 +651,7 @@ PRF_tpCondRet PRF_alteraRg(Prof* professor, int rg);
 *     PRF_CondRetFormatoInvalido - Formato inválido do dado a ser atribuído.
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido e o parâmetro cpf esteja num formato válido o 
@@ -682,7 +682,7 @@ PRF_tpCondRet PRF_alteraCpf(Prof* professor, char* cpf);
 *     PRF_CondRetFormatoInvalido - Formato inválido do dado a ser atribuído.
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido e o parâmetro matricula esteja num formato válido o 
@@ -713,7 +713,7 @@ PRF_tpCondRet PRF_alteraMatricula(Prof* professor, int matricula);
 *     PRF_CondRetFormatoInvalido - Formato inválido do dado a ser atribuído.
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido e o parâmetro email esteja num formato válido o 
@@ -744,7 +744,7 @@ PRF_tpCondRet PRF_alteraEmail(Prof* professor, char* email);
 *     PRF_CondRetFormatoInvalido - Formato inválido do dado a ser atribuído.
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido e o parâmetro tel esteja num formato válido o 
@@ -777,7 +777,7 @@ PRF_tpCondRet PRF_alteraTelefone(Prof* professor, int tel);
 *     PRF_CondRetFormatoInvalido - Formato inválido do dado a ser atribuído.
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido e os parâmetros dia, mes e ano esteja em formatos válidos o 
@@ -808,7 +808,7 @@ PRF_tpCondRet PRF_alteraDataNascimento(Prof* professor, int dia, int mes, int an
 *     PRF_CondRetFormatoInvalido - Formato inválido do dado a ser atribuído.
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido e o parâmetro pais esteja num formato válido o 
@@ -839,7 +839,7 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais);
 *     PRF_CondRetFormatoInvalido - Formato inválido do dado a ser atribuído.
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido e o parâmetro uf esteja num formato válido o 
@@ -870,7 +870,7 @@ PRF_tpCondRet PRF_alteraUf(Prof* professor, char* uf);
 *     PRF_CondRetFormatoInvalido - Formato inválido do dado a ser atribuído.
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido e o parâmetro cidade esteja num formato válido o 
@@ -901,7 +901,7 @@ PRF_tpCondRet PRF_alteraCidade(Prof* professor, char* cidade);
 *     PRF_CondRetFormatoInvalido - Formato inválido do dado a ser atribuído.
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido e o parâmetro bairro esteja num formato válido o 
@@ -932,7 +932,7 @@ PRF_tpCondRet PRF_alteraBairro(Prof* professor, char* bairro);
 *     PRF_CondRetFormatoInvalido - Formato inválido do dado a ser atribuído.
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido e o parâmetro rua esteja num formato válido o 
@@ -963,7 +963,7 @@ PRF_tpCondRet PRF_alteraRua(Prof* professor, char* rua);
 *     PRF_CondRetFormatoInvalido - Formato inválido do dado a ser atribuído.
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido e o parâmetro numero esteja num formato válido o 
@@ -994,7 +994,7 @@ PRF_tpCondRet PRF_alteraNumero(Prof* professor, int numero);
 *     PRF_CondRetFormatoInvalido - Formato inválido do dado a ser atribuído.
 *
 *  Assertiva de Entrada: 
-*		-professor aponta para um Professor.
+*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido e o parâmetro complemento esteja num formato válido o 
