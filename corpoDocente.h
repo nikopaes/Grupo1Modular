@@ -16,17 +16,19 @@
 *			Rodrigo Pumar, RP.
 *
 *  $HA Histórico de evolução:
-*     Versão	Autor		Data		Observações
-	0.31   NP   03/10/2017 	Documentação iniciada
-*       0.30   BM   02/10/2017	Protótipos adicionados 
-*       0.20   BM   02/10/2017	Funcoes modelo adicionadas 
-*       0.10   BM   01/10/2017	Inicio do desenvolvimento 
+*     Versão	Autor	Data		Observações
+	0.32   BM/RP	03/10/2017 	Revisão
+	0.31   NP	03/10/2017 	Documentação iniciada
+*       0.30   BM	02/10/2017	Protótipos adicionados 
+*       0.20   BM	02/10/2017	Funcoes modelo adicionadas 
+*       0.10   BM	01/10/2017	Inicio do desenvolvimento 
 *
 *  $ED Descrição do módulo
 *	  TODO
 *
 ***************************************************************************/
 typedef enum{
+	CDO_CondRetOk,
 	//TODO documentar os comentarios neste enum corretamente
 	CDO_CondRetNaoHaMemoria,
 	CDO_CondRetCorpoDocenteVazio,
@@ -153,7 +155,7 @@ CDO_tpCondRet CDO_buscaPorCpf(char *chave);
 *
 ***********************************************************************/
 
-CDO_tpCondRet CDO_buscaPorMatricula(int *chave);
+CDO_tpCondRet CDO_buscaPorMatricula(int chave);
 
 /***********************************************************************
 *
