@@ -59,14 +59,34 @@ LIS_limpa clear
 LIS_libera del
 */
 
-// TODO colocar isso no professor.h
-typedef Prof *PRF_ptProfessor;
+
+/***********************************************************************
+*
+*  $TC Tipo de dados: *PRF_ptProfessor
+*
+*  $ED Descrição do tipo
+*     Ponteiro para estrutura Prof do modulo professor
+*
+***********************************************************************/
+typedef Prof *PRF_ptProfessor;// TODO colocar isso no professor.h
+
+/*****  Código das funções exportadas pelo módulo  *****/
+
+/***************************************************************************
+*
+*  Função: CDO Criar Lista de Corpo Docente
+*  ****/
 
 CDO_tpCondRet CDO_cria(){
 	doc = (CorpoDocente*) malloc(sizeof(CorpoDocente));
 	createList(&doc->professores);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Criar Lista de Corpo Docente */
+
+/***************************************************************************
+*
+*  Função: CDO Cadastrar Professor
+*  ****/
 
 CDO_tpCondRet CDO_cadastra(char *nome, int rg, char *cpf, int matricula, char *email, int telefone, int dia, int mes, int ano, char *pais, char *uf, char *cidade, char *bairro, char *rua, int numero, char *complemento){
 	PRF_ptProfessor prof = NULL;
@@ -74,14 +94,25 @@ CDO_tpCondRet CDO_cadastra(char *nome, int rg, char *cpf, int matricula, char *e
 	PRF_cria(&prof, nome, rg, cpf, matricula, email, telefone, dia, mes, ano, pais, uf, cidade, bairro, rua, numero, complemento);
 	push_back(doc->professores, prof);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Cadastrar Professor */
+
+/***************************************************************************
+*
+*  Função: CDO Mostra Atual
+*  ****/
 
 CDO_tpCondRet CDO_mostraAtual(){
 	PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_mostra(prof);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Mostra Atual */
+
+ /***************************************************************************
+ *
+ *  Função: CDO Mosta Todos Professores
+ *  ****/
+
 CDO_tpCondRet CDO_mostraTodos(){
 	PRF_ptProfessor prof = NULL;
 	first(doc->professores);
@@ -91,12 +122,23 @@ CDO_tpCondRet CDO_mostraTodos(){
 		PRF_mostra(prof);
 	}while(next(doc->professores)==LIS_CondRetOK);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Mosta Todos Professores */
+
+ /***************************************************************************
+ *
+ *  Função: CDO Limpa Lista
+ *  ****/
 
 CDO_tpCondRet CDO_limpa(){
 	clear(doc->professores);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Limpa Lista */
+
+ /***************************************************************************
+ *
+ *  Função: CDO Retira da Lista
+ *  ****/
+
 CDO_tpCondRet CDO_retira(){
 	void *nulo;
 	pop_cursor(doc->professores, &nulo);
@@ -111,11 +153,22 @@ CDO_tpCondRet CDO_retira(){
 		Para contornar isso, a gambiarra acima foi usada
 	*/
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Retira da Lista */
+
+ /***************************************************************************
+ *
+ *  Função: CDO Libera
+ *  ****/
+
 CDO_tpCondRet CDO_libera(){
 	del(doc->professores);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Libera */
+
+ /***************************************************************************
+ *
+ *  Função: CDO Busca Por Nome
+ *  ****/
 
 CDO_tpCondRet CDO_buscaPorNome(char *chave){
 	PRF_ptProfessor prof = NULL;
@@ -130,7 +183,12 @@ CDO_tpCondRet CDO_buscaPorNome(char *chave){
 	}while(next(doc->professores)==LIS_CondRetOK);
 
 	return CDO_CondRetProfessorNaoEncontrado;
-}
+}/* Fim função: CDO Busca Por Nome */
+
+ /***************************************************************************
+ *
+ *  Função: CDO Busca Por Email
+ *  ****/
 
 CDO_tpCondRet CDO_buscaPorEmail(char *chave){
 	PRF_ptProfessor prof = NULL;
@@ -147,8 +205,12 @@ CDO_tpCondRet CDO_buscaPorEmail(char *chave){
 	}while(next(doc->professores)==LIS_CondRetOK);
 
 	return CDO_CondRetProfessorNaoEncontrado;
-}
+}/* Fim função: CDO Busca Por Email */
 
+ /***************************************************************************
+ *
+ *  Função: CDO Busca Por CPF
+ *  ****/
 CDO_tpCondRet CDO_buscaPorCpf(char *chave){
 	PRF_ptProfessor prof = NULL;
 	char cpf[80];
@@ -164,7 +226,12 @@ CDO_tpCondRet CDO_buscaPorCpf(char *chave){
 	}while(next(doc->professores)==LIS_CondRetOK);
 
 	return CDO_CondRetProfessorNaoEncontrado;
-}
+}/* Fim função: CDO Busca Por CPF */
+
+ /***************************************************************************
+ *
+ *  Função: CDO Busca Por RG
+ *  ****/
 
 CDO_tpCondRet CDO_buscaPorRg(int chave){
 	PRF_ptProfessor prof = NULL;
@@ -181,51 +248,78 @@ CDO_tpCondRet CDO_buscaPorRg(int chave){
 	}while(next(doc->professores)==LIS_CondRetOK);
 
 	return CDO_CondRetProfessorNaoEncontrado;
-}
+}/* Fim função: CDO Busca Por RG */
 
-
+ /***************************************************************************
+ *
+ *  Função: CDO Consulta Nome
+ *  ****/
 CDO_tpCondRet CDO_consultaNome(char *nome){
 	PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_consultaNome(prof, nome);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Consulta Nome*/
 
+ /***************************************************************************
+ *
+ *  Função: CDO Consulta RG
+ *  ****/
 CDO_tpCondRet CDO_consultaRg(int *rg){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_consultaRg(prof,rg);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Consulta RG */
 
+ /***************************************************************************
+ *
+ *  Função: CDO Consulta CPF
+ *  ****/
 CDO_tpCondRet CDO_consultaCpf(char *cpf){
 	PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_consultaCpf(prof, cpf);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Consulta CPF*/
 
+ /***************************************************************************
+ *
+ *  Função: CDO Consulta Matricula
+ *  ****/
 CDO_tpCondRet CDO_consultaMatricula(int *matricula){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_consultaMatricula(prof,matricula);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Consulta Matricula*/
 
+ /***************************************************************************
+ *
+ *  Função: CDO Consulta Email
+ *  ****/
 CDO_tpCondRet CDO_consultaEmail(char *email){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_consultaEmail(prof, email);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Consulta Email*/
 
+ /***************************************************************************
+ *
+ *  Função: CDO Consulta Telefone
+ *  ****/
 CDO_tpCondRet CDO_consultaTelefone(int *tel){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_consultaTelefone(prof, tel);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Consulta Telefone*/
 
+ /***************************************************************************
+ *
+ *  Função: CDO Consulta Data de Nascimento
+ *  ****/
 CDO_tpCondRet CDO_consultaDataNascimento(int *dia, int *mes, int *ano){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
@@ -233,7 +327,12 @@ CDO_tpCondRet CDO_consultaDataNascimento(int *dia, int *mes, int *ano){
 	PRF_consultaMesNascimento(prof, mes);
 	PRF_consultaAnoNascimento(prof, ano);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Consulta Telefone*/
+
+ /***************************************************************************
+ *
+ *  Função: CDO Consulta Endereço
+ *  ****/
 CDO_tpCondRet CDO_consultaEndereco(char *pais, char *uf, char *cidade, char *bairro, char *rua, int *numero, char *complemento){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
@@ -245,57 +344,89 @@ CDO_tpCondRet CDO_consultaEndereco(char *pais, char *uf, char *cidade, char *bai
 	PRF_consultaNumero(prof,numero);
 	PRF_consultaComplemento(prof,complemento);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Consulta Endereço*/
 
+ /***************************************************************************
+ *
+ *  Função: CDO Altera Nome
+ *  ****/
 CDO_tpCondRet CDO_alteraNome(char *nome){
 	PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_alteraNome(prof, nome);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Altera Nome*/
 
+ /***************************************************************************
+ *
+ *  Função: CDO Altera RG
+ *  ****/
 CDO_tpCondRet CDO_alteraRg(int rg){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_alteraRg(prof,rg);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Altera RG*/
 
+ /***************************************************************************
+ *
+ *  Função: CDO Altera CPF
+ *  ****/
 CDO_tpCondRet CDO_alteraCpf(char *cpf){
 	PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_alteraCpf(prof, cpf);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Altera CPF*/
 
+ /***************************************************************************
+ *
+ *  Função: CDO Altera Matricula
+ *  ****/
 CDO_tpCondRet CDO_alteraMatricula(int matricula){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_alteraMatricula(prof, matricula);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Altera Matricula*/
 
+ /***************************************************************************
+ *
+ *  Função: CDO Altera Email
+ *  ****/
 CDO_tpCondRet CDO_alteraEmail(char* email){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_alteraEmail(prof, email);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Altera Email*/
 
+ /***************************************************************************
+ *
+ *  Função: CDO Altera Telefone
+ *  ****/
 CDO_tpCondRet CDO_alteraTelefone(int tel){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_alteraTelefone(prof, tel);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Altera Telefone*/
 
+ /***************************************************************************
+ *
+ *  Função: CDO Altera Data de Nascimento
+ *  ****/
 CDO_tpCondRet CDO_alteraDataNascimento(int dia, int mes, int ano){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
 	PRF_alteraDataNascimento(prof, dia, mes, ano);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Altera Data de Nascimento*/
 
+ /***************************************************************************
+ *
+ *  Função: CDO Altera Endereco
+ *  ****/
 CDO_tpCondRet CDO_alteraEndereco(char *pais, char *uf, char *cidade, char *bairro, char *rua, int numero, char *complemento){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
@@ -307,4 +438,4 @@ CDO_tpCondRet CDO_alteraEndereco(char *pais, char *uf, char *cidade, char *bairr
 	PRF_alteraNumero(prof,numero);
 	PRF_alteraComplemento(prof,complemento);
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Altera Endereco*/
