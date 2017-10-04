@@ -1,11 +1,11 @@
 /***************************************************************************
 *
-*  $MCD MÃ³dulo de definiÃ§Ã£o: MÃ³dulo Corpo Docente
+*  $MCD Módulo de definição: Módulo Corpo Docente
 *
 *  Arquivo gerado:              corpoDocente.h
 *  Letras identificadoras:      CDO
 *
-*  Nome da base de software:    Fonte do mÃ³dulo Corpo Docente
+*  Nome da base de software:    Fonte do módulo Corpo Docente
 *
 *  Projeto: Disciplina INF 1301
 *  Gestor:  DI/PUC-Rio
@@ -15,18 +15,18 @@
 *			Mariana Ruddy, MR
 *			Rodrigo Pumar, RP.
 *
-*  $HA HistÃ³rico de evoluÃ§Ã£o:
-*     VersÃ£o	Autor		Data		ObservaÃ§Ãµes
-*       0.02   BM   02/10/2017	ProtÃ³tipos adicionados 
+*  $HA Histórico de evolução:
+*     Versão	Autor		Data		Observações
+*       0.01   BM   02/10/2017	Protótipos adicionados 
 *       0.01   BM   02/10/2017	Funcoes modelo adicionadas 
 *       0.00   BM   01/10/2017	Inicio do desenvolvimento 
 *
-*  $ED DescriÃ§Ã£o do mÃ³dulo
+*  $ED Descrição do módulo
 *	  TODO
 *
 ***************************************************************************/
 typedef enum{
-	CDO_CondRetOk
+	CDO_CondRetOk,
 	CDO_CondRetNaoHaMemoria,
 	CDO_CondRetNaoExisteCorpo,
 	CDO_CondRetProfessorNaoEncontrado,
@@ -43,6 +43,9 @@ CDO_tpCondRet CDO_limpa();
 CDO_tpCondRet CDO_libera();
 
 CDO_tpCondRet CDO_buscaNome(char *chave);
+CDO_tpCondRet CDO_buscaPorEmail(char *chave);
+CDO_tpCondRet CDO_buscaPorCpf(char *chave);
+CDO_tpCondRet CDO_buscaPorRg(int chave);
 
 CDO_tpCondRet CDO_consultaNome(char *nome);
 CDO_tpCondRet CDO_consultaRg(int *rg);

@@ -1,10 +1,10 @@
 /***************************************************************************
-*  $MCI MÃ³dulo de implementaÃ§Ã£o: MÃ³dulo Corpo Docente
+*  $MCI Módulo de implementação: Módulo Corpo Docente
 *
 *  Arquivo gerado:              corpoDocente.C
 *  Letras identificadoras:      CDO
 *
-*  Nome da base de software:    Fonte do mÃ³dulo Corpo Docente
+*  Nome da base de software:    Fonte do módulo Corpo Docente
 *
 *  Projeto: Disciplina INF 1301
 *  Gestor:  DI/PUC-Rio
@@ -14,16 +14,15 @@
 *			Mariana Ruddy, MR
 *			Rodrigo Pumar, RP.
 *
-*  $HA HistÃ³rico de evoluÃ§Ã£o:
-*     VersÃ£o  Autor Data     	ObservaÃ§Ãµes
-*       0.03   RP   03/10/2017	DocumentaÃ§Ã£o e comentarios
-*       0.02   MR   03/10/2017	FunÃ§Ãµes de get/set adicionadas 
+*  $HA Histórico de evolução:
+*     Versão  Autor Data     	Observações
+*       0.01   MR   03/10/2017	Funções de get/set adicionadas 
 *       0.01   BM   02/10/2017	Funcoes modelo adicionadas 
 *       0.00   BM   01/10/2017	Inicio do desenvolvimento 
 *
-*  $ED DescriÃ§Ã£o do mÃ³dulo
-*     Este mÃ³dulo contÃ©m as funÃ§Ãµes especÃ­ficas para manipular os professores na lista de corpo docente.
-*     Este mÃ³dulo utiliza funcÃµes de interface do modulo professor.
+*  $ED Descrição do módulo
+*     TODO
+*
 ***************************************************************************/
 
 
@@ -35,13 +34,10 @@
 #include "listas.h"
 
 /*
-
-QUESTÃƒO PARA DISCUTIR:
-
-	Pode parecer estranho ter feito uma estrutura para armazenar apenas uma variÃ¡vel.	
-NÃ£o sei se durante a execuÃ§Ã£o do programa precisaremos de mais do que um corpo docente. O formato que estÃ¡ pode ser facilmente alterado para suportar mais de uma instÃ¢ncia.	
-	Basta colocar um parametro "doc", ponteiro para um corpo docente em cada variÃ¡vel, e retirar o "doc" que estÃ¡ no mÃ³dulo.
-
+QUESTÃO PARA DISCUTIR:
+	Pode parecer estranho ter feito uma estrutura para armazenar apenas uma variável.	
+Não sei se durante a execução do programa precisaremos de mais do que um corpo docente. O formato que está pode ser facilmente alterado para suportar mais de uma instância.	
+	Basta colocar um parametro "doc", ponteiro para um corpo docente em cada variável, e retirar o "doc" que está no módulo.
 */
 
 
@@ -104,14 +100,12 @@ CDO_tpCondRet CDO_retira(){
 	pop_cursor(doc->professores, &nulo);
 	//pop_cursor(doc->professores, NULL);
 	/* TODO 
-		colocar uma verificaÃ§Ã£o na lista para ponteiros nulos.
-		Assim serÃ¡ possÃ­vel usar a funÃ§Ã£o pop sem retornar.
-		Sem precisar criar uma funÃ§Ã£o sÃ³ para isso.
-
-		a funÃ§Ã£o pop da lista tenta deferenciar o ponteiro passado,
+		colocar uma verificação na lista para ponteiros nulos.
+		Assim será possível usar a função pop sem retornar.
+		Sem precisar criar uma função só para isso.
+		a função pop da lista tenta deferenciar o ponteiro passado,
 		passar null pode quebrar o programa,
-		nÃ£o Ã© possivel passar &null
-
+		não é possivel passar &null
 		Para contornar isso, a gambiarra acima foi usada
 	*/
 	return CDO_CondRetOk;
@@ -121,18 +115,70 @@ CDO_tpCondRet CDO_libera(){
 	return CDO_CondRetOk;
 }
 
-CDO_tpCondRet CDO_buscaNome(char *chave){
+CDO_tpCondRet CDO_buscaPorNome(char *chave){
 	PRF_ptProfessor prof = NULL;
 	char nome[80];
 	first(doc->professores);
 	do{
-		//TODO verificar retorno de get_val
-		get_val_cursor(doc->professores, (void**) &prof);
+		if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
+			return CDO_CondRetNaoExisteCorpo;
+
 		PRF_consultaNome(prof, nome);
-		if(strcmp(chave, nome)==0) return CDO_CondRetOk;// TODO trocar para condRet_achei?
+		if(strcmp(chave, nome)==0) return CDO_CondRetOk;
 	}while(next(doc->professores)==LIS_CondRetOK);
-	//return CDO_naoAchei;
-	return CDO_CondRetOk;
+
+	return CDO_CondRetProfessorNaoEncontrado;
+}
+
+CDO_tpCondRet CDO_buscaPorEmail(char *chave){
+	PRF_ptProfessor prof = NULL;
+	char email[80];
+
+	first(doc->professores);
+	do{
+		if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
+			return CDO_CondRetNaoExisteCorpo;
+
+		PRF_consultaEmail(prof, email);
+		if(strcmp(chave, email)==0)
+			return CDO_CondRetOk;
+	}while(next(doc->professores)==LIS_CondRetOK);
+
+	return CDO_CondRetProfessorNaoEncontrado;
+}
+
+CDO_tpCondRet CDO_buscaPorCpf(char *chave){
+	PRF_ptProfessor prof = NULL;
+	char cpf[80];
+
+	first(doc->professores);
+	do{
+		if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
+			return CDO_CondRetNaoExisteCorpo;
+
+		PRF_consultaCpf(prof, cpf);
+		if(strcmp(chave, cpf)==0)
+			return CDO_CondRetOk;
+	}while(next(doc->professores)==LIS_CondRetOK);
+
+	return CDO_CondRetProfessorNaoEncontrado;
+}
+
+CDO_tpCondRet CDO_buscaRg(int chave){
+	PRF_ptProfessor prof = NULL;
+	int rg;
+
+	first(doc->professores);
+	do{
+		if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
+			return CDO_CondRetNaoExisteCorpo;
+
+		PRF_consultaRg(prof, &rg);
+		if(chave == rg) 
+			return CDO_CondRetOk;
+	}while(next(doc->professores)==LIS_CondRetOK);
+
+	return CDO_CondRetProfessorNaoEncontrado;
 }
 
 
@@ -146,7 +192,7 @@ CDO_tpCondRet CDO_consultaNome(char *nome){
 CDO_tpCondRet CDO_consultaRg(int *rg){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_PRF_consultaRg(prof,rg);
+	PRF_consultaRg(prof,rg);
 	return CDO_CondRetOk;
 }
 
@@ -223,7 +269,7 @@ CDO_tpCondRet CDO_alteraCpf(char *cpf){
 CDO_tpCondRet CDO_alteraMatricula(int matricula){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_alteraMatricula(prof,matricula);
+	PRF_alteraMatricula(prof, matricula);
 	return CDO_CondRetOk;
 }
 
@@ -244,7 +290,7 @@ CDO_tpCondRet CDO_alteraTelefone(int tel){
 CDO_tpCondRet CDO_alteraDataNascimento(int dia, int mes, int ano){
     PRF_ptProfessor prof = NULL;
 	get_val_cursor(doc->professores, (void**) &prof);
-	PRF_alteraDataNascimento(prof, &dia, &mes, &ano);
+	PRF_alteraDataNascimento(prof, dia, mes, ano);
 	return CDO_CondRetOk;
 }
 
@@ -260,4 +306,3 @@ CDO_tpCondRet CDO_alteraEndereco(char *pais, char *uf, char *cidade, char *bairr
 	PRF_alteraComplemento(prof,complemento);
 	return CDO_CondRetOk;
 }
-
