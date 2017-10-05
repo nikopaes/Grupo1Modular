@@ -47,34 +47,6 @@ CDO_tpCondRet CDO_libera();
 
 /***********************************************************************
 *
-*  $FC Função: CDO Busca por Nome
-*
-*  $ED Descrição da função
-*     Busca no Corpo Docente (Lista de Professores) um Professor pelo Nome
-*
-*  $EP Parâmetros
-*     
-*     $P chave - Nome do Professor que deseja buscar no corpo Docente
-*						
-*  $FV Valor retornado
-*     CDO_CondRetOk 
-*     CDO_CondRetProfessorNaoEncontrado - Instância de professor desejada não encontrada não encontrado no Corpo Docente
-*     CDO_CondRetNaoExisteCorpo - Caso não exista uma Instância de Corpo Docente 
-*
-*  Assertiva de Entrada: 
-*		-A chave tem até 80 caracteres
-*                    
-*  Assertiva de Saída: 
-*		-Caso exista uma instância de Professor com o Nome igual aquele enviado para a função via parâmetro a função retorno condição OK
-*		-Caso não exista uma instância de Professor com o Nome igual aquele enviado para a funcão via parâmetro a função retorna condição de Prof não encontrado
-*		-Caso não exista Corpo Docente válido a função retorna Não Existe Corpo
-*
-***********************************************************************/
-
-CDO_tpCondRet CDO_buscaPorNome(char *chave);
-
-/***********************************************************************
-*
 *  $FC Função: CDO Busca por RG
 *
 *  $ED Descrição da função

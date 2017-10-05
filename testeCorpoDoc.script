@@ -129,7 +129,7 @@
 //Verificando consultas ------------------------------------------------
 
 ==Movendo cursor para o segundo
-=buscarNome nomeSegundo OK
+=buscarMatricula matriculaSegundo OK
 
 ==Verificar consulta nome
 =consultarNome nomeSegundo OK
@@ -158,7 +158,7 @@
 //Verificando alteras-------------------------------------
 
 ==Movendo cursor para o Terceiro
-=buscarNome nomeTerceiro OK
+=buscarMatricula matriculaTerceiro OK
 
 ==Movendo mostrar todos
 =mostrarTodos OK
@@ -170,7 +170,7 @@
 =mostrarAtual OK
 
 ==Movendo cursor para o Primeiro
-=buscarNome nome OK
+=buscarMatricula matricula OK
 
 ==Verificar altera nome
 =alterarNome nomeTerceiro OK
@@ -241,7 +241,7 @@
 //Verificando buscas ---------------------------------------------
 
 ==Verificar busca por valor inexistente
-=buscarNome nome ProfessorNaoEncontrado
+=buscarMatricula matricula ProfessorNaoEncontrado
 
 //Verificacoes de memória-----------------------------------------
 

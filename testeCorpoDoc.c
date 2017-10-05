@@ -96,7 +96,6 @@
 #define		LIMPAR_CMD		"=limpar"
 #define		LIBERAR_CMD		"=liberar"
 
-#define		BUSCA_NOME_CMD		"=buscarNome"
 #define		BUSCA_RG_CMD		"=buscarRg"
 #define		BUSCA_CPF_CMD		"=buscarCPF"
 #define		BUSCA_MATRICULA_CMD	"=buscarMatricula"
@@ -303,20 +302,6 @@ TST_tpCondRet TST_EfetuarComando(char * ComandoTeste){
                                     "Retorno errado ao liberar Corpo Docente." );
 
          } /* fim ativa: Testar CDO liberar Corpo Docente */
-
-	/* Testar CDO busca Nome Corpo Docente */	
-
-	else if ( strcmp( ComandoTeste , BUSCA_NOME_CMD ) == 0 ){
-		NumLidos = LER_LerParametros( "si" , paramString, &CondRetEsperada );
-		if(NumLidos != 2){
-			return TST_CondRetParm;
-		} /* if */
-
-		CondRetObtido = CDO_buscaPorNome(paramString);
-
-		return TST_CompararInt(CondRetEsperada, CondRetObtido,
-				"Retorno errado ao buscar por Nome em Corpo Docente.");
-	} /* fim ativa: Testar CDO busca Nome Corpo Docente  */
 
 	/* Testar CDO busca Rg Corpo Docente */	
 
