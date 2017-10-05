@@ -16,7 +16,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*       1.00   BM   03/10/2017 Desenvolvimento para T1
+*       0.10   BM   03/10/2017 Desenvolvimento para T2
 *
 *  $ED Descrição do módulo
 *     Este modulo contém as funções específicas para o teste do
@@ -24,22 +24,25 @@
 *     de teste específicos utilizando o arcabouço de teste para C.
 *
 *  $EIU Interface com o usuário pessoa
-*     Comandos de teste específicos para testar o módulo professor:
+*     Comandos de teste específicos para testar o módulo corpo docente:
 *
-*     "=criar
-*     "=cadastrar"  <int>index <string>nome <int>rg <string>pais <string>cpf 
+*     "=criar"
+*     "=cadastrar" <string>nome <int>rg <string>pais <string>cpf 
 *				<string>cpf <int>matricula <string>email <int> telefone 
 *				<int>dia <int>mes <int>ano <string>pais <string>uf <string>cidade
-*				<string>bairro <string>rua <int>numero <string>complemento <int>CondRetEsperada  
+*				<string>bairro <string>rua <int>numero <string>complemento  
 *					- chama a função: 
 *					CDO_cria(char *nome, int rg, char *cpf, 
 *					int matricula, char *email, int telefone, 
 *					int dia, int mes, int ano, char *pais, char *uf, *cidade, 
 *					 char *bairro, char *rua, int numero, char *complemento);
-*					- Para o parametro "Prof** professor" é dado o indice do vetor criado neste codigo.
-*     "=mostrar" 
-*                   - chama a função CDO_mostra(Prof* p)
-*     "=liberar"    - chama a função CDO_libera(Prof** p)
+*     "=mostrarAtual" 
+*                   - chama a função CDO_mostraAtual()
+*     "=mostrarTodos" 
+*                   - chama a função CDO_mostraTodos()
+*     "=retirar"    - chama a função CDO_libera()
+*     "=limpar"    - chama a função CDO_limpa()
+*     "=liberar"    - chama a função CDO_libera()
 *
 *     "=consultaNome"        chama a função CDO_consultaNome 	      <string>nome
 *	  "=consultaRg"          chama a função CDO_consultaRg 		      <int>rg
@@ -50,13 +53,10 @@
 *	  "=consultaDia"         chama a função CDO_consultaDia           <int>dia
 *	  "=consultaMes"         chama a função CDO_consultaMes           <int>mes
 *	  "=consultaAno"         chama a função CDO_consultaAno           <int>ano
-*	  "=consultaPais"        chama a função CDO_consultaPais          <string>pais
-*	  "=consultaUf"          chama a função CDO_consultaUf            <string>uf
-*	  "=consultaCidade"      chama a função CDO_consultaCidade        <string>cidade
-*	  "=consultaBairro"      chama a função CDO_consultaBairro        <string>bairro
-*	  "=consultaRua"         chama a função CDO_consultaRua           <string>rua
-*	  "=consultaNumero"      chama a função CDO_consultaNumero        <int>numero
-*	  "=consultaComplemento" chama a função CDO_consultaComplemento   <string>complemento
+*	  "=consultaEndereco"     chama a função CDO_consultaEndereco       <string>pais <string>uf
+									<string>cidade <string>bairro
+									<string>rua <int>numero
+									 <string>complemento
 *
 *    	  "=buscaRg"           chama a função CDO_buscaRg 		<int>rg
 *	  "=buscarCpf"          chama a função CDO_buscaCpf            <string>cpf
@@ -70,13 +70,10 @@
 *	  "=alterarEmail"        chama a função CDO_alteraEmail          <string>email
 *	  "=alterarTelefone"     chama a função CDO_alteraTelefone       <int>telefone
 *	  "=alterarData "        chama a função CDO_alteraDataNascimento <int>dia <int>mes <int>ano
-*	  "=alterarPais"         chama a função CDO_alteraPais           <string>pais
-*	  "=alterarUf"           chama a função CDO_alteraUf             <string>uf
-*	  "=alterarCidade"       chama a função CDO_alteraCidade         <string>cidade
-*	  "=alterarBairro"       chama a função CDO_alteraBairro         <string>bairro
-*	  "=alterarRua"          chama a função CDO_alteraRua            <string>rua
-*	  "=alterarNumero"       chama a função CDO_alteraNumero         <int>numero
-*	  "=alterarComplemento"  chama a função CDO_alteraComplemento    <string>complemento
+*	  "=alterarEndereco"     chama a função CDO_alteraEndereco       <string>pais <string>uf
+									<string>cidade <string>bairro
+									<string>rua <int>numero
+									 <string>complemento
 *
 ***************************************************************************/
 
@@ -122,7 +119,7 @@
 #define		ALTERA_EMAIL_CMD	"=alterarEmail"
 #define		ALTERA_TELEFONE_CMD	"=alterarTelefone"
 #define		ALTERA_DATA_CMD		"=alterarData"
-#define		ALTERA_ENDERECO_CMD		"=alterarEndereco"
+#define		ALTERA_ENDERECO_CMD	"=alterarEndereco"
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
