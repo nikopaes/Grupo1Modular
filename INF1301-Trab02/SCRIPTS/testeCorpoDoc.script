@@ -1,0 +1,260 @@
+// Script:    testeProf.script
+// Autores:	Bruce Marcellino, BM
+//		Nicolas Paes, NP
+//		Rodrigo Pumar, RP
+//		Felipe Alfena, FA
+//		Mariana Ruddy, MR.
+// Data:      03/outubro/2017
+// Propósito: Testar módulo corpo docente, 
+//            Testa o uso do modulo corpo docente usando parâmetros simbólicos
+
+== Declarar as condicoes de retorno
+=declararparm  OK			int 0
+=declararparm  NaoHaMemoria		int 1 
+=declararparm  CorpoDocenteVazio	int 2 
+=declararparm  ProfessorNaoEncontrado	int 3 
+=declararparm  IdJaCriado		int 4 
+=declararparm  FormatoInvalido		int 5
+
+== Declarar os conteúdos dos nós
+
+=declararparm  nome		string	"Bruce"
+=declararparm  rg		int	111222333
+=declararparm  cpf		string	"12345678901"
+=declararparm  matricula	int	1112223
+=declararparm  email		string	"bmMail@mail"
+=declararparm  telefone		int	111222333
+=declararparm  dia		int	11
+=declararparm  mes		int	12
+=declararparm  ano		int	2196
+=declararparm  pais		string	"BrasilComS"
+=declararparm  uf		string	"RJ"
+=declararparm  cidade		string	"RioDeJaneiro"
+=declararparm  bairro		string	"umBairro"
+=declararparm  rua		string	"AvQualquer"
+=declararparm  numero		int	666
+=declararparm  complemento	string	"defrontePuc"
+
+=declararparm  nomeSegundo		string	"Marcellino"
+=declararparm  rgSegundo		int	333222111
+=declararparm  cpfSegundo		string	"11122233344"
+=declararparm  matriculaSegundo		int	9998887
+=declararparm  emailSegundo		string	"m@mail"
+=declararparm  telefoneSegundo		int	911122233
+=declararparm  diaSegundo		int	10
+=declararparm  mesSegundo		int	9
+=declararparm  anoSegundo		int	2150
+=declararparm  paisSegundo		string	"BrazilComZ"
+=declararparm  ufSegundo		string	"DF"
+=declararparm  cidadeSegundo		string	"CidadeQualquer"
+=declararparm  bairroSegundo		string	"QualquerBairro"
+=declararparm  ruaSegundo		string	"QualquerAvenida"
+=declararparm  numeroSegundo		int	123
+=declararparm  complementoSegundo	string	"proximoPuc"
+
+=declararparm  nomeTerceiro		string	"Andrade"
+=declararparm  rgTerceiro		int	31122113
+=declararparm  cpfTerceiro		string	"31122233343"
+=declararparm  matriculaTerceiro	int	3998883
+=declararparm  emailTerceiro		string	"a@mail"
+=declararparm  telefoneTerceiro		int	931122233
+=declararparm  diaTerceiro		int	13
+=declararparm  mesTerceiro		int	3
+=declararparm  anoTerceiro		int	2153
+=declararparm  paisTerceiro		string	"BrazilCom3"
+=declararparm  ufTerceiro		string	"D3"
+=declararparm  cidadeTerceiro		string	"TerceiraCidadeQualquer3"
+=declararparm  bairroTerceiro		string	"QuaisquerTresBairro"
+=declararparm  ruaTerceiro		string	"QualquerTerceiraAvenida"
+=declararparm  numeroTerceiro		int	323
+=declararparm  complementoTerceiro	string	"proximoPucTres"
+
+=declararparm  nomeInvalido		string	""
+=declararparm  rgInvalido		int	-1
+=declararparm  cpfInvalido		string	""
+=declararparm  matriculaInvalido	int	-1
+=declararparm  emailInvalido		string	""
+=declararparm  telefoneInvalido		int	-1
+=declararparm  diaInvalido		int	0
+=declararparm  mesInvalido		int	0
+=declararparm  anoInvalido		int	0
+=declararparm  paisInvalido		string	""
+=declararparm  ufInvalido		string	""
+=declararparm  cidadeInvalido		string	""
+=declararparm  bairroInvalido		string	""
+=declararparm  ruaInvalido		string	""
+=declararparm  numeroInvalido		int	-1
+=declararparm  complementoInvalido	string	""
+
+== Verificar criar
+=criar OK
+
+== Verificar recuperar
+=mostrarAtual OK
+=recuperar
+
+== Verificar acesso ao corpo vazio
+=mostrarAtual CorpoDocenteVazio
+
+== Verificar cadastrar
+=cadastrar nome rg cpf matricula email telefone dia mes ano pais uf cidade bairro rua numero complemento OK
+
+== Verificando cadastro de mais de um professor
+=cadastrar nomeSegundo rgSegundo cpfSegundo matriculaSegundo emailSegundo telefoneSegundo diaSegundo mesSegundo anoSegundo paisSegundo ufSegundo cidadeSegundo bairroSegundo ruaSegundo numeroSegundo complementoSegundo OK
+
+== Verificar mostrar segundo
+=mostrarAtual OK
+
+//Verificando identificações duplicadas --------------------------------
+
+== Verificando cadastro de um professor com rg igual
+=cadastrar nomeTerceiro rg cpfTerceiro matriculaTerceiro emailTerceiro telefoneTerceiro diaTerceiro mesTerceiro anoTerceiro paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro IdJaCriado
+
+== Verificando cadastro de um professor com cpf igual
+=cadastrar nomeTerceiro rgTerceiro cpf matriculaTerceiro emailTerceiro telefoneTerceiro diaTerceiro mesTerceiro anoTerceiro paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro IdJaCriado
+
+== Verificando cadastro de um professor com matricula igual
+=cadastrar nomeTerceiro rgTerceiro cpfTerceiro matricula emailTerceiro telefoneTerceiro diaTerceiro mesTerceiro anoTerceiro paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro IdJaCriado
+
+== Verificando cadastro de um professor com email igual
+=cadastrar nomeTerceiro rgTerceiro cpfTerceiro matriculaTerceiro email telefoneTerceiro diaTerceiro mesTerceiro anoTerceiro paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro IdJaCriado
+
+// ----
+== Verificando cadastro de um terceiro professor
+=cadastrar nomeTerceiro rgTerceiro cpfTerceiro matriculaTerceiro emailTerceiro telefoneTerceiro diaTerceiro mesTerceiro anoTerceiro paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro OK
+
+== Verificar mostrar terceiro
+=mostrarAtual OK
+
+//Verificando consultas ------------------------------------------------
+
+==Movendo cursor para o segundo
+=buscarMatricula matriculaSegundo OK
+
+==Verificar consulta nome
+=consultarNome nomeSegundo OK
+
+==Verificar consulta rg
+=consultarRg rgSegundo OK
+
+==Verificar consulta cpf
+=consultarCPF cpfSegundo OK
+
+==Verificar consulta matricula
+=consultarMatricula matriculaSegundo OK
+
+==Verificar consulta email
+=consultarEmail emailSegundo  OK
+
+==Verificar consulta telefone
+=consultarTelefone telefoneSegundo OK
+
+==Verificar consulta data
+=consultarData diaSegundo mesSegundo anoSegundo OK
+
+==Verificar consulta endereco
+=consultarEndereco paisSegundo ufSegundo cidadeSegundo bairroSegundo ruaSegundo numeroSegundo complementoSegundo OK
+
+//Verificando alteras-------------------------------------
+
+==Movendo cursor para o Terceiro
+=buscarMatricula matriculaTerceiro OK
+
+==Movendo mostrar todos
+=mostrarTodos OK
+
+==Verificar removendo Terceiro
+=retirar OK
+
+==Movendo mostrar todos
+=mostrarAtual OK
+
+==Movendo cursor para o Primeiro
+=buscarMatricula matricula OK
+
+==Verificar altera nome
+=alterarNome nomeTerceiro OK
+==Verificar consulta nome
+=consultarNome nomeTerceiro OK
+
+==Verificar altera rg
+=alterarRg rgTerceiro OK
+==Verificar consulta rg
+=consultarRg rgTerceiro OK
+
+==Verificar altera cpf
+=alterarCPF cpfTerceiro OK
+==Verificar consulta cpf
+=consultarCPF cpfTerceiro OK
+
+==Verificar altera matricula
+=alterarMatricula matriculaTerceiro OK
+==Verificar consulta matricula
+=consultarMatricula matriculaTerceiro OK
+
+==Verificar altera email
+=alterarEmail emailTerceiro  OK
+==Verificar consulta email
+=consultarEmail emailTerceiro  OK
+
+==Verificar altera telefone
+=alterarTelefone telefoneTerceiro OK
+==Verificar consulta telefone
+=consultarTelefone telefoneTerceiro OK
+
+==Verificar altera data
+=alterarData diaTerceiro mesTerceiro anoTerceiro OK
+==Verificar consulta data
+=consultarData diaTerceiro mesTerceiro anoTerceiro OK
+
+==Verificar altera endereco
+=alterarEndereco paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro OK
+==Verificar consulta endereco
+=consultarEndereco paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro OK
+
+//Verificando formato invalido-----------------------------------
+
+==Verificar altera nome
+=alterarNome nomeInvalido FormatoInvalido
+
+==Verificar altera rg
+=alterarRg rgInvalido FormatoInvalido
+
+==Verificar altera cpf
+=alterarCPF cpfInvalido FormatoInvalido
+
+==Verificar altera matricula
+=alterarMatricula matriculaInvalido FormatoInvalido
+
+==Verificar altera email
+=alterarEmail emailInvalido  FormatoInvalido
+
+==Verificar altera telefone
+=alterarTelefone telefoneInvalido FormatoInvalido
+
+==Verificar altera data
+=alterarData diaInvalido mesInvalido anoInvalido FormatoInvalido
+
+==Verificar altera endereco
+=alterarEndereco paisInvalido ufInvalido cidadeInvalido bairroInvalido ruaInvalido numeroInvalido complementoInvalido FormatoInvalido
+
+==Verificar busca por valor inexistente
+=buscarMatricula matricula ProfessorNaoEncontrado
+
+//Verificacoes de memória-----------------------------------------
+
+== Verificar Mostrar
+=mostrarAtual OK
+
+== Verificar limpar
+=limpar OK
+
+== Verificar acesso corpo docente vazio
+=alterarCPF cpf CorpoDocenteVazio
+
+== Verificar liberar
+=liberar OK
+
+
+// fim
+

@@ -1,0 +1,227 @@
+
+
+LES - Laboratório de Engenharia de Software DI/PUC-Rio
+      Arcabouço de teste de módulos C  (c) 2006
+
+---------------------------------------------
+      Construto sob teste: EXECUTAVEL/Trab02.exe
+
+      Arquivo de teste:    SCRIPTS/testeCorpoDoc.script
+
+
+!!!    0  Linha:     1  // Script:    testeProf.script 
+!!!    0  Linha:     2  // Autores:	Bruce Marcellino, BM 
+!!!    0  Linha:     3  //		Nicolas Paes, NP 
+!!!    0  Linha:     4  //		Rodrigo Pumar, RP 
+!!!    0  Linha:     5  //		Felipe Alfena, FA 
+!!!    0  Linha:     6  //		Mariana Ruddy, MR. 
+!!!    0  Linha:     7  // Data:      03/outubro/2017 
+!!!    0  Linha:     8  // PropÃ³sito: Testar mÃ³dulo corpo docente, 
+!!!    0  Linha:     9  //            Testa o uso do modulo corpo docente usando parÃ¢metros simbÃ³licos 
+   11  == Declarar as condicoes de retorno
+   19  == Declarar os conteÃºdos dos nÃ³s
+   89  == Verificar criar
+   92  == Verificar recuperar
+
+ <!><!><!> Lista Vazia! <!><!><!> 
+
+
+>>>    1  Linha:    93  Retorno errado ao mostrar um professor de Corpo Docente. Deveria ser: 0  É: 2
+<<<    0  Linha:    94  Falha esperada foi recuperada. 
+   96  == Verificar acesso ao corpo vazio
+
+ <!><!><!> Lista Vazia! <!><!><!> 
+
+
+   99  == Verificar cadastrar
+
+ <!><!><!> Lista Vazia! <!><!><!> 
+
+
+
+ <!><!><!> Lista Vazia! <!><!><!> 
+
+
+  102  == Verificando cadastro de mais de um professor
+
+ <!> Cursor ja posicionado no final da lista <!> 
+
+
+  105  == Verificar mostrar segundoExibindo Professor...
+nome: Bruce
+cpf : 12345678901
+rg : 111222333
+matricula : 1112223
+email : bmMail@mail
+telefone : 111222333 
+data de nascimento : 11/12/2196
+endereco: AvQualquer,No 666, complemento:defrontePuc, umBairro, RioDeJaneiro, RJ, BrasilComS, 
+
+!!!    0  Linha:   108  //Verificando identificaÃ§Ãµes duplicadas -------------------------------- 
+  110  == Verificando cadastro de um professor com rg igual
+  113  == Verificando cadastro de um professor com cpf igual
+  116  == Verificando cadastro de um professor com matricula igual
+  119  == Verificando cadastro de um professor com email igual
+!!!    0  Linha:   122  // ---- 
+  123  == Verificando cadastro de um terceiro professor
+
+ <!> Cursor ja posicionado no final da lista <!> 
+
+
+  126  == Verificar mostrar terceiroExibindo Professor...
+nome: Marcellino
+cpf : 11122233344
+rg : 333222111
+matricula : 9998887
+email : m@mail
+telefone : 911122233 
+data de nascimento : 10/9/2150
+endereco: QualquerAvenida,No 123, complemento:proximoPuc, QualquerBairro, CidadeQualquer, DF, BrazilComZ, 
+
+!!!    0  Linha:   129  //Verificando consultas ------------------------------------------------ 
+  131  ==Movendo cursor para o segundo
+  134  ==Verificar consulta nome
+  137  ==Verificar consulta rg
+  140  ==Verificar consulta cpf
+  143  ==Verificar consulta matricula
+  146  ==Verificar consulta email
+  149  ==Verificar consulta telefone
+  152  ==Verificar consulta data
+  155  ==Verificar consulta endereco
+!!!    0  Linha:   158  //Verificando alteras------------------------------------- 
+  160  ==Movendo cursor para o Terceiro
+  163  ==Movendo mostrar todosExibindo Professor...
+nome: Bruce
+cpf : 12345678901
+rg : 111222333
+matricula : 1112223
+email : bmMail@mail
+telefone : 111222333 
+data de nascimento : 11/12/2196
+endereco: AvQualquer,No 666, complemento:defrontePuc, umBairro, RioDeJaneiro, RJ, BrasilComS, 
+Exibindo Professor...
+nome: Marcellino
+cpf : 11122233344
+rg : 333222111
+matricula : 9998887
+email : m@mail
+telefone : 911122233 
+data de nascimento : 10/9/2150
+endereco: QualquerAvenida,No 123, complemento:proximoPuc, QualquerBairro, CidadeQualquer, DF, BrazilComZ, 
+Exibindo Professor...
+nome: Andrade
+cpf : 31122233343
+rg : 31122113
+matricula : 3998883
+email : a@mail
+telefone : 931122233 
+data de nascimento : 13/3/2153
+endereco: QualquerTerceiraAvenida,No 323, complemento:proximoPucTres, QuaisquerTresBairro, TerceiraCidadeQualquer3, D3, BrazilCom3, 
+
+
+ <!> Cursor ja posicionado no final da lista <!> 
+
+
+  166  ==Verificar removendo Terceiro
+  169  ==Movendo mostrar todosExibindo Professor...
+nome: Marcellino
+cpf : 11122233344
+rg : 333222111
+matricula : 9998887
+email : m@mail
+telefone : 911122233 
+data de nascimento : 10/9/2150
+endereco: QualquerAvenida,No 123, complemento:proximoPuc, QualquerBairro, CidadeQualquer, DF, BrazilComZ, 
+
+  172  ==Movendo cursor para o Primeiro
+  175  ==Verificar altera nome
+  177  ==Verificar consulta nome
+  180  ==Verificar altera rg
+
+ <!> Cursor ja posicionado no final da lista <!> 
+
+
+  182  ==Verificar consulta rg
+  185  ==Verificar altera cpf
+
+ <!> Cursor ja posicionado no final da lista <!> 
+
+
+  187  ==Verificar consulta cpf
+  190  ==Verificar altera matricula
+
+ <!> Cursor ja posicionado no final da lista <!> 
+
+
+  192  ==Verificar consulta matricula
+  195  ==Verificar altera email
+
+ <!> Cursor ja posicionado no final da lista <!> 
+
+
+  197  ==Verificar consulta email
+  200  ==Verificar altera telefone
+  202  ==Verificar consulta telefone
+  205  ==Verificar altera data
+  207  ==Verificar consulta data
+  210  ==Verificar altera endereco
+  212  ==Verificar consulta endereco
+!!!    0  Linha:   215  //Verificando formato invalido----------------------------------- 
+  217  ==Verificar altera nome
+  220  ==Verificar altera rg
+
+ <!> Cursor ja posicionado no final da lista <!> 
+
+
+  223  ==Verificar altera cpf
+
+ <!> Cursor ja posicionado no final da lista <!> 
+
+
+  226  ==Verificar altera matricula
+
+ <!> Cursor ja posicionado no final da lista <!> 
+
+
+  229  ==Verificar altera email
+
+ <!> Cursor ja posicionado no final da lista <!> 
+
+
+  232  ==Verificar altera telefone
+  235  ==Verificar altera data
+  238  ==Verificar altera endereco
+  241  ==Verificar busca por valor inexistente
+
+ <!> Cursor ja posicionado no final da lista <!> 
+
+
+!!!    0  Linha:   244  //Verificacoes de memÃ³ria----------------------------------------- 
+  246  == Verificar MostrarExibindo Professor...
+nome: Marcellino
+cpf : 11122233344
+rg : 333222111
+matricula : 9998887
+email : m@mail
+telefone : 911122233 
+data de nascimento : 10/9/2150
+endereco: QualquerAvenida,No 123, complemento:proximoPuc, QualquerBairro, CidadeQualquer, DF, BrazilComZ, 
+
+  249  == Verificar limpar
+  252  == Verificar acesso corpo docente vazio
+
+ <!><!><!> Lista Vazia! <!><!><!> 
+
+
+  255  == Verificar liberar
+!!!    0  Linha:   259  // fim 
+
+!!! Número de linhas lidas:         260
+!!! Número de casos de teste:        57
+!!! Número comandos corretos:       124
+!!! Número de falhas encontradas:     0
+
+!!! Não foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0

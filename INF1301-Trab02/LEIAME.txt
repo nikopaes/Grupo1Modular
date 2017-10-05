@@ -1,0 +1,24 @@
+Autores:        Bruce Marcellino
+		Felipe Alfena
+		Mariana Ruddy
+		Nicolas Paes
+		Rodrigo Pumar
+
+Data:           04/10/2017
+
+
+Para executar o programa:
+
+1- Dezip o arquivo INF1301-Trab02.zip
+
+2- Clique no run.bat duas vezes.
+
+3- Leie a saida com relatorio de erro no arquivo saida.txt .  
+
+Estruturação de diretórios:
+
+EXECUTAVEL - Contém o arquivo Trab02.exe
+
+FONTES - Contém o .h e .c para compilação do programa.
+
+SCRIPTS - Contém o arquivo testeCorpoDoc.script feito pelo grupo.

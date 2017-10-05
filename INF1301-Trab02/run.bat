@@ -1,0 +1,1 @@
+"EXECUTAVEL/Trab02.exe" /sSCRIPTS/testeCorpoDoc.script > saida.txt
