@@ -97,7 +97,7 @@ CDO_tpCondRet CDO_cadastra(char *nome, int rg, char *cpf, int matricula, char *e
 *  $FC Função: CDO Busca Identificacao
 *
 *  $FV Valor retornado
-*     Retorna CDO_CondRetIdJaCriado caso um professor com o mesmo valor de uma *     das chaves seja encontrado.
+*     Retorna CDO_CondRetIdJaCriado caso um professor com o mesmo valor de uma das chaves seja encontrado.
 *     Retorna PRF_CondRetOk caso contrário.
 *
 ***********************************************************************/
@@ -121,7 +121,7 @@ CDO_tpCondRet buscaIdentificacao(int rgChave, char *cpfChave, int matriculaChave
 
 	/* Não encontrou */
 	return CDO_CondRetOk;
-}
+}/* Fim função: CDO Busca Atual */
 
 /***************************************************************************
 *
@@ -244,7 +244,7 @@ CDO_tpCondRet CDO_buscaPorMatricula(int chave){
 	}while(next(doc->professores)==LIS_CondRetOK);
 
 	return CDO_CondRetProfessorNaoEncontrado;
-}/* Fim função: CDO Busca Por RG */
+}/* Fim função: CDO Busca Por Matricula */
 
  /***************************************************************************
  *
@@ -352,7 +352,7 @@ CDO_tpCondRet CDO_consultaDataNascimento(int *dia, int *mes, int *ano){
 	PRF_consultaMesNascimento(prof, mes);
 	PRF_consultaAnoNascimento(prof, ano);
 	return CDO_CondRetOk;
-}/* Fim função: CDO Consulta Telefone*/
+}/* Fim função: CDO Consulta Data de Nascimento*/
 
  /***************************************************************************
  *
@@ -390,8 +390,13 @@ CDO_tpCondRet CDO_alteraNome(char *nome){
  *  ****/
 CDO_tpCondRet CDO_alteraRg(int rg){
 	PRF_ptProfessor prof = NULL;
+	int id;
 	if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
 			return CDO_CondRetCorpoDocenteVazio;
+	PRF_consultaMatricula(prof, &id);
+	if(CDO_buscaPorRg(rg) == CDO_CondRetOk) return CDO_CondRetIdJaCriado;
+	/* Retornando cursor para posicao original */
+	CDO_buscaPorMatricula(id);
 	if(PRF_alteraRg(prof,rg)==PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
 	return CDO_CondRetOk;
 }/* Fim função: CDO Altera RG*/
@@ -402,8 +407,13 @@ CDO_tpCondRet CDO_alteraRg(int rg){
  *  ****/
 CDO_tpCondRet CDO_alteraCpf(char *cpf){
 	PRF_ptProfessor prof = NULL;
+	int id;
 	if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
 			return CDO_CondRetCorpoDocenteVazio;
+	PRF_consultaMatricula(prof, &id);
+	if(CDO_buscaPorCpf(cpf) == CDO_CondRetOk) return CDO_CondRetIdJaCriado;
+	/* Retornando cursor para posicao original */
+	CDO_buscaPorMatricula(id);
 	if(PRF_alteraCpf(prof, cpf)==PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
 	return CDO_CondRetOk;
 }/* Fim função: CDO Altera CPF*/
@@ -414,8 +424,13 @@ CDO_tpCondRet CDO_alteraCpf(char *cpf){
  *  ****/
 CDO_tpCondRet CDO_alteraMatricula(int matricula){
 	PRF_ptProfessor prof = NULL;
+	int id;
 	if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
 			return CDO_CondRetCorpoDocenteVazio;
+	PRF_consultaMatricula(prof, &id);
+	if(CDO_buscaPorMatricula(matricula) == CDO_CondRetOk) return CDO_CondRetIdJaCriado;
+	/* Retornando cursor para posicao original */
+	CDO_buscaPorMatricula(id);
 	if(PRF_alteraMatricula(prof, matricula)==PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
 	return CDO_CondRetOk;
 }/* Fim função: CDO Altera Matricula*/
@@ -426,8 +441,13 @@ CDO_tpCondRet CDO_alteraMatricula(int matricula){
  *  ****/
 CDO_tpCondRet CDO_alteraEmail(char* email){
 	PRF_ptProfessor prof = NULL;
+	int id;
 	if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
 			return CDO_CondRetCorpoDocenteVazio;
+	PRF_consultaMatricula(prof, &id);
+	if(CDO_buscaPorEmail(email) == CDO_CondRetOk) return CDO_CondRetIdJaCriado;
+	/* Retornando cursor para posicao original */
+	CDO_buscaPorMatricula(id);
 	if(PRF_alteraEmail(prof, email)==PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
 	return CDO_CondRetOk;
 }/* Fim função: CDO Altera Email*/

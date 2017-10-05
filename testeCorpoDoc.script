@@ -238,8 +238,6 @@
 ==Verificar altera endereco
 =alterarEndereco paisInvalido ufInvalido cidadeInvalido bairroInvalido ruaInvalido numeroInvalido complementoInvalido FormatoInvalido
 
-//Verificando buscas ---------------------------------------------
-
 ==Verificar busca por valor inexistente
 =buscarMatricula matricula ProfessorNaoEncontrado
 

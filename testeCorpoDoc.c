@@ -32,46 +32,51 @@
 *				<int>dia <int>mes <int>ano <string>pais <string>uf <string>cidade
 *				<string>bairro <string>rua <int>numero <string>complemento <int>CondRetEsperada  
 *					- chama a função: 
-*					CDO_cria(Prof** professor, char *nome, int rg, char *cpf, 
+*					CDO_cria(char *nome, int rg, char *cpf, 
 *					int matricula, char *email, int telefone, 
 *					int dia, int mes, int ano, char *pais, char *uf, *cidade, 
 *					 char *bairro, char *rua, int numero, char *complemento);
 *					- Para o parametro "Prof** professor" é dado o indice do vetor criado neste codigo.
-*     "=mostrar" <int>index
+*     "=mostrar" 
 *                   - chama a função CDO_mostra(Prof* p)
 *     "=liberar"    - chama a função CDO_libera(Prof** p)
 *
-*     "=consultaNome"        chama a função CDO_consultaNome 	      <int>index <string>nome
-*	  "=consultaRg"          chama a função CDO_consultaRg 		      <int>index <int>rg
-*	  "=consultaCpf"         chama a função CDO_consultaCpf           <int>index <string>cpf
-*	  "=consultaMatricula"   chama a função CDO_consultaMatricula     <int>index <int>matricula
-*	  "=consultaEmail"       chama a função CDO_consultaEmail         <int>index <string>email
-*	  "=consultaTelefone"    chama a função CDO_consultaTelefone      <int>index <int>telefone
-*	  "=consultaDia"         chama a função CDO_consultaDia           <int>index <int>dia
-*	  "=consultaMes"         chama a função CDO_consultaMes           <int>index <int>mes
-*	  "=consultaAno"         chama a função CDO_consultaAno           <int>index <int>ano
-*	  "=consultaPais"        chama a função CDO_consultaPais          <int>index <string>pais
-*	  "=consultaUf"          chama a função CDO_consultaUf            <int>index <string>uf
-*	  "=consultaCidade"      chama a função CDO_consultaCidade        <int>index <string>cidade
-*	  "=consultaBairro"      chama a função CDO_consultaBairro        <int>index <string>bairro
-*	  "=consultaRua"         chama a função CDO_consultaRua           <int>index <string>rua
-*	  "=consultaNumero"      chama a função CDO_consultaNumero        <int>index <int>numero
-*	  "=consultaComplemento" chama a função CDO_consultaComplemento   <int>index <string>complemento
+*     "=consultaNome"        chama a função CDO_consultaNome 	      <string>nome
+*	  "=consultaRg"          chama a função CDO_consultaRg 		      <int>rg
+*	  "=consultaCpf"         chama a função CDO_consultaCpf           <string>cpf
+*	  "=consultaMatricula"   chama a função CDO_consultaMatricula     <int>matricula
+*	  "=consultaEmail"       chama a função CDO_consultaEmail         <string>email
+*	  "=consultaTelefone"    chama a função CDO_consultaTelefone      <int>telefone
+*	  "=consultaDia"         chama a função CDO_consultaDia           <int>dia
+*	  "=consultaMes"         chama a função CDO_consultaMes           <int>mes
+*	  "=consultaAno"         chama a função CDO_consultaAno           <int>ano
+*	  "=consultaPais"        chama a função CDO_consultaPais          <string>pais
+*	  "=consultaUf"          chama a função CDO_consultaUf            <string>uf
+*	  "=consultaCidade"      chama a função CDO_consultaCidade        <string>cidade
+*	  "=consultaBairro"      chama a função CDO_consultaBairro        <string>bairro
+*	  "=consultaRua"         chama a função CDO_consultaRua           <string>rua
+*	  "=consultaNumero"      chama a função CDO_consultaNumero        <int>numero
+*	  "=consultaComplemento" chama a função CDO_consultaComplemento   <string>complemento
 *
-*     "=alterarNome"         chama a função CDO_alteraNome 	         <int>index <string>nome
-*	  "=alterarRg"           chama a função CDO_alteraRg 		     <int>index <int>rg
-*	  "=alterarCpf"          chama a função CDO_alteraCpf            <int>index <string>cpf
-*	  "=alterarMatricula"    chama a função CDO_alteraMatricula      <int>index <int>matricula
-*	  "=alterarEmail"        chama a função CDO_alteraEmail          <int>index <string>email
-*	  "=alterarTelefone"     chama a função CDO_alteraTelefone       <int>index <int>telefone
-*	  "=alterarData "        chama a função CDO_alteraDataNascimento <int>index <int>dia <int>mes <int>ano
-*	  "=alterarPais"         chama a função CDO_alteraPais           <int>index <string>pais
-*	  "=alterarUf"           chama a função CDO_alteraUf             <int>index <string>uf
-*	  "=alterarCidade"       chama a função CDO_alteraCidade         <int>index <string>cidade
-*	  "=alterarBairro"       chama a função CDO_alteraBairro         <int>index <string>bairro
-*	  "=alterarRua"          chama a função CDO_alteraRua            <int>index <string>rua
-*	  "=alterarNumero"       chama a função CDO_alteraNumero         <int>index <int>numero
-*	  "=alterarComplemento"  chama a função CDO_alteraComplemento    <int>index <string>complemento
+*    	  "=buscaRg"           chama a função CDO_buscaRg 		<int>rg
+*	  "=buscarCpf"          chama a função CDO_buscaCpf            <string>cpf
+*	  "=buscarMatricula"    chama a função CDO_buscarMatricula     <int>matricula
+*	  "=buscarEmail"        chama a função CDO_buscaEmail          <string>email
+*
+*     "=alterarNome"         chama a função CDO_alteraNome 	         <string>nome
+*	  "=alterarRg"           chama a função CDO_alteraRg 		     <int>rg
+*	  "=alterarCpf"          chama a função CDO_alteraCpf            <string>cpf
+*	  "=alterarMatricula"    chama a função CDO_alteraMatricula      <int>matricula
+*	  "=alterarEmail"        chama a função CDO_alteraEmail          <string>email
+*	  "=alterarTelefone"     chama a função CDO_alteraTelefone       <int>telefone
+*	  "=alterarData "        chama a função CDO_alteraDataNascimento <int>dia <int>mes <int>ano
+*	  "=alterarPais"         chama a função CDO_alteraPais           <string>pais
+*	  "=alterarUf"           chama a função CDO_alteraUf             <string>uf
+*	  "=alterarCidade"       chama a função CDO_alteraCidade         <string>cidade
+*	  "=alterarBairro"       chama a função CDO_alteraBairro         <string>bairro
+*	  "=alterarRua"          chama a função CDO_alteraRua            <string>rua
+*	  "=alterarNumero"       chama a função CDO_alteraNumero         <int>numero
+*	  "=alterarComplemento"  chama a função CDO_alteraComplemento    <string>complemento
 *
 ***************************************************************************/
 
