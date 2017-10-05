@@ -17,6 +17,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão	Autor	   Data		Observações
+*   	1.0   	BM/RP   05/10/2017 	Mais Revisão
 *       0.40   NP      05/10/2017   Documentação finalizada 
 *   	0.32   BM/RP   03/10/2017 	Revisão
 *    	0.31   NP	   03/10/2017 	Documentação iniciada
@@ -25,9 +26,10 @@
 *       0.10   BM	   01/10/2017	Inicio do desenvolvimento 
 *
 *  $ED Descrição do módulo
-*	  Este módulo implementa um conjunto de funções para criar e manipular uam lista de Instâncias de Professor, ou seja, um Corpo Docente.
+*	  Este módulo implementa um conjunto de funções para criar e manipular uma lista de Instâncias de Professor, ou seja, um Corpo Docente.
 *     Ao iniciar a execução do programa não existe nenhuma instância de Corpo Docente.
 *     Ao chamar a função criar, uma Lista vazia é criada, precisando assim ter Instâncias de Professores cadastrados.
+*     Nenhuma funcao deste modulo deve ser chamada antes da cria();
 *	  Deve-se usar a função libera para que a memória alocada seja liberada.
 *	  Passar argumentos inválidos como 0 ou "" podem causar erro de formato (CDO_CondRetFormatoInvalido).
 *     Esse módulo utiliza funções auxiliares para manipulação de Instâncias de Professor (Ref. professor.h)
@@ -45,7 +47,7 @@ typedef enum{
 	CDO_CondRetIdJaCriado,
 		/* Condicao de Retorno Id Já Criado, usada quando existe outra Instância de Professor no Corpo Docente com o mesmo RG/CPF/matricula/email */ 
 	CDO_CondRetFormatoInvalido 
-		/* Condicao de Retorno Formato Inválido, usada quando os parâmetros de uma ceta função não estão de acordo com o que é esperado pelas funções auxiliares */ 
+		/* Condicao de Retorno Formato Inválido, usada quando os parâmetros de uma certa função não estão de acordo com o que é esperado pelas funções auxiliares */ 
 } CDO_tpCondRet;
 
 /***********************************************************************
@@ -61,7 +63,7 @@ typedef enum{
 *     CDO_CondRetOk 
 *
 *  Assertiva de Entrada: 
-*		-Exista memória suficiente para alocar uma Lista de  Instâncias de Professores
+*		-A função cria ainda não foi chamada.
 *                    
 *  Assertiva de Saída: 
 *		-Uma instância de Corpo Docente (Lista de Professores) é criada
@@ -75,7 +77,7 @@ CDO_tpCondRet CDO_cria();
 *  $FC Função: CDO Cadastra
 *
 *  $ED Descrição da função
-*     Cria uma instância vazia de Corpo Docente
+*     Cadastra um professor em corpo docente com os dados passados
 *
 *  $EP Parâmetros 
 *   
@@ -98,13 +100,12 @@ CDO_tpCondRet CDO_cria();
 *						
 *  $FV Valor retornado
 *     CDO_CondRetOk 
-*     CDO_CondRetIdJaCriado - Caso o Professor que deseja cadastrar já está cadastrado nessa instância de Corpo Docente
+*     CDO_CondRetIdJaCriado - Caso o Professor que deseja cadastrar já está cadastrado nessa instância de Corpo Docente com o mesmo RG/cpf/matricula ou email
 *	  CDO_CondRetNaoHaMemoria - Caso não haja memória suficiente para cadastrar o Professor no Corpo Docente
-*     CDO_CondRetFormatoInvalido - Caso o formato dos parâmetros não esteja de acordo com o esperado pela função PRF_cria
+*     CDO_CondRetFormatoInvalido - Caso o formato dos parâmetros não esteja de acordo com o esperado pelo modulo professor
 *
 *  Assertiva de Entrada: 
-*		-Exista memória suficiente para alocar uma Instância de Professor no Corpo Docente 
-*       -Todos os parâmetros estejam válidos.
+*		-O corpo docente já foi instanciado
 *                    
 *  Assertiva de Saída: 
 *		-Uma Instância de Professor é cadastrada no Corpo Docente
@@ -127,7 +128,7 @@ CDO_tpCondRet CDO_cadastra(char *nome, int rg, char *cpf, int matricula, char *e
 *     CDO_CondRetCorpoDocenteVazio - Caso a Instância de Corpo Docente esteja vazia
 *
 *  Assertiva de Entrada: 
-*		-Exista um Corpo Docente não vazio
+*		-O corpo docente foi instanciado
 *                    
 *  Assertiva de Saída: 
 *       -É necessário que a Função PRF_mostra tenha suas assertivas de entrada e saida corretamente implementadas
@@ -196,7 +197,8 @@ CDO_tpCondRet CDO_retira();
 *  $FV Valor retornado
 *     CDO_CondRetOk 
 *
-*  Assertiva de Entrada: --
+*  Assertiva de Entrada: 
+*		O corpo docente ja foi instanciado atraves da função cria
 *                    
 *  Assertiva de Saída: 
 *		-Todas as Instâncias de Professor são retiradas do Corpo Docente
@@ -217,8 +219,8 @@ CDO_tpCondRet CDO_limpa();
 *  $FV Valor retornado
 *     CDO_CondRetOk 
 *
-*  Assertiva de Entrada: --
-*                    
+*  Assertiva de Entrada: 
+*		O corpo docente ja foi instanciado atraves da função cria
 *  Assertiva de Saída: 
 *		-O espaço de memoria associado ao Corpo Docente é liberado
 *
@@ -243,12 +245,10 @@ CDO_tpCondRet CDO_libera();
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio 
 *
 *  Assertiva de Entrada: 
-*		-A chave tem até 80 caracteres
+*		-O corpo docente ja foi instanciado
 *                    
 *  Assertiva de Saída: 
-*		-Caso exista uma instância de Professor com o RG igual aquele enviado para a função via parâmetro a função retorno condição OK
-*		-Caso não exista uma instância de Professor com o RG igual aquele enviado para a funcão via parâmetro a função retorna condição de Prof não encontrado
-*		-Caso não exista Corpo Docente válido a função retorna Não Existe Corpo
+*		-o cursor passa a aponta para um professor que armazena aquele valor
 *
 ***********************************************************************/
 
@@ -271,12 +271,10 @@ CDO_tpCondRet CDO_buscaPorRg(int chave);
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio 
 *
 *  Assertiva de Entrada: 
-*		-A chave tem até 80 caracteres
+*		-O corpo docente ja foi instanciado
 *                    
 *  Assertiva de Saída: 
-*		-Caso exista uma instância de Professor com o CPF igual aquele enviado para a função via parâmetro a função retorno condição OK
-*		-Caso não exista uma instância de Professor com o CPF igual aquele enviado para a funcão via parâmetro a função retorna condição de Prof não encontrado
-*		-Caso não exista Corpo Docente válido a função retorna Não Existe Corpo
+*		-o cursor passa a aponta para um professor que armazena aquele valor
 *
 ***********************************************************************/
 
@@ -299,12 +297,10 @@ CDO_tpCondRet CDO_buscaPorCpf(char *chave);
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio 
 *
 *  Assertiva de Entrada: 
-*		-A chave tem até 80 caracteres
+*		-O corpo docente ja foi instanciado
 *                    
 *  Assertiva de Saída: 
-*		-Caso exista uma instância de Professor com a Matricula igual aquele enviado para a função via parâmetro a função retorno condição OK
-*		-Caso não exista uma instância de Professor com a Matricula igual aquele enviado para a funcão via parâmetro a função retorna condição de Prof não encontrado
-*		-Caso não exista Corpo Docente válido a função retorna Não Existe Corpo
+*		-o cursor passa a aponta para um professor que armazena aquele valor
 *
 ***********************************************************************/
 
@@ -327,12 +323,10 @@ CDO_tpCondRet CDO_buscaPorMatricula(int chave);
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio 
 *
 *  Assertiva de Entrada: 
-*		-A chave tem até 80 caracteres
+*		-O corpo docente ja foi instanciado
 *                    
 *  Assertiva de Saída: 
-*		-Caso exista uma instância de Professor com o Email igual aquele enviado para a função via parâmetro a função retorno condição OK
-*		-Caso não exista uma instância de Professor com o Email igual aquele enviado para a funcão via parâmetro a função retorna condição de Prof não encontrado
-*		-Caso não exista Corpo Docente válido a função retorna Não Existe Corpo
+*		-o cursor passa a aponta para um professor que armazena aquele valor
 *
 ***********************************************************************/
 
@@ -353,11 +347,13 @@ CDO_tpCondRet CDO_buscaPorEmail(char *chave);
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
 *
 *  Assertiva de Entrada: 
-*		-O ponteiro para o a cadeia nome é válido
+*		-Corpo docente foi alocado
+*		-O ponteiro para a cadeia possui pelo menos o limite estabelecido no modulo professor como tamanho da string
+*		-O ponteiro para nome é valido
 *                    
 *  Assertiva de Saída: 
 *	    -É necessário que a Função PRF_consultaNome tenha suas assertivas de entrada e saida corretamente implementadas
-*       -Caso isso ocorra o conteudo do ponteiro para nome será preenchido com o nome do Professor em questão
+*       -Caso isso ocorra o conteudo do ponteiro para nome será preenchido com o nome  valido do Professor em questão
 *
 ***********************************************************************/
 
@@ -378,11 +374,12 @@ CDO_tpCondRet CDO_consultaNome(char *nome);
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio 
 *
 *  Assertiva de Entrada: 
+*		-Corpo docente foi alocado
 *		-O ponteiro para o inteiro RG é válido
 *                    
 *  Assertiva de Saída: 
 *	    -É necessário que a Função PRF_consultaRg tenha suas assertivas de entrada e saida corretamente implementadas
-*       -Caso isso ocorra o conteúdo do ponteiro para RG será preenchido com o RG do Professor em questão
+*       -Caso isso ocorra o conteúdo do ponteiro para RG será preenchido com o RG  valido do Professor em questão
 *
 ***********************************************************************/
 
@@ -403,11 +400,13 @@ CDO_tpCondRet CDO_consultaRg(int *rg);
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
 *
 *  Assertiva de Entrada: 
+*		-Corpo docente foi alocado
+*		-O ponteiro para a cadeia possui pelo menos o limite estabelecido no modulo professor como tamanho da string
 *		-O ponteiro para o cadeia CPF é válido
 *                    
 *  Assertiva de Saída: 
 *	    -É necessário que a Função PRF_consultaCpf tenha suas assertivas de entrada e saida corretamente implementadas
-*       -Caso isso ocorra o conteúdo do ponteiro para CPF será preenchido com o CPF do Professor em questão
+*       -Caso isso ocorra o conteúdo do ponteiro para CPF será preenchido com o CPF  valido do Professor em questão
 *
 ***********************************************************************/
 
@@ -432,7 +431,7 @@ CDO_tpCondRet CDO_consultaCpf(char *cpf);
 *                    
 *  Assertiva de Saída: 
 *	    -É necessário que a Função PRF_consultaMatricula tenha suas assertivas de entrada e saida corretamente implementadas
-*       -Caso isso ocorra o conteúdo do ponteiro para matricula será preenchido com a matricula do Professor em questão
+*       -Caso isso ocorra o conteúdo do ponteiro para matricula será preenchido com a matricula  valida do Professor em questão
 *
 ***********************************************************************/
 
@@ -453,11 +452,12 @@ CDO_tpCondRet CDO_consultaMatricula(int *matricula);
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
 *
 *  Assertiva de Entrada: 
+*		-Corpo docente foi alocado
 *		-O ponteiro para a cadeia email é válido
 *                    
 *  Assertiva de Saída: 
 *	    -É necessário que a Função PRF_consultaEmail tenha suas assertivas de entrada e saida corretamente implementadas
-*       -Caso isso ocorra o conteúdo do ponteiro para email será preenchido com o email do Professor em questão
+*       -Caso isso ocorra o conteúdo do ponteiro para email será preenchido com o email  valido do Professor em questão
 *
 ***********************************************************************/
 
@@ -478,6 +478,7 @@ CDO_tpCondRet CDO_consultaEmail(char *email);
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
 *
 *  Assertiva de Entrada: 
+*		-Corpo docente foi alocado
 *		-O ponteiro para o inteiro telefone é válido
 *                    
 *  Assertiva de Saída: 
@@ -505,13 +506,15 @@ CDO_tpCondRet CDO_consultaTelefone(int *tel);
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
 *
 *  Assertiva de Entrada: 
+*		-Corpo docente foi alocado
+*		-O ponteiro para a cadeia possui pelo menos o limite estabelecido no modulo professor como tamanho da string
 *		-O ponteiro para o inteiro dia é válido
 *		-O ponteiro para o inteiro mes é válido
 *		-O ponteiro para o inteiro ano é valido
 *                    
 *  Assertiva de Saída: 
 *	    -É necessário que as função  PRF_consultaDiaNascimento,	PRF_consultaMesNascimento, PRF_consultaAnoNascimento tenham suas assertivas de entrada e saida atendidas completamente
-*       -Caso isso ocorra o conteúdo dos ponteiros para dia/mes/ano serão preenchidos com o dia/mes/ano da data de nascimento do Professor em questão
+*       -Caso isso ocorra o conteúdo dos ponteiros para dia/mes/ano serão preenchidos com o dia/mes/ano validos da data de nascimento do Professor em questão
 *
 ***********************************************************************/
 
@@ -538,6 +541,7 @@ CDO_tpCondRet CDO_consultaDataNascimento(int *dia, int *mes, int *ano);
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
 *
 *  Assertiva de Entrada: 
+*		-Corpo docente foi alocado
 *		-O ponteiro para a cadeia de caracteres país é válida
 *		-O ponteiro para a cadeia de caracteres uf é válida
 *		-O ponteiro para a cadeia de caracteres cidade é válida
@@ -548,7 +552,7 @@ CDO_tpCondRet CDO_consultaDataNascimento(int *dia, int *mes, int *ano);
 * 
 *  Assertiva de Saída: 
 *	    -É necessário que as funções PRF_consultaPais, PRF_consultaUf, PRF_consultaCidade, PRF_consultaBairro, PRF_consultaRua, PRF_consultaNumero, PRF_consultaComplemento tenham suas assertivas de entrada e saida completamente atendidas 
-*       -Caso isso ocorra o conteúdo dos ponteiros para país/uf/cidade/bairoo/rua/numero/complemento serão preenchidos com o país/uf/cidade/bairoo/rua/numero/complemento do endereço do Professor em questão
+*       -Caso isso ocorra o conteúdo dos ponteiros para país/uf/cidade/bairoo/rua/numero/complemento serão preenchidos com o país/uf/cidade/bairoo/rua/numero/complemento do endereço valido do Professor em questão
 *
 ***********************************************************************/
 
@@ -570,6 +574,7 @@ CDO_tpCondRet CDO_consultaEndereco(char *pais, char *uf, char *cidade, char *bai
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
 *
 *  Assertiva de Entrada: 
+*		-Corpo docente foi alocado
 *		-O ponteiro para a cadeia de caracteres nome é válida
 *                    
 *  Assertiva de Saída: 
@@ -622,6 +627,7 @@ CDO_tpCondRet CDO_alteraRg(int rg);
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
 *
 *  Assertiva de Entrada: 
+*		-Corpo docente foi alocado
 *		-O ponteiro para a cadeia de caracteres cpf é válida
 *                    
 *  Assertiva de Saída: 
@@ -648,6 +654,7 @@ CDO_tpCondRet CDO_alteraCpf(char *cpf);
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
 *
 *  Assertiva de Entrada: 
+*		-Corpo docente foi alocado
 *		-O inteiro matricula é válido
 *                    
 *  Assertiva de Saída: 
@@ -674,6 +681,7 @@ CDO_tpCondRet CDO_alteraMatricula(int matricula);
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
 *
 *  Assertiva de Entrada: 
+*		-Corpo docente foi alocado
 *		-O ponteiro para a cadeia de caracteres email é válida
 *                    
 *  Assertiva de Saída: 
@@ -728,6 +736,7 @@ CDO_tpCondRet CDO_alteraTelefone(int tel);
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
 *
 *  Assertiva de Entrada: 
+*		-Corpo docente foi alocado
 *		-O inteiro dia é válido
 *		-O inteiro mes é válido
 *		-O inteiro ano é válido
@@ -762,6 +771,7 @@ CDO_tpCondRet CDO_alteraDataNascimento(int dia, int mes, int ano);
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
 *
 *  Assertiva de Entrada: 
+*		-Corpo docente foi alocado
 *		-A cadeia de caracteres país é válida
 *		-A cadeia de caracteres uf é válida
 *		-A cadeia de caracteres cidade é válida
