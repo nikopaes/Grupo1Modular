@@ -16,7 +16,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*       1.00   BM   03/10/2017 Desenvolvimento para T1
+*       0.10   BM   03/10/2017 Desenvolvimento para T2
 *
 *  $ED Descrição do módulo
 *     Este modulo contém as funções específicas para o teste do
@@ -24,7 +24,7 @@
 *     de teste específicos utilizando o arcabouço de teste para C.
 *
 *  $EIU Interface com o usuário pessoa
-*     Comandos de teste específicos para testar o módulo professor:
+*     Comandos de teste específicos para testar o módulo corpo docente:
 *
 *     "=criar
 *     "=cadastrar"  <int>index <string>nome <int>rg <string>pais <string>cpf 
@@ -38,41 +38,35 @@
 *					 char *bairro, char *rua, int numero, char *complemento);
 *					- Para o parametro "Prof** professor" é dado o indice do vetor criado neste codigo.
 *     "=mostrar" <int>index
-*                   - chama a função CDO_mostra(Prof* p)
+*					- chama a função CDO_mostra(Prof* p)
 *     "=liberar"    - chama a função CDO_libera(Prof** p)
 *
-*     "=consultaNome"        chama a função CDO_consultaNome 	      <int>index <string>nome
-*	  "=consultaRg"          chama a função CDO_consultaRg 		      <int>index <int>rg
-*	  "=consultaCpf"         chama a função CDO_consultaCpf           <int>index <string>cpf
-*	  "=consultaMatricula"   chama a função CDO_consultaMatricula     <int>index <int>matricula
-*	  "=consultaEmail"       chama a função CDO_consultaEmail         <int>index <string>email
-*	  "=consultaTelefone"    chama a função CDO_consultaTelefone      <int>index <int>telefone
-*	  "=consultaDia"         chama a função CDO_consultaDia           <int>index <int>dia
-*	  "=consultaMes"         chama a função CDO_consultaMes           <int>index <int>mes
-*	  "=consultaAno"         chama a função CDO_consultaAno           <int>index <int>ano
-*	  "=consultaPais"        chama a função CDO_consultaPais          <int>index <string>pais
-*	  "=consultaUf"          chama a função CDO_consultaUf            <int>index <string>uf
-*	  "=consultaCidade"      chama a função CDO_consultaCidade        <int>index <string>cidade
-*	  "=consultaBairro"      chama a função CDO_consultaBairro        <int>index <string>bairro
-*	  "=consultaRua"         chama a função CDO_consultaRua           <int>index <string>rua
-*	  "=consultaNumero"      chama a função CDO_consultaNumero        <int>index <int>numero
-*	  "=consultaComplemento" chama a função CDO_consultaComplemento   <int>index <string>complemento
+*     "=consultaNome"        chama a função CDO_consultaNome 	      <int>index <string>nome <int>CondRetEsperada 
+*	  "=consultaRg"          chama a função CDO_consultaRg 		      <int>index <int>rg <int>CondRetEsperada 
+*	  "=consultaCpf"         chama a função CDO_consultaCpf           <int>index <string>cpf <int>CondRetEsperada 
+*	  "=consultaMatricula"   chama a função CDO_consultaMatricula     <int>index <int>matricula <int>CondRetEsperada 
+*	  "=consultaEmail"       chama a função CDO_consultaEmail         <int>index <string>email <int>CondRetEsperada 
+*	  "=consultaTelefone"    chama a função CDO_consultaTelefone      <int>index <int>telefone <int>CondRetEsperada 
+*	  "=consultaDia"         chama a função CDO_consultaDia           <int>index <int>dia <int>CondRetEsperada 
+*	  "=consultaMes"         chama a função CDO_consultaMes           <int>index <int>mes <int>CondRetEsperada 
+*	  "=consultaAno"         chama a função CDO_consultaAno           <int>index <int>ano <int>CondRetEsperada 
+*	  "=consultaPais"        chama a função CDO_consultaPais          <int>index <string>pais <int>CondRetEsperada 
+*	  "=consultaUf"          chama a função CDO_consultaUf            <int>index <string>uf <int>CondRetEsperada 
+*	  "=consultaCidade"      chama a função CDO_consultaCidade        <int>index <string>cidade <int>CondRetEsperada 
+*	  "=consultaBairro"      chama a função CDO_consultaBairro        <int>index <string>bairro <int>CondRetEsperada 
+*	  "=consultaRua"         chama a função CDO_consultaRua           <int>index <string>rua <int>CondRetEsperada 
+*	  "=consultaNumero"      chama a função CDO_consultaNumero        <int>index <int>numero <int>CondRetEsperada 
+*	  "=consultaComplemento" chama a função CDO_consultaComplemento   <int>index <string>complemento <int>CondRetEsperada 
 *
-*     "=alterarNome"         chama a função CDO_alteraNome 	         <int>index <string>nome
-*	  "=alterarRg"           chama a função CDO_alteraRg 		     <int>index <int>rg
-*	  "=alterarCpf"          chama a função CDO_alteraCpf            <int>index <string>cpf
-*	  "=alterarMatricula"    chama a função CDO_alteraMatricula      <int>index <int>matricula
-*	  "=alterarEmail"        chama a função CDO_alteraEmail          <int>index <string>email
-*	  "=alterarTelefone"     chama a função CDO_alteraTelefone       <int>index <int>telefone
-*	  "=alterarData "        chama a função CDO_alteraDataNascimento <int>index <int>dia <int>mes <int>ano
-*	  "=alterarPais"         chama a função CDO_alteraPais           <int>index <string>pais
-*	  "=alterarUf"           chama a função CDO_alteraUf             <int>index <string>uf
-*	  "=alterarCidade"       chama a função CDO_alteraCidade         <int>index <string>cidade
-*	  "=alterarBairro"       chama a função CDO_alteraBairro         <int>index <string>bairro
-*	  "=alterarRua"          chama a função CDO_alteraRua            <int>index <string>rua
-*	  "=alterarNumero"       chama a função CDO_alteraNumero         <int>index <int>numero
-*	  "=alterarComplemento"  chama a função CDO_alteraComplemento    <int>index <string>complemento
-*
+*     "=alterarNome"         chama a função CDO_alteraNome 	         <int>index <string>nome <int>CondRetEsperada 
+*	  "=alterarRg"           chama a função CDO_alteraRg 		     <int>index <int>rg <int>CondRetEsperada 
+*	  "=alterarCpf"          chama a função CDO_alteraCpf            <int>index <string>cpf <int>CondRetEsperada 
+*	  "=alterarMatricula"    chama a função CDO_alteraMatricula      <int>index <int>matricula <int>CondRetEsperada 
+*	  "=alterarEmail"        chama a função CDO_alteraEmail          <int>index <string>email <int>CondRetEsperada 
+*	  "=alterarTelefone"     chama a função CDO_alteraTelefone       <int>index <int>telefone <int>CondRetEsperada 
+*	  "=alterarData "        chama a função CDO_alteraDataNascimento <int>index <int>dia <int>mes <int>ano <int>CondRetEsperada 
+*	  "=alterarEndereco"     chama a função CDO_alteraEndereco       <int>index <string>pais <string>uf <string>cidade 
+*																     <string>bairro <string>rua <int>numero <string>complemento <int>CondRetEsperada 
 ***************************************************************************/
 
 #include    <string.h>
