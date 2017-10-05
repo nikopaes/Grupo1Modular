@@ -103,34 +103,32 @@
 =cadastrar nomeSegundo rgSegundo cpfSegundo matriculaSegundo emailSegundo telefoneSegundo diaSegundo mesSegundo anoSegundo paisSegundo ufSegundo cidadeSegundo bairroSegundo ruaSegundo numeroSegundo complementoSegundo OK
 
 == Verificar mostrar segundo
-=mostrar OK
+=mostrarAtual OK
 
 //Verificando identificações duplicadas --------------------------------
 
 == Verificando cadastro de um professor com rg igual
-=cadastrar nomeTerceiro rg cpfTerceiro matriculaTerceiro emailTerceiro telefoneTerceiro diaTerceiro mesTerceiro anoTerceiro paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro OK
+=cadastrar nomeTerceiro rg cpfTerceiro matriculaTerceiro emailTerceiro telefoneTerceiro diaTerceiro mesTerceiro anoTerceiro paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro IdJaCriado
 
 == Verificando cadastro de um professor com cpf igual
-=cadastrar nomeTerceiro rgTerceiro cpf matriculaTerceiro emailTerceiro telefoneTerceiro diaTerceiro mesTerceiro anoTerceiro paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro OK
+=cadastrar nomeTerceiro rgTerceiro cpf matriculaTerceiro emailTerceiro telefoneTerceiro diaTerceiro mesTerceiro anoTerceiro paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro IdJaCriado
 
 == Verificando cadastro de um professor com matricula igual
-=cadastrar nomeTerceiro rgTerceiro cpfTerceiro matricula emailTerceiro telefoneTerceiro diaTerceiro mesTerceiro anoTerceiro paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro OK
+=cadastrar nomeTerceiro rgTerceiro cpfTerceiro matricula emailTerceiro telefoneTerceiro diaTerceiro mesTerceiro anoTerceiro paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro IdJaCriado
 
 == Verificando cadastro de um professor com email igual
-=cadastrar nomeTerceiro rgTerceiro cpfTerceiro matriculaTerceiro email telefoneTerceiro diaTerceiro mesTerceiro anoTerceiro paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro OK
+=cadastrar nomeTerceiro rgTerceiro cpfTerceiro matriculaTerceiro email telefoneTerceiro diaTerceiro mesTerceiro anoTerceiro paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro IdJaCriado
 
+// ----
 == Verificando cadastro de um terceiro professor
 =cadastrar nomeTerceiro rgTerceiro cpfTerceiro matriculaTerceiro emailTerceiro telefoneTerceiro diaTerceiro mesTerceiro anoTerceiro paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro OK
 
 == Verificar mostrar terceiro
-=mostrar OK
+=mostrarAtual OK
 
 //Verificando consultas ------------------------------------------------
 
-==Verificar posiçao vazia
-=alterarCPF cpfSegundo OK
-
-==Verificar movendo para o segundo
+==Movendo cursor para o segundo
 =buscarNome nomeSegundo OK
 
 ==Verificar consulta nome
@@ -155,17 +153,20 @@
 =consultarData diaSegundo mesSegundo anoSegundo OK
 
 ==Verificar consulta endereco
-=consultarEndereco paisSegundo ufSegundo cidadeSegundo ruaSegundo numeroSegundo complementoSegundo OK
+=consultarEndereco paisSegundo ufSegundo cidadeSegundo bairroSegundo ruaSegundo numeroSegundo complementoSegundo OK
 
 //Verificando alteras-------------------------------------
 
-==Verificar movendo para o Terceiro
+==Movendo cursor para o Segundo
+=buscarNome nomeSegundo OK
+
+==Movendo cursor para o Terceiro
 =buscarNome nomeTerceiro OK
 
 ==Verificar removendo Terceiro
 =retirar OK
 
-==Verificar movendo para o Primeiro
+==Movendo cursor para o Primeiro
 =buscarNome nomePrimero OK
 
 ==Verificar altera nome
@@ -200,17 +201,13 @@
 
 ==Verificar altera data
 =alterarData diaTerceiro mesTerceiro anoTerceiro OK
-==Verificar consulta dia
-=consultarDia diaTerceiro OK
-==Verificar consulta mes
-=consultarMes mesTerceiro OK
-==Verificar consulta ano
-=consultarAno anoTerceiro OK
+==Verificar consulta data
+=consultarData diaTerceiro mesTerceiro anoTerceiro OK
 
 ==Verificar altera endereco
-=alterarEndereco paisTerceiro ufTerceiro cidadeTerceiro ruaTerceiro numeroTerceiro complementoTerceiro OK
+=alterarEndereco paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro OK
 ==Verificar consulta endereco
-=consultarEndereco paisTerceiro ufTerceiro cidadeTerceiro ruaTerceiro numeroTerceiro complementoTerceiro OK
+=consultarEndereco paisTerceiro ufTerceiro cidadeTerceiro bairroTerceiro ruaTerceiro numeroTerceiro complementoTerceiro OK
 
 //Verificando formato invalido-----------------------------------
 
@@ -236,7 +233,7 @@
 =alterarData diaInvalido mesInvalido anoInvalido FormatoInvalido
 
 ==Verificar altera endereco
-=alterarEndereco paisInvalido ufInvalido cidadeInvalido ruaInvalido numeroInvalido complementoInvalido FormatoInvalido
+=alterarEndereco paisInvalido ufInvalido cidadeInvalido bairroInvalido ruaInvalido numeroInvalido complementoInvalido FormatoInvalido
 
 //Verificando buscas ---------------------------------------------
 

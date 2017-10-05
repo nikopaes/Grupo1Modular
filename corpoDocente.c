@@ -85,7 +85,6 @@ CDO_tpCondRet CDO_cadastra(char *nome, int rg, char *cpf, int matricula, char *e
 	PRF_tpCondRet ret;
 	if(buscaIdentificacao(rg, cpf, matricula, email) != CDO_CondRetOk)
 		return CDO_CondRetIdJaCriado;
-		printf("a\n");
 	ret = PRF_cria(&prof, nome, rg, cpf, matricula, email, telefone, dia, mes, ano, pais, uf, cidade, bairro, rua, numero, complemento);
 	if(ret == PRF_CondRetNaoHaMemoria) return CDO_CondRetNaoHaMemoria;
 	if(ret == PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
@@ -192,21 +191,34 @@ CDO_tpCondRet CDO_buscaPorNome(char *chave){
 	PRF_ptProfessor inicio = NULL;
 	PRF_ptProfessor prof = NULL;
 	char nome[PRF_TAM_STRING];
+
+	
 	if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
 			return CDO_CondRetCorpoDocenteVazio;
 	inicio = prof;
-	do{
+	next(doc->professores);
+
+	if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
+			return CDO_CondRetCorpoDocenteVazio;
+
+	if(inicio ==  prof){
+			PRF_consultaNome(prof, nome);
+		if(strcmp(chave, nome)==0) return CDO_CondRetOk;
+		else return CDO_CondRetProfessorNaoEncontrado;
+	}
+
+	while(1){
 		if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
 			return CDO_CondRetCorpoDocenteVazio;
 		
 		PRF_consultaNome(prof, nome);
 		if(strcmp(chave, nome)==0) return CDO_CondRetOk;
 	
-		
+		if(prof == inicio) return CDO_CondRetProfessorNaoEncontrado;
 		condRet = next(doc->professores);
 		if(condRet == LIS_CondRetCursorNoFinal) first(doc->professores);
 
-	} while(prof != inicio);
+	};
 	return CDO_CondRetProfessorNaoEncontrado;
 }/* Fim função: CDO Busca Por Nome */
 
