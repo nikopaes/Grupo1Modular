@@ -17,13 +17,14 @@
 *
 *  $HA Histórico de evolução:
 *     Versão	Autor	   Data		Observações
-*   	1.0    BM/RP   05/10/2017 	Mais Revisão
-*       0.40   NP      05/10/2017   Documentação finalizada 
-*   	0.32   BM/RP   03/10/2017 	Revisão
-*    	0.31   NP	   03/10/2017 	Documentação iniciada
-*       0.30   BM	   02/10/2017	Protótipos adicionados 
-*       0.20   BM	   02/10/2017	Funcoes modelo adicionadas 
-*       0.10   BM	   01/10/2017	Inicio do desenvolvimento 
+*		1.10	RP		05/10/2017  Ajuste de comentários das alteras de chaves
+*   	1.00    BM/RP   05/10/2017 	Mais Revisão
+*       0.40    NP      05/10/2017  Documentação finalizada 
+*   	0.32    BM/RP   03/10/2017 	Revisão
+*    	0.31    NP	    03/10/2017 	Documentação iniciada
+*       0.30    BM	    02/10/2017	Protótipos adicionados 
+*       0.20    BM	    02/10/2017	Funcoes modelo adicionadas 
+*       0.10    BM	    01/10/2017	Inicio do desenvolvimento 
 *
 *  $ED Descrição do módulo
 *	  Este módulo implementa um conjunto de funções para criar e manipular uma lista de Instâncias de Professor, ou seja, um Corpo Docente.
@@ -600,6 +601,7 @@ CDO_tpCondRet CDO_alteraNome(char *nome);
 *     CDO_CondRetOk 
 *	  CDO_CondRetFormatoInvalido - Caso o formato do rg não esteja de acordo com o esperado pela função PRF_alteraRg
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
+*     CDO_CondRetIdJaCriado - Já existe professor na lista com esse RG
 *
 *  Assertiva de Entrada: 
 *		-Corpo docente foi alocado
@@ -626,6 +628,7 @@ CDO_tpCondRet CDO_alteraRg(int rg);
 *     CDO_CondRetOk 
 *	  CDO_CondRetFormatoInvalido - Caso o formato do cpf não esteja de acordo com o esperado pela função PRF_alteraCpf
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
+*	  CDO_CondRetIdJaCriado - Já existe professor na lista com esse CPF
 *
 *  Assertiva de Entrada: 
 *		-Corpo docente foi alocado
@@ -652,6 +655,7 @@ CDO_tpCondRet CDO_alteraCpf(char *cpf);
 *     CDO_CondRetOk 
 *	  CDO_CondRetFormatoInvalido - Caso o formato da matricula não esteja de acordo com o esperado pela função PRF_alteraMatricula
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
+*	  CDO_CondRetIdJaCriado - Já existe professor na lista com esse Matricula
 *
 *  Assertiva de Entrada: 
 *		-Corpo docente foi alocado
@@ -678,6 +682,7 @@ CDO_tpCondRet CDO_alteraMatricula(int matricula);
 *     CDO_CondRetOk 
 *	  CDO_CondRetFormatoInvalido - Caso o formato do email não esteja de acordo com o esperado pela função PRF_alteraEmail
 *     CDO_CondRetCorpoDocenteVazio - Caso o Corpo Docente apontado esteja vazio
+*	  CDO_CondRetIdJaCriado - Já existe professor na lista com esse Email
 *
 *  Assertiva de Entrada: 
 *		-Corpo docente foi alocado
