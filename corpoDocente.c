@@ -190,6 +190,7 @@ CDO_tpCondRet CDO_buscaPorNome(char *chave){
 	LIS_tpCondRet condRet;
 	PRF_ptProfessor inicio = NULL;
 	PRF_ptProfessor prof = NULL;
+	unsigned int tam=0;
 	char nome[PRF_TAM_STRING];
 
 	
@@ -201,7 +202,9 @@ CDO_tpCondRet CDO_buscaPorNome(char *chave){
 	if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
 			return CDO_CondRetCorpoDocenteVazio;
 
-	if(inicio ==  prof){
+
+	if(list_size(doc->professores, &tam) == LIS_CondRetListaVazia) return CDO_CondRetCorpoDocenteVazio;
+	if(tam==1){
 			PRF_consultaNome(prof, nome);
 		if(strcmp(chave, nome)==0) return CDO_CondRetOk;
 		else return CDO_CondRetProfessorNaoEncontrado;
@@ -213,7 +216,7 @@ CDO_tpCondRet CDO_buscaPorNome(char *chave){
 		
 		PRF_consultaNome(prof, nome);
 		if(strcmp(chave, nome)==0) return CDO_CondRetOk;
-	
+
 		if(prof == inicio) return CDO_CondRetProfessorNaoEncontrado;
 		condRet = next(doc->professores);
 		if(condRet == LIS_CondRetCursorNoFinal) first(doc->professores);

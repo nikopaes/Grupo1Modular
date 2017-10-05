@@ -157,17 +157,20 @@
 
 //Verificando alteras-------------------------------------
 
-==Movendo cursor para o Segundo
-=buscarNome nomeSegundo OK
-
 ==Movendo cursor para o Terceiro
 =buscarNome nomeTerceiro OK
+
+==Movendo mostrar todos
+=mostrarTodos OK
 
 ==Verificar removendo Terceiro
 =retirar OK
 
+==Movendo mostrar todos
+=mostrarAtual OK
+
 ==Movendo cursor para o Primeiro
-=buscarNome nomePrimero OK
+=buscarNome nome OK
 
 ==Verificar altera nome
 =alterarNome nomeTerceiro OK
@@ -238,7 +241,7 @@
 //Verificando buscas ---------------------------------------------
 
 ==Verificar busca por valor inexistente
-=buscarNome nomeTerceiro ProfessorNaoEncontrado
+=buscarNome nome ProfessorNaoEncontrado
 
 //Verificacoes de memória-----------------------------------------
 
