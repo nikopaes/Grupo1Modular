@@ -183,15 +183,15 @@ PRF_tpCondRet PRF_mostra(Prof* professor){
 	if(!professor->dataNascimento) return PRF_CondRetNaoExisteProf; /* if */
 	if(!professor->endereco) return PRF_CondRetNaoExisteProf; /* if */
 	printf("Exibindo Professor...\n"); 
-	printf("nome: %s\n", professor->nome);
-	printf("cpf : %s\n", professor->cpf);
-	printf("rg : %d\n", professor->rg);
-	printf("matricula : %d\n", professor->matricula);
-	printf("email : %s\n", professor->email);
-	printf("telefone : %d \n", professor->telefone);
-	printf("data de nascimento : ");
+	printf("Nome: %s\n", professor->nome);
+	printf("CPF: %s\n", professor->cpf);
+	printf("RG: %d\n", professor->rg);
+	printf("Matricula: %d\n", professor->matricula);
+	printf("Email: %s\n", professor->email);
+	printf("Telefone: %d \n", professor->telefone);
+	printf("Data de nascimento: ");
 	mostraData(professor->dataNascimento);
-	printf("endereco:");
+	printf("Endereco:");
 	mostraEndereco(professor->endereco);
 	return PRF_CondRetOk;
 } /* Fim função: PRF Mostra professor */
@@ -207,12 +207,12 @@ PRF_tpCondRet PRF_mostra(Prof* professor){
 ***********************************************************************/
 
 	PRF_tpCondRet mostraEndereco(Endereco* end){
-		printf(" %s,", end->rua);
-		printf("No %d, ", end->numero);
-		printf("complemento:%s, ", end->complemento);
+		printf(" %s, ", end->rua);
+		printf("%d, ", end->numero);
+		printf("%s, ", end->complemento);
 		printf("%s, ", end->bairro);
 		printf("%s, ", end->cidade);
-		printf("%s, ", end->uf);
+		printf("%s - ", end->uf);
 		printf("%s, \n", end->pais);
 		return PRF_CondRetOk;
 	} /* Fim função: PRF Mostra professor */

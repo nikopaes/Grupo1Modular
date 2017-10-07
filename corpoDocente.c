@@ -12,17 +12,17 @@
 *			Felipe Alfena, FA
 *			Nicolas Paes, NP
 *			Mariana Ruddy, MR
-*			Rodrigo Pumar, RP.
+*			Rodrigo Pumar, RP.  
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor 	Data     	Observações
 *       0.52   BM/RP	04/10/2017	Revisão
 *       0.51   BM   	04/10/2017	Revisão
 *       0.50   RP   	03/10/2017	Documentação
-*       0.40   FA  	    03/10/2017	Funções busca adicionadas
+	0.40   FA	03/10/2017	Funções busca adicionadas
 *       0.30   MR   	03/10/2017	Funções de consulta/altera adicionadas 
 *       0.20   BM   	02/10/2017	Funcoes modelo adicionadas 
-*       0.10   BM  	    01/10/2017	Inicio do desenvolvimento 
+*       0.10   BM	01/10/2017	Inicio do desenvolvimento 
 *
 *  $ED Descrição do módulo
 *     Este módulo contém as funções específicas para manipular os professores na lista de corpo docente.
