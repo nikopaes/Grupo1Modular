@@ -31,6 +31,9 @@
 *
 ***************************************************************************/
 
+#ifndef PROFESSOR_H
+#define PROFESSOR_H 
+
 /***** Declarações exportadas pelo módulo *****/
 
 #define  PRF_MIN_ANO  1850
@@ -50,7 +53,7 @@ typedef struct prof Prof;
 *     Ponteiro para estrutura Prof do modulo professor
 *
 ***********************************************************************/
-typedef Prof *PRF_ptProfessor;// TODO colocar isso no professor.h
+typedef Prof *PRF_ptProfessor;
 
 
 /***********************************************************************
@@ -1022,3 +1025,4 @@ PRF_tpCondRet PRF_alteraComplemento(Prof* professor, char* complemento);
 /* Fim do Bloco de Funcoes de Altera */
 
 /********** Fim do módulo de definição: Módulo Professor **********/
+#endif

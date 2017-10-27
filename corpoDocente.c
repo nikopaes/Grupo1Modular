@@ -12,17 +12,17 @@
 *			Felipe Alfena, FA
 *			Nicolas Paes, NP
 *			Mariana Ruddy, MR
-*			Rodrigo Pumar, RP.
+*			Rodrigo Pumar, RP.  
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor 	Data     	Observações
 *       0.52   BM/RP	04/10/2017	Revisão
 *       0.51   BM   	04/10/2017	Revisão
 *       0.50   RP   	03/10/2017	Documentação
-*       0.40   FA  	    03/10/2017	Funções busca adicionadas
+	0.40   FA	03/10/2017	Funções busca adicionadas
 *       0.30   MR   	03/10/2017	Funções de consulta/altera adicionadas 
 *       0.20   BM   	02/10/2017	Funcoes modelo adicionadas 
-*       0.10   BM  	    01/10/2017	Inicio do desenvolvimento 
+*       0.10   BM	01/10/2017	Inicio do desenvolvimento 
 *
 *  $ED Descrição do módulo
 *     Este módulo contém as funções específicas para manipular os professores na lista de corpo docente.
@@ -137,7 +137,7 @@ CDO_tpCondRet CDO_mostraAtual(){
 
  /***************************************************************************
  *
- *  Função: CDO Mosta Todos Professores
+ *  Função: CDO Mostra Todos Professores
  *  ****/
 
 CDO_tpCondRet CDO_mostraTodos(){
@@ -148,7 +148,7 @@ CDO_tpCondRet CDO_mostraTodos(){
 		PRF_mostra(prof);
 	}while(next(doc->professores)==LIS_CondRetOK);
 	return CDO_CondRetOk;
-}/* Fim função: CDO Mosta Todos Professores */
+}/* Fim função: CDO Mostra Todos Professores */
 
  /***************************************************************************
  *
@@ -156,7 +156,9 @@ CDO_tpCondRet CDO_mostraTodos(){
  *  ****/
 
 CDO_tpCondRet CDO_limpa(){
-	clear(doc->professores);
+	PRF_ptProfessor prof = NULL;
+	while(pop_back(doc->professores, (void**) &prof)==LIS_CondRetOK)
+		PRF_libera(&prof);
 	return CDO_CondRetOk;
 }/* Fim função: CDO Limpa Lista */
 
@@ -166,8 +168,9 @@ CDO_tpCondRet CDO_limpa(){
  *  ****/
 
 CDO_tpCondRet CDO_retira(){
-	void *nulo;
-	if(pop_cursor(doc->professores, &nulo) == LIS_CondRetListaVazia) return CDO_CondRetCorpoDocenteVazio;
+	PRF_ptProfessor prof = NULL;
+	if(pop_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia) return CDO_CondRetCorpoDocenteVazio;
+	PRF_libera(&prof);
 	return CDO_CondRetOk;
 }/* Fim função: CDO Retira da Lista */
 
@@ -177,6 +180,7 @@ CDO_tpCondRet CDO_retira(){
  *  ****/
 
 CDO_tpCondRet CDO_libera(){
+	CDO_limpa();
 	del(doc->professores);
 	return CDO_CondRetOk;
 }/* Fim função: CDO Libera */
@@ -484,12 +488,14 @@ CDO_tpCondRet CDO_alteraEndereco(char *pais, char *uf, char *cidade, char *bairr
 	PRF_ptProfessor prof = NULL;
 	if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
 			return CDO_CondRetCorpoDocenteVazio;
-	if(PRF_alteraPais(prof,pais)==PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
-	if(PRF_alteraUf(prof,uf)==PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
-	if(PRF_alteraCidade(prof,cidade)==PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
-	if(PRF_alteraBairro(prof,bairro)==PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
-	if(PRF_alteraRua(prof,rua)==PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
-	if(PRF_alteraNumero(prof,numero)==PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
-	if(PRF_alteraComplemento(prof,complemento)==PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
+	if(PRF_alteraPais(prof,pais)		==	PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
+	if(PRF_alteraUf(prof,uf)		==	PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
+	if(PRF_alteraCidade(prof,cidade)	==	PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
+	if(PRF_alteraBairro(prof,bairro)	==	PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
+	if(PRF_alteraRua(prof,rua)		==	PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
+	if(PRF_alteraNumero(prof,numero)	==	PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
+	if(PRF_alteraComplemento(prof,complemento)==	PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
 	return CDO_CondRetOk;
 }/* Fim função: CDO Altera Endereco*/
+
+
