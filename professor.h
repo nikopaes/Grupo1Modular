@@ -155,6 +155,8 @@ PRF_tpCondRet PRF_libera(Prof** professor);
 *
 *  Assertiva de Entrada: 
 *		-professor aponta para um Professor válido alocado dinamicamente.
+*  Assertiva de Saída: 
+*		-Mostra-se no Prompt de Comando a atual Instância de Professor selecionada
 * 
 ***********************************************************************/
 PRF_tpCondRet PRF_mostra(Prof* professor);
