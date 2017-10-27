@@ -5,7 +5,7 @@
 *  Arquivo gerado:              corpoDocente.h
 *  Letras identificadoras:      CDO
 *
-*  Nome da base de software:    Fonte do módulo Corpo Docente
+*  Nome da base de software:    Módulo Corpo Docente
 *
 *  Projeto: Disciplina INF 1301
 *  Gestor:  DI/PUC-Rio
