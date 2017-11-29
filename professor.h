@@ -37,9 +37,9 @@
 /***** Declarações exportadas pelo módulo *****/
 
 #define  PRF_MIN_ANO  1850
-#define  PRF_TAM_STRING  80
+#define  PRF_TAM_STRING  81
 #define  PRF_TAM_UF 3
-#define  PRF_TAM_CPF 11
+#define  PRF_TAM_CPF 12
 
 
 /* Tipo professor */
@@ -77,6 +77,8 @@ typedef enum{
 			/* Condicao de Retorno Professor Ja Criado, usada ao tentar instânciar um professor duas vezes no mesmo bloco de memória (no mesmo ponteiro). */ 
 	PRF_CondRetFormatoInvalido,
 			/* Condicao de Retorno Formato Inválido, usada quando o formato de algum parâmetro está errado */
+	PRF_CondRetErroAbrirArquivo
+	        /* Condicao de Retorno Erro Abrir Arquivo, usada quando ocorrer erro ao abrir arquivo com os dados pessoais dos professores. */
 } PRF_tpCondRet;
 
 
@@ -158,8 +160,6 @@ PRF_tpCondRet PRF_libera(Prof** professor);
 *
 *  Assertiva de Entrada: 
 *		-professor aponta para um Professor válido alocado dinamicamente.
-*  Assertiva de Saída: 
-*		-Mostra-se no Prompt de Comando a atual Instância de Professor selecionada
 * 
 ***********************************************************************/
 PRF_tpCondRet PRF_mostra(Prof* professor);
@@ -1024,5 +1024,35 @@ PRF_tpCondRet PRF_alteraComplemento(Prof* professor, char* complemento);
 
 /* Fim do Bloco de Funcoes de Altera */
 
+/***********************************************************************
+*
+*  $FC Função: PRF Salva Dados
+*
+*  $ED Descrição da função
+*     Salva em arquivo os dados pessoais do professor
+*
+*  $EP Parâmetros
+*     $P professor - é o parâmetro que aponta para o professor que terá seus dados pessoais salvos em arquivo.
+* 					 Este parâmetro é passado por referência.
+*     $P path -  é o parametro que receberá o path onde será salvo os dados pessoais do professor.
+*						
+*  $FV Valor retornado
+*     PRF_CondRetOk
+*     PRF_CondRetErroAbrirArquivo - Erro ao abrir arquivo com os dados pessoais dos professores.
+*
+*  Assertiva de Entrada: 
+*		-parametro ponteiro professor aponta para um Professor válido.
+*       -parametro ponteiro path aponta para um path válido.
+*                       
+*  Assertiva de Saída: 
+*		-Caso ocorra erro ao abrir o arquivo os dados pessoais do professor não serão salvos no 
+*       arquivo. 
+*       -Dados do professor serão salvos em arquivo.
+*
+***********************************************************************/
+
+PRF_tpCondRet PRF_salvaDados(Prof *professor, FILE *f);
+
 /********** Fim do módulo de definição: Módulo Professor **********/
+
 #endif

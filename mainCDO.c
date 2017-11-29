@@ -21,10 +21,6 @@ int main(void){
 	CDO_cadastra( "Pereira" , 131222333, "32345678901", 3112223, "dmMail@mail", 311222333, 13, 12, 2196, "BrasilComC", "Rc", "RioDeJaneiro", "umBairro", "AvQalquer", 666, "defrontePuc");
 	CDO_cadastra( "De" , 141222333, "42345678901", 4112223, "emMail@mail", 411222333, 14, 12, 2196, "BrasilComD", "Rd", "RioDeJaneiro", "umBairro", "AvQalquer", 666, "defrontePuc");
 	CDO_cadastra( "Andrade" , 151222333, "52345678901", 5112223, "fmMail@mail", 511222333, 15, 12, 2196, "BrasilComE", "Re", "RioDeJaneiro", "umBairro", "AvQalquer", 666, "defrontePuc");
-
-
-	printf("vamos procurar por um nome\n");
-	CDO_buscaPorNome("Pereira");
 	CDO_mostraAtual();
 
 	printf("vamos retirar o atual\n");
