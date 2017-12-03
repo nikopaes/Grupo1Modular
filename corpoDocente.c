@@ -510,8 +510,8 @@
 		if(PRF_alteraComplemento(prof,complemento)==	PRF_CondRetFormatoInvalido) return CDO_CondRetFormatoInvalido;
 		return CDO_CondRetOk;
 	} /* Fim função: CDO Altera Endereco */
-#ifdef _DEBUG
 
+#ifdef _DEBUG
 	//	Assertivas para lista (parte da matriz)
 //A - Se o anterior à um nó não é nulo, então o próximo do anterior a ele é o próprio nó
 //(Se pNo->pAnt != NULL, então pNo->pAnt->pProx = pNo );
@@ -521,115 +521,80 @@
  *
  *  Função: CDO Verificador Estrutural
  *  ****/
-	CDO_tpCondRet CDO_verificadorEstrutural(corpoDocente *doc){
-		PRF_ptProfessor profAnt = NULL;
+	CDO_tpCondRet CDO_verificadorEstrutural(){
 		PRF_ptProfessor profCorr = NULL;
-		PRF_ptProfessor profProx = NULL;
+		if(get_val_cursor(doc->professores, (void**) &profCorr) == LIS_CondRetListaVazia)
+				return CDO_CondRetOk;
 		first(doc->professores);
-		// AE 1 -A
-		if(prev(doc->professores) != LIS_CondRetCursorNoInicio){
+		if(prev(doc->professores) != LIS_CondRetCursorNoInicio) 
 			return CDO_CondRetErroEstrutural;
-		}
-		// AE 1 - B
-		get_val_cursor(doc->professores, (void**) &profCorr);
-		next(doc->professores);
-		get_val_cursor(doc->professores, (void**) &profProx);
-		if(profProx == NULL){
-			return CDO_CondRetOk;
-		}
-		prev(doc->professores);
-		get_val_cursor(doc->professores, (void**) &profAnt);
-		int matrAnt;
-		int matrCorr;
-		PRF_consultaMatricula(profAnt,&matrAnt);
-		PRF_consultaMatricula(profCorr,&matrCorr);
-		if (matrAnt != matrCorr){
+		do{
+			if(assertivaEstruturalDoNoAnterior() == 0) return CDO_CondRetErroEstrutural;
+			if(assertivaEstruturalDoNoProximo() == 0) return CDO_CondRetErroEstrutural;
+		}while(next(doc->professores)==LIS_CondRetOK);
+		if(next(doc->professores) != LIS_CondRetCursorNoFinal) 
 			return CDO_CondRetErroEstrutural;
-		}
-		// AE 2 -A
-		next(doc->professores);
-		get_val_cursor(doc->professores, (void**) &profCorr);
-		prev(doc->professores);
-		get_val_cursor(doc->professores, (void**) &profAnt);
-		if (profAnt != NULL){
-			next(doc->professores);
-			get_val_cursor(doc->professores, (void**) &profProx);
-			int matrProx;
-			int matrCorr;
-			PRF_consultaMatricula(profProx,&matrProx);
-			PRF_consultaMatricula(profCorr,&matrCorr);
-			if (matrProx != matrCorr){
-				return CDO_CondRetErroEstrutural;
-			}
-			prev(doc->professores);
-		}
-		next(doc->professores);
-		// AE 2 -B
-		next(doc->professores);
-		get_val_cursor(doc->professores, (void**) &profProx);
-		if (profProx == NULL){
-			return CDO_CondRetOk;
-		}
-		prev(doc->professores);
-		get_val_cursor(doc->professores, (void**) &profAnt);
-		int matrAnt;
-		int matrCorr;
-		PRF_consultaMatricula(profAnt,&matrAnt);
-		PRF_consultaMatricula(profCorr,&matrCorr);
-		if (matrAnt != matrCorr){
-			return CDO_CondRetErroEstrutural;
-		}
-		// AE 3 -B
-		next(doc->professores);
-		get_val_cursor(doc->professores, (void**) &profCorr);
-		prev(doc->professores);
-		get_val_cursor(doc->professores, (void**) &profAnt);
-		if (profAnt != NULL){
-			next(doc->professores);
-			get_val_cursor(doc->professores, (void**) &profProx);
-			int matrProx;
-			int matrCorr;
-			PRF_consultaMatricula(profProx,&matrProx);
-			PRF_consultaMatricula(profCorr,&matrCorr);
-			if (matrProx != matrCorr){
-				return CDO_CondRetErroEstrutural;
-			}
-			prev(doc->professores);
-		}
-
+		return CDO_CondRetOk;
 	} /* Fim função: CDO Verificador Estrutural */
+
+/***************************************************************************
+ *
+ *  Função: assertivaEstruturalDoNoAnterior
+ *	0 em caso de erro, 1 em caso de sucesso
+ *  ****/
+	int assertivaEstruturalDoNoAnterior(){
+		PRF_ptProfessor profCorr = NULL;
+		PRF_ptProfessor profAntProx = NULL;
+		int matrProx;
+		int matrCorr;
+		get_val_cursor(doc->professores, (void**) &profCorr);
+		if (prev(doc->professores) != LIS_CondRetCursorNoInicio){
+			if(next(doc->professores)==LIS_CondRetCursorNoFinal)
+				return 0;
+			get_val_cursor(doc->professores, (void**) &profAntProx);
+			PRF_consultaMatricula(profAntProx,&matrProx);
+			PRF_consultaMatricula(profCorr,&matrCorr);
+			if (matrProx != matrCorr){
+				return 0;
+			}
+		}
+		return 1;
+	}
+
+	/***************************************************************************
+ *
+ *  Função: assertivaEstruturalDoNoProximo
+ *	0 em caso de erro, 1 em caso de sucesso
+ *  ****/
+	int assertivaEstruturalDoNoProximo(){
+		PRF_ptProfessor profCorr = NULL;
+		PRF_ptProfessor profProxAnt = NULL;
+		int matrProx;
+		int matrCorr;
+		get_val_cursor(doc->professores, (void**) &profCorr);
+		if (next(doc->professores) != LIS_CondRetCursorNoFinal){
+			if(prev(doc->professores)==LIS_CondRetCursorNoInicio)
+				return 0;
+			get_val_cursor(doc->professores, (void**) &profProxAnt);
+			PRF_consultaMatricula(profProxAnt,&matrProx);
+			PRF_consultaMatricula(profCorr,&matrCorr);
+			if (matrProx != matrCorr){
+				return 0;
+			}
+		}
+		return 1;
+	}
 
 		 /***************************************************************************
  *
  *  Função: CDO Deturpador Estrutural
  *  ****/
-	CDO_tpCondRet CDO_deturpadorEstrutural(){
-
+	CDO_tpCondRet CDO_deturpadorEstrutural()
+	{
+		deturpaLista(doc->professores);
 	} /* Fim função: CDO Deturpador Estrutural */
 #endif
 
-
-/***************************************************************************
- *
- *  Função: CDO Busca Por Matricula
- *  ****/
-
-	CDO_tpCondRet CDO_buscaPorMatricula(int chave){
-		PRF_ptProfessor prof = NULL;
-		int matricula;
-
-		first(doc->professores);
-		do{
-			if(get_val_cursor(doc->professores, (void**) &prof) == LIS_CondRetListaVazia)
-				return CDO_CondRetCorpoDocenteVazio;
-
-			PRF_consultaMatricula(prof, &matricula);
-			if(chave == matricula) 
-				return CDO_CondRetOk;
-		}while(next(doc->professores)==LIS_CondRetOK);
-
-		return CDO_CondRetProfessorNaoEncontrado;
-	}/* Fim função: CDO Busca Por Matricula */
 
 
 

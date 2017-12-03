@@ -22,13 +22,21 @@ int main(void){
 	CDO_cadastra( "De" , 141222333, "42345678901", 4112223, "emMail@mail", 411222333, 14, 12, 2196, "BrasilComD", "Rd", "RioDeJaneiro", "umBairro", "AvQalquer", 666, "defrontePuc");
 	CDO_cadastra( "Andrade" , 151222333, "52345678901", 5112223, "fmMail@mail", 511222333, 15, 12, 2196, "BrasilComE", "Re", "RioDeJaneiro", "umBairro", "AvQalquer", 666, "defrontePuc");
 	CDO_mostraAtual();
-
+	
 	printf("vamos retirar o atual\n");
 	CDO_retira();
 	CDO_mostraAtual();
 
 	printf("vamos mostrar todos\n");
 	CDO_mostraTodos();
+	CDO_deturpadorEstrutural();
+	if(CDO_verificadorEstrutural() == CDO_CondRetOk)
+		printf("SUCESSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+	else if (CDO_verificadorEstrutural() == CDO_CondRetErroEstrutural)
+		printf("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+	else
+		printf("LIMBOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+
 
 	CDO_limpa();
 	CDO_libera();

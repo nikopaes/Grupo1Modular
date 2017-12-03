@@ -69,6 +69,10 @@ typedef enum{
 		/* Condicao de Retorno Formato Inválido, usada quando os parâmetros de uma certa função não estão de acordo com o que é esperado pelas funções auxiliares */ 
 	CDO_CondRetErroAbrirArquivo
 	    /* Condicao de Retorno Erro Abrir Arquivo, usada quando ocorrer erro ao abrir arquivo com os dados pessoais dos professores. */
+
+//#ifdef _DEBUG
+		,CDO_CondRetErroEstrutural
+//#endif
 } CDO_tpCondRet;
 
 //TODO Inserir comentario
@@ -810,7 +814,10 @@ CDO_tpCondRet CDO_leDados(char *path) ;
 
 CDO_tpCondRet CDO_salvaDados(char *path) ;
 
-
+#ifdef _DEBUG
+CDO_tpCondRet CDO_verificadorEstrutural();
+CDO_tpCondRet CDO_deturpadorEstrutural();
+#endif
 
 #endif
 
