@@ -4,6 +4,7 @@
 
 int main(void){
 	char nome[80];
+	CDO_tpCondRet condRet;
 	CDO_cria();
 
 	CDO_cadastra( "Bruce" , 111222333, "12345678901", 1112223, "bmMail@mail", 111222333, 11, 12, 2196, "BrasilComS", "Ra", "RioDeJaneiro", "umBairro", "AvQalquer", 666, "defrontePuc");
@@ -29,14 +30,27 @@ int main(void){
 
 	printf("vamos mostrar todos\n");
 	CDO_mostraTodos();
+	CDO_buscaPorMatricula(3112223);
 	CDO_deturpadorEstrutural();
-	if(CDO_verificadorEstrutural() == CDO_CondRetOk)
-		printf("SUCESSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-	else if (CDO_verificadorEstrutural() == CDO_CondRetErroEstrutural)
-		printf("ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-	else
-		printf("LIMBOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-
+	condRet = CDO_verificadorEstrutural();
+	if(condRet == CDO_CondRetOk)
+		printf("CDO_CondRetOk");
+	else if (condRet == CDO_CondRetErroEstruturalNoAnterior)
+		printf("CDO_CondRetErroEstruturalNoAnterior");
+	else if (condRet == CDO_CondRetErroEstruturalNoProximo)
+		printf("CDO_CondRetErroEstruturalNoProximo");
+	else if (condRet == CDO_CondRetErroEstruturalLista)
+		printf("CDO_CondRetErroEstruturalLista");
+	else if (condRet == CDO_CondRetErroEstruturalFirstNull)
+		printf("CDO_CondRetErroEstruturalFirstNull");
+	else if (condRet == CDO_CondRetErroEstruturalLastNull)
+		printf("CDO_CondRetErroEstruturalLastNull");
+	else if (condRet == CDO_CondRetErroEstruturalCursorNull)
+		printf("CDO_CondRetErroEstruturalCursorNull");
+	else if (condRet == CDO_CondRetErroEstruturalFirstPrev)
+		printf("CDO_CondRetErroEstruturalFirstPrev");
+	else if (condRet == CDO_CondRetErroEstruturalLastNext)
+		printf("CDO_CondRetErroEstruturalLastNext");
 
 	CDO_limpa();
 	CDO_libera();

@@ -70,9 +70,16 @@ typedef enum{
 	CDO_CondRetErroAbrirArquivo
 	    /* Condicao de Retorno Erro Abrir Arquivo, usada quando ocorrer erro ao abrir arquivo com os dados pessoais dos professores. */
 
-//#ifdef _DEBUG
-		,CDO_CondRetErroEstrutural
-//#endif
+#ifdef _DEBUG
+	 , CDO_CondRetErroEstruturalLista
+	 , CDO_CondRetErroEstruturalFirstNull
+	 , CDO_CondRetErroEstruturalLastNull
+	 , CDO_CondRetErroEstruturalCursorNull
+	 , CDO_CondRetErroEstruturalFirstPrev
+	 , CDO_CondRetErroEstruturalLastNext
+	 , CDO_CondRetErroEstruturalNoAnterior
+	 , CDO_CondRetErroEstruturalNoProximo
+#endif
 } CDO_tpCondRet;
 
 //TODO Inserir comentario

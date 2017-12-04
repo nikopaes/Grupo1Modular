@@ -51,7 +51,16 @@ typedef struct list List;
 	 /* Impossível obter próximo */
 	 LIS_CondRetCursorNoInicio = 4
 	 /* Impossível obter anterior*/
-
+#ifdef _DEBUG
+	 , LIS_CondRetErroEstruturalLista
+	 , LIS_CondRetErroEstruturalFirstNull
+	 , LIS_CondRetErroEstruturalLastNull
+	 , LIS_CondRetErroEstruturalCursorNull
+	 , LIS_CondRetErroEstruturalFirstPrev
+	 , LIS_CondRetErroEstruturalLastNext
+	 , LIS_CondRetErroEstruturalNoAnterior
+	 , LIS_CondRetErroEstruturalNoProximo
+#endif
    }LIS_tpCondRet;
 /***********************************************************************
 *
@@ -176,7 +185,9 @@ LIS_tpCondRet prev(List* l);//atualiza o cursor para o nó anterior
 
 #ifdef _DEBUG
 
-void deturpaLista(List* l);
+void deturpaLista(List* l, int deturpacao);
+
+LIS_tpCondRet LIS_verificadorEstrutural(List* l);
 
 #endif
 

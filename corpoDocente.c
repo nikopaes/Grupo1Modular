@@ -522,68 +522,34 @@
  *  Função: CDO Verificador Estrutural
  *  ****/
 	CDO_tpCondRet CDO_verificadorEstrutural(){
-		PRF_ptProfessor profCorr = NULL;
-		if(get_val_cursor(doc->professores, (void**) &profCorr) == LIS_CondRetListaVazia)
-				return CDO_CondRetOk;
-		first(doc->professores);
-		if(prev(doc->professores) != LIS_CondRetCursorNoInicio) 
-			return CDO_CondRetErroEstrutural;
-		do{
-			if(assertivaEstruturalDoNoAnterior() == 0) return CDO_CondRetErroEstrutural;
-			if(assertivaEstruturalDoNoProximo() == 0) return CDO_CondRetErroEstrutural;
-		}while(next(doc->professores)==LIS_CondRetOK);
-		if(next(doc->professores) != LIS_CondRetCursorNoFinal) 
-			return CDO_CondRetErroEstrutural;
-		return CDO_CondRetOk;
+		LIS_tpCondRet condRet = LIS_verificadorEstrutural(doc->professores);
+
+		if (condRet == LIS_CondRetErroEstruturalLista)
+			return CDO_CondRetErroEstruturalLista;
+
+		else if (condRet == LIS_CondRetErroEstruturalFirstNull)
+			return CDO_CondRetErroEstruturalFirstNull;
+
+		else if (condRet == LIS_CondRetErroEstruturalLastNull)
+			return CDO_CondRetErroEstruturalLastNull;
+
+		else if (condRet == LIS_CondRetErroEstruturalCursorNull)
+			return CDO_CondRetErroEstruturalCursorNull;
+
+		else if (condRet == LIS_CondRetErroEstruturalFirstPrev)
+			return CDO_CondRetErroEstruturalFirstPrev;
+
+		else if (condRet == LIS_CondRetErroEstruturalLastNext)
+			return CDO_CondRetErroEstruturalLastNext;
+
+		else if (condRet == LIS_CondRetErroEstruturalNoAnterior)
+			return CDO_CondRetErroEstruturalNoAnterior;
+
+		else if (condRet == LIS_CondRetErroEstruturalNoProximo)
+			return CDO_CondRetErroEstruturalNoProximo;
+
+		else return CDO_CondRetOk;
 	} /* Fim função: CDO Verificador Estrutural */
-
-/***************************************************************************
- *
- *  Função: assertivaEstruturalDoNoAnterior
- *	0 em caso de erro, 1 em caso de sucesso
- *  ****/
-	int assertivaEstruturalDoNoAnterior(){
-		PRF_ptProfessor profCorr = NULL;
-		PRF_ptProfessor profAntProx = NULL;
-		int matrProx;
-		int matrCorr;
-		get_val_cursor(doc->professores, (void**) &profCorr);
-		if (prev(doc->professores) != LIS_CondRetCursorNoInicio){
-			if(next(doc->professores)==LIS_CondRetCursorNoFinal)
-				return 0;
-			get_val_cursor(doc->professores, (void**) &profAntProx);
-			PRF_consultaMatricula(profAntProx,&matrProx);
-			PRF_consultaMatricula(profCorr,&matrCorr);
-			if (matrProx != matrCorr){
-				return 0;
-			}
-		}
-		return 1;
-	}
-
-	/***************************************************************************
- *
- *  Função: assertivaEstruturalDoNoProximo
- *	0 em caso de erro, 1 em caso de sucesso
- *  ****/
-	int assertivaEstruturalDoNoProximo(){
-		PRF_ptProfessor profCorr = NULL;
-		PRF_ptProfessor profProxAnt = NULL;
-		int matrProx;
-		int matrCorr;
-		get_val_cursor(doc->professores, (void**) &profCorr);
-		if (next(doc->professores) != LIS_CondRetCursorNoFinal){
-			if(prev(doc->professores)==LIS_CondRetCursorNoInicio)
-				return 0;
-			get_val_cursor(doc->professores, (void**) &profProxAnt);
-			PRF_consultaMatricula(profProxAnt,&matrProx);
-			PRF_consultaMatricula(profCorr,&matrCorr);
-			if (matrProx != matrCorr){
-				return 0;
-			}
-		}
-		return 1;
-	}
 
 		 /***************************************************************************
  *
@@ -591,7 +557,7 @@
  *  ****/
 	CDO_tpCondRet CDO_deturpadorEstrutural()
 	{
-		deturpaLista(doc->professores);
+		deturpaLista(doc->professores, 7);
 	} /* Fim função: CDO Deturpador Estrutural */
 #endif
 

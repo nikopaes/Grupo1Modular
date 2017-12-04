@@ -342,8 +342,73 @@ LIS_tpCondRet prev(List* l)
 
 #ifdef _DEBUG
 
-	void deturpaLista(List* l){
-		l->cursor->next = l->first;
+/***************************************************************************
+ *
+ *  Função: CDO Verificador Estrutural
+ *  ****/
+	LIS_tpCondRet LIS_verificadorEstrutural(void* pListParam){
+		List* pList;
+		pList = (List*) pListParam;
+
+		if(pList == NULL)
+			return LIS_CondRetErroEstruturalLista;
+
+		if(pList->first == NULL)
+			return LIS_CondRetErroEstruturalFirstNull;
+
+		if(pList->last == NULL)
+			return LIS_CondRetErroEstruturalLastNull;
+
+		if(pList->cursor == NULL)
+			return LIS_CondRetErroEstruturalCursorNull;
+
+		if(pList->first->prev != NULL)
+			return LIS_CondRetErroEstruturalFirstPrev;
+
+		if(pList->last->next != NULL)
+			return LIS_CondRetErroEstruturalLastNext;
+
+		first(pList);
+		do{
+			if(pList->cursor != pList->first && pList->cursor->prev->next != pList->cursor)
+				return LIS_CondRetErroEstruturalNoAnterior;
+
+			if(pList->cursor != pList->last && pList->cursor->next->prev != pList->cursor) 
+				return LIS_CondRetErroEstruturalNoProximo;
+		}while(next(pList)==LIS_CondRetOK);
+		return LIS_CondRetOK;
+	} /* Fim função: CDO Verificador Estrutural */
+
+/***************************************************************************
+ *
+ *  Função: CDO Deturpador Estrutural
+ *  ****/
+	void deturpaLista(List* l, int deturpacao){
+		if(deturpacao == 1){
+			clear(l);
+			l = NULL;
+		}
+		else if(deturpacao == 2){
+			l->first = NULL;
+		}
+		else if(deturpacao == 3){
+			l->last = NULL;
+		}
+		else if(deturpacao == 4){
+			l->cursor= NULL;
+		}
+		else if(deturpacao == 5){
+			l->first->prev = l->cursor;
+		}
+		else if(deturpacao == 6){
+			l->last->next = l->cursor;
+		}
+		else if(deturpacao == 7){
+			l->cursor->prev = l->last;
+		}
+		else if(deturpacao == 8){
+			l->cursor->next = l->cursor;
+		}
 	}
 
 #endif
