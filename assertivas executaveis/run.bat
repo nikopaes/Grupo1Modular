@@ -1,0 +1,1 @@
+"EXECUTAVEL/professor.exe" /sSCRIPTS/testeProf.script > saida.txt

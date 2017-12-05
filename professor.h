@@ -697,7 +697,7 @@ PRF_tpCondRet PRF_alteraCpf(Prof* professor, char* cpf);
 *     PRF_CondRetFormatoInvalido - Formato inválido do dado a ser atribuído.
 *
 *  Assertiva de Entrada: 
-*		-parametro ponteiro professor aponta para um Professor válido ou para NULL.
+*		-parametro ponteiro professor aponta para um Professor válido para NULL.
 *                       
 *  Assertiva de Saída: 
 *		-Caso professor aponte para um professor válido e o parâmetro matricula esteja num formato válido o 

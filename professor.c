@@ -580,10 +580,34 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 *  ****/
 
 	PRF_tpCondRet PRF_alteraCpf(Prof* professor, char* cpf){
-		if(professor == NULL) return PRF_CondRetNaoExisteProf; /* if */
-	    if(verificaCpf(cpf) == 0)
+#ifdef _DEBUG	
+		char* aux;
+#endif
+		if(professor == NULL)
+			return PRF_CondRetNaoExisteProf; /* if */
+#ifdef _DEBUG
+		else{
+		printf("\nPonteiro professor não é nulo"); //assertiva de entrada
+		}
+#endif
+	    if(verificaCpf(cpf) == 0){
+#ifdef _DEBUG
+		printf("\nFormato inválido, ponteiro contem: %s \n", cpf);//assertiva de saida
+#endif
 			return PRF_CondRetFormatoInvalido; /* if */
+		}
+#ifdef _DEBUG
+		printf("\nNovo CPF esta em formato válido : %s", cpf);//assertiva de saida
+		aux=professor->cpf;
+#endif
 	    strcpy(professor->cpf, cpf);
+#ifdef _DEBUG
+		if(strcmp(professor->cpf,aux)==0){
+		printf("\nProfessor mudou de valor, sendo o novo valor : %s\n", professor->cpf); //assertiva de saida
+		} else{
+		printf("\nProfessor não mudou de valor : %s", professor->cpf); //assertiva de saida
+		}
+#endif
 	    return PRF_CondRetOk;
 	} /* Fim função: PRF Altera CPF*/
 
