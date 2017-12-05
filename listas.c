@@ -342,6 +342,12 @@ LIS_tpCondRet prev(List* l)
 
 #ifdef _DEBUG
 
+//	Assertivas para lista (parte da matriz)
+//A - Se o anterior à um nó não é nulo, então o próximo do anterior a ele é o próprio nó
+//(Se pNo->pAnt != NULL, então pNo->pAnt->pProx = pNo );
+// B - Se o próximo à um nó não é nulo, então o anterior do próximo a ele é o próprio nó
+//(Se pNo->pProx != NULL, então pNo->pProx->pAnt = pNo );
+
 /***************************************************************************
  *
  *  Função: CDO Verificador Estrutural
@@ -370,11 +376,10 @@ LIS_tpCondRet prev(List* l)
 
 		first(pList);
 		do{
-			if(pList->cursor != pList->first && pList->cursor->prev->next != pList->cursor)
-				return LIS_CondRetErroEstruturalNoAnterior;
-
 			if(pList->cursor != pList->last && pList->cursor->next->prev != pList->cursor) 
 				return LIS_CondRetErroEstruturalNoProximo;
+			if(pList->cursor != pList->first && pList->cursor->prev->next != pList->cursor)
+				return LIS_CondRetErroEstruturalNoAnterior;
 		}while(next(pList)==LIS_CondRetOK);
 		return LIS_CondRetOK;
 	} /* Fim função: CDO Verificador Estrutural */
@@ -404,7 +409,7 @@ LIS_tpCondRet prev(List* l)
 			l->last->next = l->cursor;
 		}
 		else if(deturpacao == 7){
-			l->cursor->prev = l->last;
+			l->cursor->prev = l->cursor;
 		}
 		else if(deturpacao == 8){
 			l->cursor->next = l->cursor;

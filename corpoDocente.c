@@ -512,12 +512,8 @@
 	} /* Fim função: CDO Altera Endereco */
 
 #ifdef _DEBUG
-	//	Assertivas para lista (parte da matriz)
-//A - Se o anterior à um nó não é nulo, então o próximo do anterior a ele é o próprio nó
-//(Se pNo->pAnt != NULL, então pNo->pAnt->pProx = pNo );
-// B - Se o próximo à um nó não é nulo, então o anterior do próximo a ele é o próprio nó
-//(Se pNo->pProx != NULL, então pNo->pProx->pAnt = pNo );
-	 /***************************************************************************
+
+/***************************************************************************
  *
  *  Função: CDO Verificador Estrutural
  *  ****/
