@@ -26,6 +26,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include"listas.h"
+
+#ifdef _DEBUG
+#include   "Generico.h"
+#include   "Conta.h"
+#include   "cespdin.h"
+#include    "IdTiposEspaco.def"
+#endif
+
 /***********************************************************************
 *
 *  $TC Tipo de dados: LIS Descritor de Lista
@@ -52,6 +60,22 @@ struct node
 ***********************************************************************/
 struct list
 {
+	#ifdef _DEBUG
+
+	struct LIS_tagLista * pCabeca ;
+	/* Ponteiro para cabeca
+	*
+	*$ED Descrição
+	*   Todos os nós da lista devem apontar para a respectiva cabeça.
+	*   Esse ponteiro corresponde a um identificador da árvore para fins
+	*   de verificação da integridade. */
+
+
+	 int tamBytes;
+	 //O tamanho em bytes da estrutura apontada pelo nó
+
+
+#endif
 	Node* first;  //Aponta para o primeiro nó
 	Node* last;	  //Aponta para o último nó
 	Node* cursor; //Aponta para o nó cursor
