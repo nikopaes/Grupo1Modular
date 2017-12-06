@@ -582,6 +582,7 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 	PRF_tpCondRet PRF_alteraCpf(Prof* professor, char* cpf){
 #ifdef _DEBUG	
 		char* aux;
+		aux = NULL;
 #endif
 		if(professor == NULL)
 			return PRF_CondRetNaoExisteProf; /* if */
@@ -598,7 +599,9 @@ PRF_tpCondRet PRF_alteraPais(Prof* professor, char* pais){
 		}
 #ifdef _DEBUG
 		printf("\nNovo CPF esta em formato válido : %s", cpf);//assertiva de saida
-		aux=professor->cpf;
+		strcpy(aux,professor->cpf);
+
+		//aux=professor->cpf;
 #endif
 	    strcpy(professor->cpf, cpf);
 #ifdef _DEBUG
